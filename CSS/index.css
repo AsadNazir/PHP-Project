@@ -43,6 +43,11 @@
     padding:0 ;
 }
 
+.logoText
+{
+    display: grid;
+    place-content: center;
+}
 body {
     padding: 0;
     margin: 0;
@@ -51,7 +56,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     transition: 0.3s all ease-in;
-    width: 100vw;
     box-sizing: border-box;
     background-color: var(--background-secondary);
     scroll-behavior: smooth;

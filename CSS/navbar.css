@@ -1,0 +1,87 @@
+
+.logoText a
+{
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    font-size: var(--fs3);
+}
+a
+{
+    color: var(--foreground-primary);
+}
+.menu
+{
+    font-size: var(--fs4);
+    background-color: var(--accent);
+}
+.logoText
+{
+    width: 20%;
+}
+.logoText img
+{
+    width: clamp(75px,20%,150px)
+}
+.logoText span{
+    margin-left: 1rem;
+    color: var(--foreground-primary);
+}
+
+body
+{
+    background-color: var(--background-secondary);
+}
+
+/* Modify the background color */
+.navbar-custom {
+    background-color: var(--background-primary);
+}
+
+/* Modify brand and text color */
+.nav-link {
+    margin: 0 1rem 0 0;
+    color: var(--foreground-primary) !important;
+}
+
+.navbar-toggler span
+{
+    color: white !important;
+}
+.mode {
+    
+    font-size: var(--fs5) !important;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--accent);
+    color: white;
+    width: fit-content;
+}
+.mode span{
+    align-items: center;
+    margin-right: 0.5rem;
+    justify-content: center;
+    display: flex;
+
+}
+
+nav{
+    padding:1 2rem 0 4rem !important;
+    /* border:2px solid red; */
+}
+
+.navbar-collapse
+{
+    flex-grow:0 !important;
+}
+
+.nav-cont
+{
+    width: clamp(300px,70%,1000px);
+    margin: auto;
+    display: flex !important;
+    justify-content: space-between !important;
+    /* border:2px solid red; */
+}
