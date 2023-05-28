@@ -23,11 +23,11 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
   <!-- External CSS Over Here -->
-  <link rel="stylesheet" href="./View/CSS/index.css" />
-  <link rel="stylesheet" href="./View/css/login.css" />
+  <link rel="stylesheet" href="./CSS/index.css" />
+  <link rel="stylesheet" href="./css/login.css" />
   <!-- External JS -->
   <!-- Include This is everywhere index.js in every php and html file -->
-  <script src="./View/JS/index.js"></script>
+  <script src="./JS/index.js"></script>
 </head>
 
 <body class="dtheme_body">
@@ -38,7 +38,7 @@
   </div>
 
   <div class="left_login">
-    <img class="login_logo" src="./View/Images/Asset 2.svg" alt="" />
+    <img class="login_logo" src="./Images/Asset 2.svg" alt="" />
   </div>
   <div class="right_login">
     <button class="mode btn">
