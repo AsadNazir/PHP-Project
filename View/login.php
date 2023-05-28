@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +25,11 @@
   <link rel="stylesheet" href="./CSS/index.css" />
   <link rel="stylesheet" href="./css/login.css" />
   <!-- External JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Include This is everywhere index.js in every php and html file -->
-  <script src="./JS/index.js"></script>
+
 </head>
 
 <body class="dtheme_body">
@@ -68,34 +70,36 @@
       </div>
     </form>
   </div>
-</body>
-<script>
-  //jQuery
+  <script src="./JS/index.js"></script>
+  <script>
+    //jQuery
 
-  //Submit button Validation
-  let formSubmit = function (event) {
+    //Submit button Validation
+    let formSubmit = function (event) {
 
-    const email = $("#email").val();
-    const pass = $("#pass").val();
-    debugger;
-    if (email === "admin@admin.com" && pass === "admin") {
+      const email = $("#email").val();
+      const pass = $("#pass").val();
+      debugger;
+      if (email === "admin@admin.com" && pass === "admin") {
 
-      return true;
+        return true;
 
+      }
+
+      //Reappearing the Alert
+      $(".liveAlertPlaceHolder").css("top", `2%`);
+
+      //Disappearing the Alert after 4 secs
+      setTimeout(() => {
+        $(".liveAlertPlaceHolder").css("top", `-100%`);
+      }, 4000);
+
+      return false;
     }
 
-    //Reappearing the Alert
-    $(".liveAlertPlaceHolder").css("top", `2%`);
 
-    //Disappearing the Alert after 4 secs
-    setTimeout(() => {
-      $(".liveAlertPlaceHolder").css("top", `-100%`);
-    }, 4000);
+  </script>
+</body>
 
-    return false;
-  }
-
-
-</script>
 
 </html>
