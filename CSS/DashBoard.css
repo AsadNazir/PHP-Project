@@ -103,7 +103,9 @@ font-size: var(--fs3);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
+    margin: 2rem 0;
 }
+
 .CowStats > div
 {
    border: 2px solid green;
