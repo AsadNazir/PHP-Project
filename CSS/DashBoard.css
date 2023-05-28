@@ -1,0 +1,78 @@
+.sideBar,
+.MainPage {
+    border: 2px solid red;
+    background-color: var(--background-primary);
+
+}
+
+
+.MilkProduction {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    column-gap: 1rem;
+}
+
+.MilkProduction>div {
+    border: 2px solid green;
+    background: #000046;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    background-position: center;
+    background-size: contain;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #1CB5E0, #010196);
+    padding: 1rem;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 5px;
+    color: white;
+}
+
+.MilkProduction>div:nth-child(1) {
+    background: #159957;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #155799, #159957);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #155799, #159957);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.MilkProduction >h1{
+    font-size: var(--fs3);
+}
+
+.MilkProduction>div:nth-child(2) {
+    background: #36D1DC;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #296dff, #00d4e3);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #5B86E5, #36D1DC);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: right;
+    font-size: var(--fs4);
+    font-weight: normal;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.MilkProduction>div h1 {
+    font-size: var(--fs3);
+}
+
+.dashBoardBody {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-auto-rows: 1fr;
+    column-gap: 1rem;
+    grid-template-columns: 1fr 2.5fr;
+}
