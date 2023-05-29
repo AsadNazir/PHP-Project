@@ -1,5 +1,5 @@
 //Mode Change Logic
-$(document).ready(function () {
+$("body").ready(function () {
     let mode = document.querySelector(".mode");
     mode.addEventListener("click", function () {
       let body = document.querySelector("body");
