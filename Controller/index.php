@@ -39,14 +39,12 @@ switch ($_SERVER["PATH_INFO"]) {
 
     //Write Add Cow Business Logic here
     case "/AddCow":
-<<<<<<< HEAD
-        
-=======
+
         // echo "Succesfull";
         include("View/navbar.php");
         include("View/dashBoard.php");
         // include("View/addNewCow.php");
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
+
 
         $name = $_REQUEST['name'];
         $breed = $_REQUEST['breed'];
@@ -61,10 +59,7 @@ switch ($_SERVER["PATH_INFO"]) {
         $height = $_REQUEST['height'];
         $color = $_REQUEST['color'];
 
-<<<<<<< HEAD
         //Upload Files 
-=======
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         $output_dir = "Images/upload";
         $RandomNum = time();
         $ImageName = str_replace(' ', '-', strtolower($_FILES['image']['name']));
@@ -76,24 +71,17 @@ switch ($_SERVER["PATH_INFO"]) {
         $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
         $ret[$NewImageName] = $output_dir . $NewImageName;
 
-<<<<<<< HEAD
 
         //IF file exists if iy will i do'nt know what it will do
-=======
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         if (!file_exists($output_dir)) {
             @mkdir($output_dir, 0777);
         }
 
-<<<<<<< HEAD
         //Uploadding file to thre directory
-=======
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         move_uploaded_file($_FILES["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
 
         $data = [
             'name' => $name,
-<<<<<<< HEAD
             'breed' => $breed,
             'gender' => $gender,
             'age' => $age,
@@ -101,20 +89,10 @@ switch ($_SERVER["PATH_INFO"]) {
             'weight' => $weight,
             'height' => $height,
             'color' => $color,
-=======
-            'breed'=> $breed, 
-            'gender' => $gender, 
-            'age' => $age, 
-            'dairy' => $dairy, 
-            'weight' => $weight, 
-            'height' => $height, 
-            'color' => $color, 
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
             'image' => $NewImageName
         ];
 
         $insertion = $Con->DbCon->addNewCow($Con->DbCon->connection, 'cows', $data);
-<<<<<<< HEAD
         $output["status"] = $insertion;
         echo json_encode($output);
         
@@ -123,10 +101,6 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/logout":
         session_destroy();
         header("Location: ./login");
-=======
-        echo "<script>console.log(" . $insertion . ")</script> ";
-
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         break;
 
     default:
