@@ -59,7 +59,7 @@
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
@@ -67,14 +67,7 @@
 
 
 <script>
-<<<<<<< HEAD
  
-=======
-  $("sideBar a").click(function () {
-    console.log("here");
-    location.href = "/register";
-  })
->>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
 </script>
 </body>
 

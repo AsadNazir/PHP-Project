@@ -68,7 +68,7 @@
 
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="mode btn submit">Add Cow</button>
-            <a href="/MainDashBorad" class="mode btn submit">Cancel</a>
+            <a href="./MainDashBoard" class="mode btn submit">Cancel</a>
         </div>
     </form>
 </div>
