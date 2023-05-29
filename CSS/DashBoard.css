@@ -13,7 +13,7 @@
 }
 
 .MilkProduction>div {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     background: #000046;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
@@ -98,6 +98,11 @@
     margin: 1rem 0;
 }
 
+.sideBar li a{
+    display: flex;
+    align-items: center;
+}
+
 .CowStats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -106,15 +111,44 @@
 }
 
 .CowStats>div {
-    border: 2px solid green;
+    border: 4px solid var(--accent);
+    border-radius: 5px;
     background-color: var(--background-primary);
     padding: 1rem;
+    display: flex;
+    align-items: center;
 }
 
-.CowCard
-{
+.CowStatValue,
+.CowStatInfo {
+    font-size: calc(var(--fs4) + 2px);
+}
+
+.CowStatInfo {
+    font-weight: bold;
+    margin: 0 1rem;
+}
+
+.CowStats span {
+    display: block;
+}
+
+.CowStatIcon {
+    width: 20%;
+    height: 2rem;
+    min-width: 2rem;
+
+}
+.CowStatIcon > svg{
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.CowCard {
     border: 2px solid var(--background-primary);
-    margin:1rem 0;
+    margin: 1rem 0;
 }
 
 .CowCardBody {
@@ -136,13 +170,12 @@
     padding: 0.5rem;
     border-radius: 50%;
     /* border: 2px solid green; */
-    width: clamp(7rem,5vw,12rem);
-    height: clamp(7rem,5vw,12rem);
+    width: clamp(7rem, 5vw, 12rem);
+    height: clamp(7rem, 5vw, 12rem);
     margin-right: 2%;
 }
 
-.card-header
-{
+.card-header {
     background-color: var(--background-secondary);
     color: var(--foreground-primary);
 }
@@ -150,17 +183,16 @@
 .CowCard a {
     width: fit-content;
 }
-.CowDetails > span
-{
- margin: 0 1rem;
-}
-.CowDetails > span:nth-child(1)
-{
- margin-left: 0;
+
+.CowDetails>span {
+    margin: 0 1rem;
 }
 
-.CowCardbtn
-{
+.CowDetails>span:nth-child(1) {
+    margin-left: 0;
+}
+
+.CowCardbtn {
     background-color: var(--background-primary);
 }
 
