@@ -68,7 +68,10 @@
 
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="mode btn submit">Add Cow</button>
+<<<<<<< HEAD
             <a href="/MainDashBorad" class="mode btn submit">Cancel</a>
+=======
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         </div>
     </form>
 </div>
@@ -83,9 +86,23 @@
         e.preventDefault();
 
         var data = new FormData(this);
+<<<<<<< HEAD
 
         //AJAX Request for saving the data --------------------------
 
+=======
+        
+        // console.log(data.get('name'));
+        // console.log(data.get('breed'));
+        // console.log(data.get('gender'));
+        // console.log(data.get('age'));
+        // console.log(data.get('image'));
+        // console.log(data.get('dairy'));
+        // console.log(data.get('weight'));
+        // console.log(data.get('height'));
+        // console.log(data.get('color'));
+        
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         $.ajax({
             data: data,
             type: "POST",
@@ -93,10 +110,19 @@
             contentType: false,
             processData: false,
             success: function (data) {
+<<<<<<< HEAD
                 console.log(data);
                 if (JSON.parse(data).status == "updated") {
                     alert('success');
                     window.location.href = './MainDashBoard';
+=======
+                console.log("data");
+                data = JSON.parse(data);
+                console.log("YES");
+                if (data == "updated") {
+                    alert('success');
+                    window.location.href = './MainDashboard';
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
                 } else {
                     alert('error');
 
@@ -106,6 +132,9 @@
         });
 
     });
+<<<<<<< HEAD
 
 // ------------------------------------
+=======
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
 </script>

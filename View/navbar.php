@@ -34,41 +34,30 @@
     <script src="JS/index.js"></script>
   </head>
 
-  <body class="ltheme_body">
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <div class="container-fluid">
-        <div class="logoText">
-          <a class="navbar-brand" href="#">
-            <img
-              src="Images/Asset 2.svg"
-              alt="Logo"
-              class="d-inline-block align-text-top"
-            />
-            <span>Cow Automation</span>
-          </a>
-        </div>
-        <button
-          class="navbar-toggler menu"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span> Menu </span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="logout">Logout</a>
-            </li>
+<body class="ltheme_body">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <div class="logoText">
+        <a class="navbar-brand" href="#">
+          <img src="Images/Asset 2.svg" alt="Logo" class="d-inline-block align-text-top" />
+          <span>Cow Automation</span>
+        </a>
+      </div>
+      <button class="navbar-toggler menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span> Menu </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
 
             <li class="nav-item dropdown">
               <a

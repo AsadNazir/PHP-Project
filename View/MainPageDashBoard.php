@@ -67,7 +67,14 @@
 
 
 <script>
+<<<<<<< HEAD
  
+=======
+  $("sideBar a").click(function () {
+    console.log("here");
+    location.href = "/register";
+  })
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
 </script>
 </body>
 

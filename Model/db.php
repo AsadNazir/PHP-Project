@@ -38,10 +38,16 @@ class Db
         $sql = "INSERT INTO cows($columns) VALUES ('$name', '$breed', '$gender', '$age', '$dairy', '$weight', '$height', '$color', '$image')";
         
         if (mysqli_query($conn, $sql)) {
+<<<<<<< HEAD
             
             return "updated";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+=======
+            return json_encode('updated');
+        } else {
+            return "Error: " . $sql . "<br>" . mysqli_error($conn);
+>>>>>>> b8752c7158aa474ccc059df9bcfee1bba9e2d891
         }
 
 
