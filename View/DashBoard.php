@@ -14,9 +14,21 @@
       <div class="sideBar">
         <h1>Options</h1>
         <ul>
-          <li><a href="register">Add Animal</a></li>
-          <li><a href="#">Notifications</a></li>
-          <li><a href="#">Charts</a></li>
-          <li><a href="#">Some Option</a></li>
+          <li ><a class="<?php  if($_SERVER["PATH_INFO"]=="/register")
+            {echo "active_sidebar";}
+          
+          ?>" href="register">Add Animal</a></li>
+          <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/Notifications")
+            {echo "active_sidebar";}
+          
+          ?>"href="#">Notifications</a></li>
+          <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/Charts")
+            {echo "active_sidebar";}
+          
+          ?>"href="#">Charts</a></li>
+          <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/")
+            {echo "active_sidebar";}
+          
+          ?>"href="#">Some Option</a></li>
         </ul>
       </div>

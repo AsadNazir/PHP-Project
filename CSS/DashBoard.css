@@ -112,3 +112,23 @@ font-size: var(--fs3);
    background-color: var(--background-primary);
    padding:1rem;
 }
+
+.submit_cont
+{
+    display: flex;
+    justify-content: end;
+}
+
+.active_sidebar
+{
+    background-color: var(--accent) !important;
+    color: white;
+}
+.submit_cont > a, button
+{
+    font-size: var(--fs4);
+}
+.submit_cont > a
+{
+    margin-left: 1rem;
+}

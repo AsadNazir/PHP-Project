@@ -13,7 +13,7 @@
         </svg></a>
     </div>
     <div>
-      <h1>Annual</h1>
+      <h1>Monthly</h1>
       <!-- Upadate the Production here in PHP  -->
       <h3>0 ltr</h3>
       <a href="#">More
@@ -24,7 +24,7 @@
         </svg></a>
     </div>
     <div>
-      <h1>Annual</h1>
+      <h1>Weekly</h1>
       <!-- Upadate the Production here in PHP  -->
       <h3>0 ltr</h3>
       <a href="#">More
@@ -35,7 +35,7 @@
         </svg></a>
     </div>
     <div>
-      <h1>Annual</h1>
+      <h1>Daily</h1>
       <!-- Upadate the Production here in PHP  -->
       <h3>0 ltr</h3>
       <a href="#">More
@@ -52,8 +52,10 @@
     <div>Sick</div>
     <div>Pregnant</div>
   </div>
+
+  
   <div class="card CowCard">
-    <h5 class="card-header">Featured</h5>
+    <h5 class="card-header">Cow ID</h5>
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -64,7 +66,9 @@
 </div>
 
 
-<script src="./JS/index.js" type="application/javascript"></script>
+<script>
+ 
+</script>
 </body>
 
 </html>
