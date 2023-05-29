@@ -64,7 +64,12 @@
 </div>
 
 
-<script src="./JS/index.js" type="application/javascript"></script>
+<script>
+  $("sideBar a").click(function () {
+    console.log("here");
+    location.href = "/register";
+  })
+</script>
 </body>
 
 </html>
