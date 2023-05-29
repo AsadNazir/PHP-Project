@@ -18,10 +18,10 @@
             {echo "active_sidebar";}
           
           ?>" href="register">Add Animal</a></li>
-          <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/Notifications")
+          <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/Notification")
             {echo "active_sidebar";}
           
-          ?>"href="#">Notifications</a></li>
+          ?>"href="./Notification">Notifications</a></li>
           <li><a class="<?php  if($_SERVER["PATH_INFO"]=="/Charts")
             {echo "active_sidebar";}
           

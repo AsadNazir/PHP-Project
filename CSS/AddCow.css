@@ -1,0 +1,12 @@
+label {
+    color: var(--foreground-primary) !important;
+}
+
+#addNewCow {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.MainPage {
+    /* color: var(--foreground-primary) !important; */
+}

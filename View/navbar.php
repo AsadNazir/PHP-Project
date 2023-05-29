@@ -29,6 +29,12 @@
     <link rel="stylesheet" href="./CSS/index.css" />
     <link rel="stylesheet" href="./CSS/navbar.css" />
     <link rel="stylesheet" href="./CSS/DashBoard.css" />
+    <?php  
+      if($_SERVER["PATH_INFO"]=="/register")
+        echo "<link rel=\"stylesheet\" href=\"./CSS/AddCow.css\"/>"
+    
+    ?>
+    
     <!-- External JS -->
     <!-- Include This is everywhere index.js in every php and html file -->
     <script src="JS/index.js"></script>
@@ -50,13 +56,13 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="./MainDashBoard">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Reports</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="./logout">Logout</a>
           </li>
 
             <li class="nav-item dropdown">

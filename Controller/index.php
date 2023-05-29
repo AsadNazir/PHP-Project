@@ -40,12 +40,6 @@ switch ($_SERVER["PATH_INFO"]) {
     //Write Add Cow Business Logic here
     case "/AddCow":
 
-        // echo "Succesfull";
-        include("View/navbar.php");
-        include("View/dashBoard.php");
-        // include("View/addNewCow.php");
-
-
         $name = $_REQUEST['name'];
         $breed = $_REQUEST['breed'];
         $gender = $_REQUEST['gender'];
@@ -103,8 +97,14 @@ switch ($_SERVER["PATH_INFO"]) {
         header("Location: ./login");
         break;
 
+    case "/Notification":
+        include("View/navbar.php");
+        include("View/dashBoard.php");
+        include("View/Notification.php");
+        break;
+
     default:
-        echo "<h1>ERROR 404 NOT FOUND</h1>";
+        header("Location: ./View/Error.php");
         break;
 }
 

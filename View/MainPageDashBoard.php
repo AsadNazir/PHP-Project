@@ -53,7 +53,27 @@
     <div>Pregnant</div>
   </div>
 
-  
+
+  <div class="card CowCard">
+    <h5 class="card-header">Cow ID</h5>
+    <div class="card-body CowCardBody">
+      <div class="cowImage"><img src="Images/Asset 2.svg" alt="Image"></div>
+      <div class="cowDetails">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text CowDetails"> 
+          <span><strong>Height</strong> 6 ft</span>
+          <span><strong>Weight</strong> 120 kg</span>
+          <span><strong>Age</strong> 6 years</span>
+        </p>
+      </div>
+    </div>
+    <div class="CowCardbtn card-body">
+      <a href="" class="btn btn-primary">More Details</a>
+      <a href="" class="btn btn-secondary">Delete</a>
+      <a href="" class="btn btn-secondary">Upadte</a>
+
+    </div>
+  </div>
   <div class="card CowCard">
     <h5 class="card-header">Cow ID</h5>
     <div class="card-body">
@@ -67,7 +87,7 @@
 
 
 <script>
- 
+
 </script>
 </body>
 

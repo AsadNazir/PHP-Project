@@ -1,5 +1,6 @@
 <div class="MainPage">
     <form id="addNewCow" enctype="multipart/form-data">
+        <h1>Add your Animal to the Farm !</h1>
         <div class="mb-3 form-input">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" required />
