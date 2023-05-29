@@ -22,6 +22,19 @@ class Db
         }
     }
 
+
+    function getAllCows($conn)
+    {
+        $sql= "SELECT * from web";
+        $result = mysqli_query($conn, $sql);
+        
+        if (($result)) {
+            
+            return "updated";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
     function addNewCow($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
