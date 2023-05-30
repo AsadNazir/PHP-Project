@@ -1,5 +1,5 @@
 .sideBar {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     background-color: var(--background-primary);
 
 }
@@ -121,7 +121,7 @@
 
 .CowStatValue,
 .CowStatInfo {
-    font-size: calc(var(--fs4) + 2px);
+    font-size: calc(var(--fs4) + 1px);
 }
 
 .CowStatInfo {

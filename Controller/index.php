@@ -103,6 +103,12 @@ switch ($_SERVER["PATH_INFO"]) {
         include("View/Notification.php");
         break;
 
+    case "/Chart":
+        include("View/navbar.php");
+        include("View/dashBoard.php");
+        include("View/Chart.php");
+        break;
+
     default:
         header("Location: ./View/Error.php");
         break;

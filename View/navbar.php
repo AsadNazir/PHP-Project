@@ -28,13 +28,15 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Dynamic adding of CSS Files -->
+  <!-- Dynamic adding of CSS Files -->
   <?php
   if ($_SERVER["PATH_INFO"] == "/register")
     echo "<link rel=\"stylesheet\" href=\"./CSS/AddCow.css\"/>"
 
       ?>
 
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- External JS -->
     <!-- Include This is everywhere index.js in every php and html file -->
     <script src="JS/index.js"></script>
