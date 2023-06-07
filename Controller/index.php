@@ -13,6 +13,7 @@ class Controller
 
 $Con = new Controller();
 
+// This is Master Branch COde3
 
 switch ($_SERVER["PATH_INFO"]) {
     case '/login':
@@ -113,6 +114,8 @@ switch ($_SERVER["PATH_INFO"]) {
         $weight = $_REQUEST['weight'];
         $height = $_REQUEST['height'];
         $color = $_REQUEST['color'];
+
+
         $RandomNum = time();
         $ImageName = str_replace(' ', '-', strtolower($_FILES['image']['name']));
 
@@ -173,7 +176,7 @@ switch ($_SERVER["PATH_INFO"]) {
             include("View/dashBoard.php");
             include("View/MainPageDashBoard.php");
         }
-        // echo json_encode($output);
+        
 
 
         break;
