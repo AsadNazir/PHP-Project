@@ -1,6 +1,8 @@
 <?php
 $id = $_GET['id'];
-$row = $Con->DbCon->getCowById($Con->DbCon->connection, "cows", $id);
+
+$obj= new Db();
+$row = $obj->getCowById($obj->connection, "cows", $id);
 // var_dump($row);
 ?>
 <div class="MainPage">

@@ -131,7 +131,7 @@
       <div class="CowCardbtn card-body">
         <a href="" class="btn btn-primary">More Details</a>
         <a href="Delete?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Delete</a>
-        <a href="Update?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
+        <a href="UpdateCow?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
 
       </div>
     </div>

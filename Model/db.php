@@ -27,7 +27,7 @@ class Db
     {
         $sql = "SELECT * FROM $table";
         $result = mysqli_query($conn, $sql);
-
+    
         if (($result)) {
             $x = 0;
             while ($row = mysqli_fetch_array($result)) {
