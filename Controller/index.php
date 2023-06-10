@@ -40,91 +40,17 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
 
     //Write Add Cow Business Logic here
-    case "/AddCow" || "/Update":
+    case "/AddCow" || "/UpdateCow" || "/DeleteCow":
         $CowCont = new CowController($_SERVER["PATH_INFO"],$_REQUEST, $_FILES);
         $CowCont->handleRequest();
         break;
 
-    case "/Update":
+    case "/updateCowApi":
        
         break;
 
-    case "/updateCow":
-        $id = $_REQUEST['id'];
-        $name = $_REQUEST['name'];
-        $breed = $_REQUEST['breed'];
-        $gender = $_REQUEST['gender'];
-        $age = $_REQUEST['age'];
-        if (isset($_REQUEST['dairy'])) {
-            $dairy = "yes";
-        } else {
-            $dairy = "no";
-        }
-        $weight = $_REQUEST['weight'];
-        $height = $_REQUEST['height'];
-        $color = $_REQUEST['color'];
-
-
-        $RandomNum = time();
-        $ImageName = str_replace(' ', '-', strtolower($_FILES['image']['name']));
-
-        if ($ImageName != "") {
-            $output_dir = "Images/upload";
-
-            $ImageName = str_replace(' ', '-', strtolower($_FILES['image']['name']));
-            $ImageType = $_FILES['image']['type'];
-
-            $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-            $ImageExt = str_replace('.', '', $ImageExt);
-            $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-            $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
-            $ret[$NewImageName] = $output_dir . $NewImageName;
-            //IF file exists if iy will i do'nt know what it will do
-            if (!file_exists($output_dir)) {
-                @mkdir($output_dir, 0777);
-            }
-            move_uploaded_file($_FILES["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
-
-            $data = [
-                'name' => $name,
-                'breed' => $breed,
-                'gender' => $gender,
-                'age' => $age,
-                'dairy' => $dairy,
-                'weight' => $weight,
-                'height' => $height,
-                'color' => $color,
-                'image' => $NewImageName
-            ];
-        } else {
-            $data = [
-                'name' => $name,
-                'breed' => $breed,
-                'gender' => $gender,
-                'age' => $age,
-                'dairy' => $dairy,
-                'weight' => $weight,
-                'height' => $height,
-                'color' => $color,
-                'image' => "NoImage"
-            ];
-        }
-        $updation = $Con->DbCon->updateCow($Con->DbCon->connection, 'cows', $data, $id);
-        $output["status"] = $updation;
-        echo json_encode($output);
-        break;
-
     case "/Delete":
-        $id = $_GET['id'];
-
-        $deletion = $Con->DbCon->deleteCow($Con->DbCon->connection, 'cows', $id);
-        $output["status"] = $deletion;
-
-        if ($output['status'] == "updated") {
-            include("View/navbar.php");
-            include("View/dashBoard.php");
-            include("View/MainPageDashBoard.php");
-        }
+        
         
 
 

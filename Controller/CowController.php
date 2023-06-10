@@ -1,6 +1,6 @@
 <?php
 include_once("./index.php");
-
+require_once("./Model/CowModal.php");
 class CowController extends Controllers
 {
     public $pathInfo;
@@ -32,7 +32,11 @@ class CowController extends Controllers
                 $height = $this->request['height'];
                 $color = $this->request['color'];
 
-                $NewImageName= $this->UploadImage("Images/Upload");
+
+                $CowModal = new CowModal();
+
+
+                $NewImageName = $CowModal->UploadImage("Images/Upload", $this->file);
 
                 $data = [
                     'name' => $name,
@@ -46,72 +50,51 @@ class CowController extends Controllers
                     'image' => $NewImageName
                 ];
 
-                $insertion = $this->DbCon->addNewCow($this->DbCon->connection, 'cows', $data);
+                $CowModalObj = new CowModal();
+
+                $insertion = $CowModalObj->addNewCow($this->DbCon->connection, 'cows', $data);
                 $output["status"] = $insertion;
 
                 echo json_encode($output);
 
                 break;
 
-            case "/UpdateCow":
+            case "/UpdateCowPage":
                 include("View/navbar.php");
                 include("View/dashBoard.php");
                 include("View/update.php");
                 break;
 
+            case "/DeleteCow":
+
+                $id = $this->request['id'];
+                
+                $CowModalObj = new CowModal();
+
+                $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
+                $deletion = $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
+                $output["status"] = $deletion;
+
+                if ($output['status'] == "updated") {
+                    include("View/navbar.php");
+                    include("View/dashBoard.php");
+                    include("View/MainPageDashBoard.php");
+                }
+
+                break;
+            case "/updateCowApi":
+                $CowModalObj = new CowModal();
+                $CowModalObj->UpadteCowAPI($this->DbCon->connection,"cows",$this->request,$this->file);
+
+                break;
+            
             default:
                 echo "Default";
                 break;
         }
     }
 
-    function UploadImage($directory)
-    {
-         //Upload Files 
-         $output_dir = "Images/upload";
-         $RandomNum = time();
-         $ImageName = str_replace(' ', '-', strtolower($this->file['image']['name']));
-         $ImageType = $this->file['image']['type'];
-
-         $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-         $ImageExt = str_replace('.', '', $ImageExt);
-         $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-         $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
-         $ret[$NewImageName] = $output_dir . $NewImageName;
-
-
-         //IF file exists if iy will i do'nt know what it will do
-         if (!file_exists($output_dir)) {
-             @mkdir($output_dir, 0777);
-         }
-
-         //Uploadding file to thre directory
-         move_uploaded_file($this->file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
-
-         return $NewImageName;
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

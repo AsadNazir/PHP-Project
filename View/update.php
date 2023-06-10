@@ -106,7 +106,7 @@ $row = $obj->getCowById($obj->connection, "cows", $id);
         $.ajax({
             data: data,
             type: "POST",
-            url: "./updateCow",
+            url: "./updateCowApi",
             contentType: false,
             processData: false,
             success: function (data) {

@@ -94,11 +94,11 @@
 
   <?php
 
-  $result = $Con->DbCon->getAllCows($Con->DbCon->connection, "cows");
+  include_once("./Model/CowModal.php");
 
-  // var_dump($result);
-  // echo count($result);
-  
+  $CowModelObj = new CowModal();
+  $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
+
 
   for ($i = 0; $i < count($result); $i++) {
     $row = $result[$i];
@@ -130,8 +130,8 @@
       </div>
       <div class="CowCardbtn card-body">
         <a href="" class="btn btn-primary">More Details</a>
-        <a href="Delete?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Delete</a>
-        <a href="UpdateCow?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
+        <a href="DeleteCow?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Delete</a>
+        <a href="UpdateCowPage?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
 
       </div>
     </div>
