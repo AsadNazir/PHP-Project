@@ -17,6 +17,7 @@ class CowController extends Controllers
     public function handleRequest()
     {
         switch ($this->pathInfo) {
+
             case '/AddCow':
 
                 $name = $this->request['name'];
@@ -82,6 +83,8 @@ class CowController extends Controllers
                 }
 
                 break;
+
+                //API are named API's
             case "/updateCowApi":
                 $CowModalObj = new CowModal();
                 $CowModalObj->UpadteCowAPI($this->DbCon->connection,"cows",$this->request,$this->file);

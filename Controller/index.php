@@ -39,21 +39,14 @@ switch ($_SERVER["PATH_INFO"]) {
         include("View/addCow.php");
         break;
 
-    //Write Add Cow Business Logic here
-    case "/AddCow" || "/UpdateCow" || "/DeleteCow":
-        $CowCont = new CowController($_SERVER["PATH_INFO"],$_REQUEST, $_FILES);
+    // Write Add Cow Business Logic here
+    // Cow Related all Request will be sent to Cow Controller
+    // Add More Cow related bussiness Logic here
+    case "/AddCow":
+    case "/UpdateCow":
+    case "/DeleteCow":
+        $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $CowCont->handleRequest();
-        break;
-
-    case "/updateCowApi":
-       
-        break;
-
-    case "/Delete":
-        
-        
-
-
         break;
 
     case "/logout":

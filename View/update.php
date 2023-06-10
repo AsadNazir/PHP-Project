@@ -1,8 +1,8 @@
 <?php
 $id = $_GET['id'];
 
-$obj= new Db();
-$row = $obj->getCowById($obj->connection, "cows", $id);
+$obj= new CowModal();
+$row = $obj->getCowById($obj->conn->connection, "cows", $id);
 // var_dump($row);
 ?>
 <div class="MainPage">
