@@ -73,7 +73,7 @@
     background-color: var(--background-secondary);
     border-radius: 5px;
     height: 100%;
-    padding: 1rem;
+    padding: clamp(0.5rem,2vw,1rem);
     display: block;
     text-decoration: none;
     font-size: var(--fs4);
@@ -85,10 +85,16 @@
 }
 
 .sideBar a:hover {
+    fill: white;
     background-color: var(--accent);
     color: white;
     transition: 0.3s all ease-in-out;
 }
+.sideBar a:hover .CowStatIcon{
+    fill: white;
+}
+
+
 
 .sideBar li {
 
@@ -137,7 +143,7 @@
     width: 20%;
     height: 2rem;
     min-width: 2rem;
-
+    fill: var(--foreground-primary);
 }
 .CowStatIcon > svg{
     width: 100%;
@@ -204,6 +210,10 @@
 .active_sidebar {
     background-color: var(--accent) !important;
     color: white;
+    fill: white;
+}
+.active_sidebar .CowStatIcon{
+    fill: white;
 }
 
 .submit_cont>a,

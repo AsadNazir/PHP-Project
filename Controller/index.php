@@ -10,6 +10,14 @@ class Controllers
     {
         $this->DbCon = new Db();
     }
+
+    public function validateSession()
+    {
+        if (isset($_REQUEST["email"]) || $_SESSION["user"] == "admin")
+            return true;
+        else
+            return false;
+    }
 }
 
 $Con = new Controllers();
@@ -22,21 +30,27 @@ switch ($_SERVER["PATH_INFO"]) {
 
     case '/MainDashBoard':
 
-        if (isset($_REQUEST["email"]) || $_SESSION["user"] == "admin") {
+        if ($Con->validateSession()) {
             $_SESSION["user"] = "admin";
             include("View/navbar.php");
-            include("View/dashBoard.php");
-            include("View/MainPageDashBoard.php");
-            // include("View/cards.php");
+            include("View/Sidebar.php");
+            include("View/MainPageDashboard.php");
+            //Footer view also includes the ending html tags and div tags so always include it our pages
+            include("View/Footer.php");
         } else {
             header("Location: ./login");
         }
         break;
 
     case "/register":
-        include("View/navbar.php");
-        include("View/dashBoard.php");
-        include("View/addCow.php");
+        if ($Con->validateSession()) {
+            include("View/navbar.php");
+            include("View/Sidebar.php");
+            include("View/addCow.php");
+            include("View/Footer.php");
+        } else {
+            header("Location: ./login");
+        }
         break;
 
     // Write Add Cow Business Logic here
@@ -45,8 +59,12 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddCow":
     case "/UpdateCow":
     case "/DeleteCow":
-        $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $CowCont->handleRequest();
+        if ($Con->validateSession()) {
+            $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $CowCont->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
         break;
 
     case "/logout":
@@ -56,19 +74,21 @@ switch ($_SERVER["PATH_INFO"]) {
 
     case "/Notification":
         include("View/navbar.php");
-        include("View/dashBoard.php");
+        include("View/Sidebar.php");
         include("View/Notification.php");
+        include("View/Footer.php");
         break;
 
     case "/Chart":
         include("View/navbar.php");
-        include("View/dashBoard.php");
+        include("View/Sidebar.php");
         include("View/Chart.php");
+        include("View/Footer.php");
         break;
 
     default:
-        header("Location: ./View/Error.php");
-        break;
+    header("Location: ./View/Error.php");
+    break;
 }
 
 

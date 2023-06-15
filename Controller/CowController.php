@@ -62,8 +62,9 @@ class CowController extends Controllers
 
             case "/UpdateCowPage":
                 include("View/navbar.php");
-                include("View/dashBoard.php");
+                include("View/Sidebar.php");
                 include("View/update.php");
+                include("View/Footer.php");
                 break;
 
             case "/DeleteCow":
@@ -78,8 +79,10 @@ class CowController extends Controllers
 
                 if ($output['status'] == "updated") {
                     include("View/navbar.php");
-                    include("View/dashBoard.php");
+                    include("View/Sidebar.php");
                     include("View/MainPageDashBoard.php");
+                    include("View/Footer.php");
+                    
                 }
 
                 break;

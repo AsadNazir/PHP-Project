@@ -1,3 +1,4 @@
+<!-- navbar php is fine here as it a stand alone component -->
 <!-- Session Handling in PHP -->
 <!DOCTYPE html>
 <html lang="en">
@@ -86,3 +87,6 @@
         </div>
       </div>
     </nav>
+
+    <!-- Here all of our websites can be loaded all the pages after this tag -->
+    <div class="dashBoardBody">
