@@ -75,8 +75,8 @@ class CowModal
     {
         $sql = "SELECT * FROM $table";
         $result = mysqli_query($conn, $sql);
-        $arr =[];
-        
+        $arr = [];
+
         if (($result)) {
             $x = 0;
             while ($row = mysqli_fetch_array($result)) {
@@ -124,7 +124,6 @@ class CowModal
             $sql = "UPDATE $table SET `name`='$name', `breed`='$breed', `gender`='$gender', `age`='$age', `dairy`='$dairy', `weight`='$weight', `height`='$height', `color`='$color', `image`='$image' WHERE id='$id'";
         }
 
-
         if (mysqli_query($conn, $sql)) {
             return "updated";
         } else {
@@ -134,8 +133,6 @@ class CowModal
 
     public function UpadteCowAPI($conn, $table, $req, $file)
     {
-
-
         $id = $req['id'];
         $name = $req['name'];
         $breed = $req['breed'];
@@ -149,7 +146,6 @@ class CowModal
         $weight = $req['weight'];
         $height = $req['height'];
         $color = $req['color'];
-
 
         $RandomNum = time();
         $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
@@ -165,10 +161,11 @@ class CowModal
             $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
             $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
             $ret[$NewImageName] = $output_dir . $NewImageName;
-            //IF file exists if iy will i do'nt know what it will do
+            //IF folder does not exist it will create the folder 
             if (!file_exists($output_dir)) {
                 @mkdir($output_dir, 0777);
             }
+            //Move the file to the folder
             move_uploaded_file($file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
 
             $data = [
@@ -197,7 +194,7 @@ class CowModal
         }
         $updation = $this->updateCow($conn, 'cows', $data, $id);
         $output["status"] = $updation;
-        echo json_encode($output);
+        echo json_encode($output["status"]);
 
     }
 }

@@ -102,7 +102,8 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
             processData: false,
             success: function (data) {
                 console.log(data);
-                if (JSON.parse(data).status == "updated") {
+                var response = JSON.parse(data);
+                if (response == "updated") {
                     alert('success');
                     window.location.href = './MainDashBoard';
                 } else {

@@ -58,6 +58,7 @@ switch ($_SERVER["PATH_INFO"]) {
     // Add More Cow related bussiness Logic here
     case "/AddCow":
     case "/UpdateCowPage":
+    case "/updateCowApi":
     case "/DeleteCow":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
@@ -87,8 +88,8 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
 
     default:
-    header("Location: ./View/Error.php");
-    break;
+        header("Location: ./View/Error.php");
+        break;
 }
 
 
