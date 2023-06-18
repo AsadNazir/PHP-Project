@@ -37,7 +37,7 @@ class CowController extends Controllers
                 $CowModal = new CowModal();
 
 
-                $NewImageName = $CowModal->UploadImage("Images/Upload", $this->file);
+                $NewImageName = $CowModal->UploadImage("Images/upload", $this->file);
 
                 $data = [
                     'name' => $name,
@@ -60,7 +60,7 @@ class CowController extends Controllers
 
                 break;
 
-            case "/UpdateCowPage":
+            case "/UpdateCow":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
                 include("View/update.php");
@@ -70,30 +70,27 @@ class CowController extends Controllers
             case "/DeleteCow":
 
                 $id = $this->request['id'];
-                
+
                 $CowModalObj = new CowModal();
 
                 $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
                 $deletion = $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
                 $output["status"] = $deletion;
 
-                if ($output['status'] == "updated") {
-                    include("View/navbar.php");
-                    include("View/Sidebar.php");
-                    include("View/MainPageDashBoard.php");
-                    include("View/Footer.php");
-                    
+                if ($output['status'] == "deleted") {
+
+                    echo json_encode($output['status']);
                 }
 
                 break;
 
-                //API are named API's
+            //API are named API's
             case "/updateCowApi":
                 $CowModalObj = new CowModal();
-                $CowModalObj->UpadteCowAPI($this->DbCon->connection,"cows",$this->request,$this->file);
+                $CowModalObj->UpadteCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
 
                 break;
-            
+
             default:
                 echo "Default";
                 break;

@@ -23,7 +23,6 @@ class CowModal
         $color = $data['color'];
         $image = $data['image'];
 
-
         $sql = "INSERT INTO $table($columns) VALUES ('$name', '$breed', '$gender', '$age', '$dairy', '$weight', '$height', '$color', '$image')";
 
         if (mysqli_query($conn, $sql)) {
@@ -39,7 +38,7 @@ class CowModal
     public function UploadImage($directory, $file)
     {
         //Upload Files 
-        $output_dir = "Images/upload";
+        $output_dir = $directory;
         $RandomNum = time();
         $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
         $ImageType = $file['image']['type'];
@@ -66,7 +65,7 @@ class CowModal
     {
         $sql = "DELETE FROM $table WHERE id='$id'";
         if (mysqli_query($conn, $sql)) {
-            return "updated";
+            return "deleted";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
