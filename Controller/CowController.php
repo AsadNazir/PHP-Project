@@ -60,7 +60,7 @@ class CowController extends Controllers
 
                 break;
 
-            case "/UpdateCow":
+            case "/UpdateCowPage":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
                 include("View/update.php");

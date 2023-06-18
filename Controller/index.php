@@ -57,7 +57,7 @@ switch ($_SERVER["PATH_INFO"]) {
     // Cow Related all Request will be sent to Cow Controller
     // Add More Cow related bussiness Logic here
     case "/AddCow":
-    case "/UpdateCow":
+    case "/UpdateCowPage":
     case "/DeleteCow":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);

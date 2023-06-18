@@ -72,15 +72,6 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
         <div>
             <input type="hidden" id="id" name="id" class="form-control" value="<?php echo $row['id'] ?>" required>
         </div>
-
-        <!-- <div class="input-group">
-            <div class="custom-file">
-                <label for="breed" class="form-label">Race / Breed</label>
-                <input type="file" class="custom-file-input" id="inputGroupFile04">
-                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-            </div>
-        </div> -->
-
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="mode btn submit">Update Animal</button>
             <a href="./MainDashBoard" class="mode btn submit">Cancel</a>

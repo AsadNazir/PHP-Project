@@ -5,7 +5,6 @@ include_once("./Model/CowModal.php");
 $CowModelObj = new CowModal();
 $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 
-
 for ($i = 0; $i < count($result); $i++) {
   $row = $result[$i];
   # code...
@@ -38,10 +37,7 @@ for ($i = 0; $i < count($result); $i++) {
       <a href="" class="btn btn-primary">More Details</a>
       <a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
         onclick="setDeleteId(<?php echo $row['id']; ?>)">Delete</a>
-      <!-- <a href="DeleteCow?id=
-      <?php //echo $row['id']; 
-        ?>" class="btn btn-secondary">Delete</a> -->
-      <a href="./UpdateCow?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
+      <a href="./UpdateCowPage?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
 
     </div>
 
