@@ -1,6 +1,5 @@
-
 <div class="MainPage">
-  <h1>Milk Production</h1>
+  <h1 class="MainDashBoardHeadings">Milk Production</h1>
   <div class="MilkProduction">
     <div>
       <h1>Annual</h1>
@@ -93,15 +92,20 @@
 
   </div>
 
-<!-- </div> -->
-<!-- Separated the cards and footer view from the main dashboard page -->
-<!-- Cards.php has the cards function now just including it here now -->
-<!-- Footer.php has the Footer function now just including it here now -->
-<?php
+  <!-- </div> -->
+  <!-- Separated the cards and footer view from the main dashboard page -->
+  <!-- Cards.php has the cards function now just including it here now -->
+  <!-- Footer.php has the Footer function now just including it here now -->
+  <h1 class="MainDashBoardHeadings">Search</h1>
+  <form class="d-flex SearchBar">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
 
-//Cards is optional
-include("cards.php");
+  <h1 class="MainDashBoardHeadings">Cattles List</h1>
+  <?php
 
-?>
+  //Cards is optional
+  include("cards.php");
 
-
+  ?>

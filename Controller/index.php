@@ -2,6 +2,7 @@
 session_start();
 require_once("./Model/db.php");
 include_once("CowController.php");
+include_once("UserController.php");
 
 class Controllers
 {
@@ -85,6 +86,13 @@ switch ($_SERVER["PATH_INFO"]) {
         include("View/Sidebar.php");
         include("View/Chart.php");
         include("View/Footer.php");
+        break;
+
+    case "/AddUsers":
+    case "/ManageUsers":
+    case "/DeleteUsersApi":
+        $Uc = new UserController($_SERVER["PATH_INFO"],$_REQUEST,$_FILES);
+        $Uc->handleRequest();
         break;
 
     default:

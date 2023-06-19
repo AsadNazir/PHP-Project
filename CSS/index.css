@@ -60,3 +60,22 @@ body {
     background-color: var(--background-secondary);
     scroll-behavior: smooth;
 }
+
+.SearchBar
+{
+    font-size: var(--fs4);
+    color: var(--foreground-primary);
+    margin-bottom: 1rem !important;
+}
+
+.SearchBar input
+{
+    font-size: var(--fs4);
+    
+}
+
+.SearchBar button
+{
+    padding: 0.6rem 2rem;
+    
+}

@@ -1,5 +1,4 @@
 <div class="sideBar">
-    <h1>Options</h1>
     <ul>
         <li><a class="<?php if ($_SERVER["PATH_INFO"] == "/register") {
             echo "active_sidebar";

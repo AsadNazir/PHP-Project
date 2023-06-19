@@ -1,0 +1,18 @@
+.MainPage label {
+    color: var(--foreground-primary) !important;
+    font-size: var(--fs4);
+}
+
+.MainPage h1,h2,h3,h4,h5,h6{
+    color: var(--foreground-primary) !important;
+    font-size: var(--fs3);
+}
+
+#addNewCow, #addUsers, .InputForms {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.MainPage {
+     /* color: var(--foreground-primary) !important;  */
+}

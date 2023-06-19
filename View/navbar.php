@@ -34,8 +34,18 @@
 
   <!-- Dynamic adding of CSS Files -->
   <?php
-  if ($_SERVER["PATH_INFO"] == "/register")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/AddCow.css\"/>"
+  if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"]=="/AddUsers")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
+
+      ?>
+  <?php
+  if ($_SERVER["PATH_INFO"] == "/Notification")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/Notification.css\"/>"
+
+      ?>
+  <?php
+  if ($_SERVER["PATH_INFO"] == "/Chart")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
 
       ?>
 
@@ -76,8 +86,9 @@
                 More
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Notifications</a></li>
-                <li><a class="dropdown-item" href="#">Download Reports</a></li>
+                <li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
+                <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>
+                <li><a class="dropdown-item" href="#">View Profile</a></li>
                 <li>
                   <a class="dropdown-item" href="#"></a>
                 </li>

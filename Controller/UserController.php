@@ -18,20 +18,33 @@ class UserController extends Controllers
     {
         switch ($this->pathInfo) {
 
-            case "/AddUser":
-
+            //This will display the Add user Form
+            case "/AddUsers":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/AddUsers.php");
+                include("View/Footer.php");
                 break;
 
-            case "/EditUser":
-
+            //Api based Insertions into the database
+            case "/AddUserApi":
                 break;
 
-            case "DeleteUser":
-
+            //This will basically dispaly the list of all the users
+            case "/ManageUsers":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/UserList.php");
+                include("View/Footer.php");
                 break;
 
+            //Deleter User Api here 
+            //Name All the Apis so that we may know where we are calling the ajax funcions
+            case "DeleteUserApi":
+
+                break;
             default:
-                echo "Default";
+                echo "<h1>404 Not Found. Check Your Code :)</h1>";
                 break;
         }
     }

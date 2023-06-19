@@ -4,8 +4,6 @@
 
 }
 
-
-
 .MilkProduction {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -223,4 +221,11 @@ button {
 
 .submit_cont>a {
     margin-left: 1rem;
+}
+
+.MainDashBoardHeadings:not(:nth-child(1))
+{
+    font-size: var(--fs3);
+    color: var(--foreground-primary);
+    margin: 1rem 0;
 }
