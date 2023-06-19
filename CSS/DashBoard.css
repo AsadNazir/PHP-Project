@@ -1,5 +1,5 @@
 .sideBar {
-    /* border: 2px solid red; */
+    height: fit-content;
     background-color: var(--background-primary);
 
 }
