@@ -2,19 +2,37 @@
   <div>
     <h1>Cow Population</h1>
     <canvas class="Chart" id="myChart"></canvas>
+    <div class="ChartBtnDiv" >
+    <button class="PrintBtn btn" id="0">Print Chart</button>
+    </div>
     <h1>Milk Production</h1>
     <canvas class="Chart" id="myChart1"></canvas>
+    <div class="ChartBtnDiv" >
+    <button class="PrintBtn btn" id="1">Print Chart</button>
+    </div>
     <h1>Feed</h1>
     <canvas class="Chart" id="myChart2"></canvas>
+    <div class="ChartBtnDiv" >
+    <button class="PrintBtn btn" id="2">Print Chart</button>
+    </div>
     <h1>Breed</h1>
     <canvas class="Chart" id="myChart3"></canvas>
+    <div class="ChartBtnDiv" >
+    <button class="PrintBtn btn" id="3">Print Chart</button>
+    </div>
     <canvas id="myChart4"></canvas>
   </div>
 </div>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js" integrity="sha512-6Yq06JzZZPm8X7sPLkFApbkzVhEKsFonD8eeNFezGevKUwQOo48nY27pdIAJGnEoyfYjtTOiM6v+aQofuXqKgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
 <script>
+
+  //Dont touch this line of code i have no idea what it does but it does somethings
+  window.jsPDF = window.jspdf.jsPDF;
   const ctx = document.getElementById('myChart').getContext('2d');
 
   new Chart(ctx, {
@@ -146,7 +164,34 @@ function generateRandomDataForMilk() {
   return data;
 }
 
+
+//Print Functionality over here
   function getRandomValue() {
     return Math.floor(Math.random() * 50) + 1; // Random value between 1 and 50
   }
+
+  $(".PrintBtn").click(function()
+  {
+    printChart(this.id);
+  })
+  const printChart = (a) => {
+    const doc = new jsPDF();
+    if(a=="0")
+    {
+      doc.addImage(ctx.canvas.toDataURL(), 'JPEG', 10, 10, 190, 100); 
+    }
+    else if(a=="1"){
+      doc.addImage(ctx1.canvas.toDataURL(), 'JPEG', 10, 10, 190, 100); 
+    }
+    else if(a=="2"){
+      doc.addImage(ctx2.canvas.toDataURL(), 'JPEG', 10, 10, 190, 100); 
+    }
+    else if(a=="3"){
+      doc.addImage(ctx3.canvas.toDataURL(), 'JPEG', 10, 10, 190, 100); 
+    }
+
+    doc.save('chart.pdf'); // Save the PDF
+  };
+
 </script>
+
