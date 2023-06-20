@@ -92,6 +92,8 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddUserApi":
     case "/ManageUsers":
     case "/DeleteUsersApi":
+    case "/UpdateUserPage":
+    case "/updateUserApi":
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
