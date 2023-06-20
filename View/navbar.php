@@ -59,6 +59,7 @@
     <!-- External JS -->
     <!-- Include This is everywhere index.js in every php and html file -->
     <script src="JS/index.js"></script>
+    <script src="JS/api.js"></script>
   </head>
 
   <body class="ltheme_body">

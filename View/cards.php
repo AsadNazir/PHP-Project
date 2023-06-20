@@ -62,7 +62,14 @@ for ($i = 0; $i < count($result); $i++) {
     </div>
   </div>
 
-  <script>
+  
+
+  <?php
+
+}
+?>
+
+<script>
     function setDeleteId(id) {
       $('#delete_id').val(id);
     }
@@ -86,8 +93,3 @@ for ($i = 0; $i < count($result); $i++) {
       })
     }
   </script>
-
-  <?php
-
-}
-?>
