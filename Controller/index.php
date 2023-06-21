@@ -97,6 +97,8 @@ switch ($_SERVER["PATH_INFO"]) {
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
+        
+    case "/AddNewDietPlan":
     case "/DietPlans":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();

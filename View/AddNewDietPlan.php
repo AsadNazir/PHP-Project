@@ -1,7 +1,7 @@
 <?php ?>
 <div class="MainPage">
-    <form class="InputForms" id="addNewUser" enctype="multipart/form-data">
-        <h1>Manual Milk Entry</h1>
+    <form class="InputForms" id="AddNewDietPlan" enctype="multipart/form-data">
+        <h1>Add Diet Plan</h1>
         <div class="mb-3 form-input">
             <select class="form-select" aria-label="Default select example">
                 <option selected>Select the Cow</option>
@@ -41,7 +41,7 @@
                     </path>
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path>
                 </svg></span>Add the entry</button>
-            <a href="./MainDashBoard" class="mode btn submit">Cancel</a>
+            <a href="./DietPlans" class="mode btn submit">Cancel</a>
         </div>
     </form>
 </div>

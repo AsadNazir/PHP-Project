@@ -24,6 +24,13 @@ class DietController extends Controllers
                 include("View/DietPlans.php");
                 include("View/Footer.php");
                 break;
+
+            case "/AddNewDietPlan":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/AddNewDietPlan.php");
+                include("View/Footer.php");
+                break;
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;

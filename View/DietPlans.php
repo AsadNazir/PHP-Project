@@ -6,7 +6,7 @@
     </form>
 
     <div class="d-flex btnDivs">
-        <button class="btn btn-success" type="submit">Add New</button>
+        <a href="./AddNewDietPlan" class="btn btn-success" type="submit">Add New</a>
         <button class="btn btn-danger" type="submit">Delet All</button>
     </div>
 
