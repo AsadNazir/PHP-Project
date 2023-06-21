@@ -3,6 +3,7 @@ session_start();
 require_once("./Model/db.php");
 include_once("CowController.php");
 include_once("UserController.php");
+include_once("DietController.php");
 
 class Controllers
 {
@@ -96,7 +97,10 @@ switch ($_SERVER["PATH_INFO"]) {
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
-
+    case "/DietPlans":
+        $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $Dc->handleRequest();
+        break;
     default:
         header("Location: ./View/Error.php");
         break;

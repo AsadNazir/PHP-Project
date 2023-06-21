@@ -81,9 +81,6 @@
               <a class="nav-link active" aria-current="page" href="./MainDashBoard">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="./logout">Logout</a>
             </li>
 
