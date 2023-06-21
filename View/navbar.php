@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="./CSS/index.css" />
   <link rel="stylesheet" href="./CSS/navbar.css" />
   <link rel="stylesheet" href="./CSS/DashBoard.css" />
+  <link rel="stylesheet" href="./CSS/AddForms.css">
 
   <!-- Fonts Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -34,7 +35,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <!-- Dynamic adding of CSS Files -->
   <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"]=="/AddUsers")
@@ -79,9 +79,6 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="./MainDashBoard">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./logout">Logout</a>

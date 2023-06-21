@@ -3,6 +3,7 @@ session_start();
 require_once("./Model/db.php");
 include_once("CowController.php");
 include_once("UserController.php");
+include_once("DietController.php");
 
 class Controllers
 {
@@ -61,6 +62,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/UpdateCowPage":
     case "/updateCowApi":
     case "/DeleteCow":
+    case "/MilkEntry":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
             $CowCont->handleRequest();
@@ -97,7 +99,12 @@ switch ($_SERVER["PATH_INFO"]) {
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
-
+        
+    case "/AddNewDietPlan":
+    case "/DietPlans":
+        $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $Dc->handleRequest();
+        break;
     default:
         header("Location: ./View/Error.php");
         break;

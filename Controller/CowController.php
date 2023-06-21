@@ -90,6 +90,14 @@ class CowController extends Controllers
                 $CowModalObj->UpadteCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
 
                 break;
+           
+            case "/MilkEntry":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/MilkEntry.php");
+                include("View/Footer.php");
+
+                break;
 
             default:
                 echo "Default";

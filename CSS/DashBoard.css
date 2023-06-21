@@ -46,11 +46,11 @@
 }
 
 .dashBoardBody {
-    width: 90%;
+    width: 70%;
     margin: 2rem auto;
     display: grid;
     grid-auto-rows: 1fr;
-    column-gap: 1rem;
+    column-gap: 2rem;
     grid-template-columns: 1fr 2.5fr;
 }
 
@@ -120,7 +120,7 @@
     border: 1px solid var(--accent);
     border-radius: 5px;
     background-color: var(--background-primary);
-    padding: 1rem;
+    padding: 0.6rem;
     display: flex;
     box-shadow: 1px 1px 1px 1px var(--accent);
     align-items: center;
@@ -128,7 +128,7 @@
 
 .CowStatValue,
 .CowStatInfo {
-    font-size: calc(var(--fs4) + 1px);
+    font-size: (--fs4);
 }
 
 .CowStatInfo {
@@ -144,6 +144,14 @@
     width: 20%;
     height: 2rem;
     min-width: 2rem;
+    margin-right: 1%;
+    fill: var(--foreground-primary);
+}
+.CowStatIconSidebar {
+    width: 20%;
+    height: 2rem;
+    min-width: 2rem;
+    margin-right: 4%;
     fill: var(--foreground-primary);
 }
 .CowStatIcon > svg{
