@@ -1,6 +1,6 @@
-<? php ?>
+<?php ?>
 <div class="MainPage">
-    <form class="InputForms" id="./AddUserApi" enctype="multipart/form-data">
+    <form class="InputForms" id="addNewUser" enctype="multipart/form-data">
         <h1>Add New Users !</h1>
         <div class="mb-3 form-input">
             <label for="name" class="form-label">Name</label>
@@ -51,6 +51,38 @@
 
 </html>
 
+
+<script type="text/javascript">
+    $(document).on('submit', '#addNewUser', async function (e) {
+        e.preventDefault();
+
+        var data = new FormData(this);
+
+        //AJAX Request for saving the data --------------------------
+
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "./AddUserApi",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                if (JSON.parse(data).status == "updated") {
+                    alert('success');
+                    window.location.href = './ManageUsers';
+                } else {
+                    alert('error');
+
+                }
+            },
+            error: function (xhr, textStatus, responseText) { }
+        });
+
+    });
+
+// ------------------------------------
+</script>
 <script type="text/javascript">
 //    Do'nt add Script here
 //    Do it in a separate file in JS Folder and add the scripts in the footer
