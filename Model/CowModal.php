@@ -33,7 +33,10 @@ class CowModal
         }
     }
 
+    public function AddMilkEntry($conn,$table,$data)
+    {
 
+    }
 
     public function UploadImage($directory, $file)
     {

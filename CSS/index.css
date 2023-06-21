@@ -79,3 +79,12 @@ body {
     padding: 0.6rem 2rem;
     
 }
+
+.form-group-50-space >div
+{
+    width: 45% ;
+}
+.blueBadge
+{
+    color: white;
+}
