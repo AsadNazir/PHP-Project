@@ -66,7 +66,7 @@
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <div class="logoText">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="./MainDashBoard">
             <img src="Images/Asset 2.svg" alt="Logo" class="d-inline-block align-text-top" />
             <span>Cow Automation</span>
           </a>
