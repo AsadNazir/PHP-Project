@@ -31,6 +31,10 @@ class DietController extends Controllers
                 include("View/AddNewDietPlan.php");
                 include("View/Footer.php");
                 break;
+
+            case "/AddNewDietPlanApi":
+
+                break;
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;
