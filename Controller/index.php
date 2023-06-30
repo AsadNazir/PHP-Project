@@ -33,6 +33,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case '/MainDashBoard':
 
         if ($Con->validateSession()) {
+
             $_SESSION["user"] = "admin";
             include("View/navbar.php");
             include("View/Sidebar.php");

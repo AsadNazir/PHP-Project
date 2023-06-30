@@ -18,6 +18,22 @@ class UserController extends Controllers
     {
         switch ($this->pathInfo) {
 
+
+            case "ValidateUserAPI":
+                $UModal = new UserModal();
+                $res= $UModal->validateUser($this->DbCon->connection,"users",$_REQUEST);
+
+                //User Exists
+                if(!is_null($res))
+                {
+                    
+                }
+                else{
+
+                }
+
+                break;
+
             //This will display the Add user Form
             case "/AddUsers":
                 include("View/navbar.php");

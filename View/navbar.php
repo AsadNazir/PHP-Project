@@ -68,7 +68,7 @@
         <div class="logoText">
           <a class="navbar-brand" href="#">
             <img src="Images/Asset 2.svg" alt="Logo" class="d-inline-block align-text-top" />
-            <span>Cow Automation</span>
+            <span>Milkesters</span>
           </a>
         </div>
         <button class="navbar-toggler menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -98,7 +98,7 @@
               </ul>
             </li>
             <button class="mode btn">
-              <span class="icon"><i class="lni lni-sun"></i></span> Light Mode
+              <span class="icon"><i class="lni lni-sun"></i></span>
             </button>
           </ul>
         </div>
