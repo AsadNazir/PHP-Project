@@ -1,10 +1,10 @@
 
-.logoText a
+.logoText 
 {
-    display: flex;
-    /* justify-content: space-evenly; */
+    display: inline-flex;
     align-items: center;
     font-size: var(--fs3);
+    color: var(--foreground-primary);
 }
 a
 {
@@ -20,7 +20,7 @@ a
 }
 .logoText img
 {
-    width: clamp(75px,20%,150px)
+    width: clamp(50px,10%,120px)
 }
 .logoText span{
     margin-left: 1rem;
@@ -92,4 +92,57 @@ nav{
     margin: auto;
     display: flex !important;
     justify-content: space-between !important;
+}
+
+.dropdown-menu .profilePic img
+{
+    width: clamp(50px,15%,120px);
+    height: clamp(50px,15%,120px);
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+.profilePic
+{
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    margin: 0rem 0 1rem 0;
+    border-bottom: 2px solid var(--foreground-tertiary);
+    
+}
+
+.profilePic:hover
+{
+    cursor: inherit;
+   background: var(--background-primary) !important;
+}
+.profilePic h2
+{
+   font-size: var(--fs4);
+   color: var(--foreground-primary) !important;
+}
+.profilePic span
+{
+   font-size: var(--fs5);
+   color: var(--foreground-primary) !important;
+}
+
+.dropdown-menu
+{
+    background-color: var(--background-primary);
+    color: var(--foreground-primary) !important;
+
+}
+.dropdown-menu a
+{
+    background-color: var(--background-primary);
+    color: var(--foreground-primary) !important;
+
+}
+.dropdown-menu a:hover
+{
+    background-color: var(--background-secondary);
+    color: var(--foreground-primary) !important;
+
 }

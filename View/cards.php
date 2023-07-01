@@ -37,15 +37,16 @@ for ($i = 0; $i < count($result); $i++) {
         </p>
       </div>
     </div>
-    <div class="CowCardbtn card-body">
+    <div class="CowCardbtn btnDivs card-body">
       <a href="" class="btn btn-primary">More Details</a>
       <?php
 
       if ($isAdmin == 'yes') {
-        echo '<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
-      onclick="setDeleteId(<?php echo $row["id"]; ?>)">Delete</a>
-    <a href="./UpdateCowPage?id=<?php echo $row["id"]; ?>" class="btn btn-secondary">Update</a>
-';
+        echo ('<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
+      onclick="setDeleteId(' . $row["id"] . ')">Delete</a>');
+
+
+        echo ('<a href="./UpdateCowPage?id=' . $row["id"] . '"' . ' class="btn btn-secondary">Update</a>');
       }
       ?>
     </div>

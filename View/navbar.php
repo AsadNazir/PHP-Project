@@ -74,7 +74,60 @@ $isAdmin = $_SESSION["isAdmin"];
   </head>
 
   <body class="ltheme_body">
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar-expand-lg navbar-light navbar navbar-expand-lg navbar-custom ">
+      <div class="container-fluid">
+        <a class="navbar-brand logoText" href="#">
+          <img src="Images/Asset 2.svg" width="60" height="65" alt="Logo" class="d-inline-block align-text-top" />
+          Milkesters
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./MainDashBoard">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./logout">Logout</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                More Options
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li class="profilePic dropdown-item">
+                  <div>
+                    <img src="Images/cool_image.jfif" alt="">
+                    <span>Not Admin</span>
+                  </div>
+                  <h2>
+                  <?php echo $_SESSION["name"]; ?>
+                </h2>
+              </li>
+              <?php
+
+              if ($isAdmin == 'yes') {
+                echo '<li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
+                    <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>';
+              }
+
+              ?>
+
+              <li><a class="dropdown-item" href="#">View Profile</a></li>
+            </ul>
+          </li>
+          <button class="mode btn">
+            <span class="icon"><i class="lni lni-sun"></i></span>
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <div class="logoText">
           <a class="navbar-brand" href="#">
@@ -100,17 +153,26 @@ $isAdmin = $_SESSION["isAdmin"];
                 More
               </a>
               <ul class="dropdown-menu">
+                <li class="profilePic dropdown-item">
+                  <div>
+                    <img src="Images/cool_image.jfif" alt="">
+                    <span>Not Admin</span>
+                  </div>
+                  <h2>
+                  <?php //echo $_SESSION["name"]; ?>
+                </h2>
+              </li>
 
-                <!-- If the user is admin only then he can manage other users -->
-                <?php
+              
+              <?php
 
-                  if ($isAdmin == 'yes') {
-              echo '<li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
-                    <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>';
-              }
+              // if ($isAdmin == 'yes') {
+              //   echo '<li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
+              //       <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>';
+              // }
+              
 
-
-                ?>
+              ?>
 
 
               <li><a class="dropdown-item" href="#">View Profile</a></li>
@@ -125,7 +187,7 @@ $isAdmin = $_SESSION["isAdmin"];
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <!-- Here all of our websites can be loaded all the pages after this tag -->
   <div class="dashBoardBody">
