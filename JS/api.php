@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).on('submit', '#addNewUser', async function (e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         var data = new FormData(this);
 

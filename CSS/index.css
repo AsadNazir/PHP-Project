@@ -92,3 +92,7 @@ body {
 {
     margin-bottom: 1rem
 }
+.MainPage .btnDivs a:not(:last-child)
+{
+    margin-right: 1%;
+}

@@ -1,6 +1,8 @@
 <?php
 include_once("./index.php");
 require_once("./Model/UserModal.php");
+session_start();
+
 class UserController extends Controllers
 {
     public $pathInfo;
@@ -19,19 +21,24 @@ class UserController extends Controllers
         switch ($this->pathInfo) {
 
 
-            case "ValidateUserAPI":
+            case "/ValidateUserAPI":
                 $UModal = new UserModal();
-                $res= $UModal->validateUser($this->DbCon->connection,"users",$_REQUEST);
+                $res = $UModal->validateUser($this->DbCon->connection, "users", $this->request);
 
+                $output = array();
+                $output['valid'] = false;
                 //User Exists
-                if(!is_null($res))
-                {
-                    
-                }
-                else{
+                if (!is_null($res)) {
+
+                    //var_dump($res);
+                    $_SESSION["email"] = $res["email"];
+                    $_SESSION["isAdmin"] = $res["adminRIghts"];
+                    $_SESSION["name"] = $res["name"];
+                    $output['valid'] = true;
 
                 }
 
+                echo json_encode($output);
                 break;
 
             //This will display the Add user Form
@@ -50,7 +57,7 @@ class UserController extends Controllers
                 $password = $this->request['password'];
 
                 // echo $name;
-               
+
                 if (isset($this->request['adminRights'])) {
                     $adminRights = "yes";
                 } else {

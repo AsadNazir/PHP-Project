@@ -1,5 +1,10 @@
 <!-- navbar php is fine here as it a stand alone component -->
 <!-- Session Handling in PHP -->
+
+<!-- Getting if the current user has Admin rights ir not -->
+<?php
+$isAdmin = $_SESSION["isAdmin"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +16,18 @@
 
   <!-- JQuery -->
   <script src="./jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"
+    integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Bootstrap over here -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
 
   <!-- External CSS Over Here -->
@@ -34,19 +41,21 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Dynamic adding of CSS Files -->
   <?php
-  if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"]=="/AddUsers")
+  if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
     echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
 
       ?>
-  <?php
+    <?php
   if ($_SERVER["PATH_INFO"] == "/Notification")
     echo "<link rel=\"stylesheet\" href=\"./CSS/Notification.css\"/>"
 
       ?>
-  <?php
+    <?php
   if ($_SERVER["PATH_INFO"] == "/Chart")
     echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
 
@@ -55,7 +64,9 @@
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- This is JSPDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+      integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- External JS -->
     <!-- Include This is everywhere index.js in every php and html file -->
     <script src="JS/index.js"></script>
@@ -89,21 +100,32 @@
                 More
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
-                <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>
-                <li><a class="dropdown-item" href="#">View Profile</a></li>
-                <li>
-                  <a class="dropdown-item" href="#"></a>
-                </li>
-              </ul>
-            </li>
-            <button class="mode btn">
-              <span class="icon"><i class="lni lni-sun"></i></span>
-            </button>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Here all of our websites can be loaded all the pages after this tag -->
-    <div class="dashBoardBody">
+                <!-- If the user is admin only then he can manage other users -->
+                <?php
+
+                  if ($isAdmin == 'yes') {
+              echo '<li><a class="dropdown-item" href="./AddUsers">Add User</a></li>
+                    <li><a class="dropdown-item" href="./ManageUsers">Manage Users</a></li>';
+              }
+
+
+                ?>
+
+
+              <li><a class="dropdown-item" href="#">View Profile</a></li>
+              <li>
+                <a class="dropdown-item" href="#"></a>
+              </li>
+            </ul>
+          </li>
+          <button class="mode btn">
+            <span class="icon"><i class="lni lni-sun"></i></span>
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Here all of our websites can be loaded all the pages after this tag -->
+  <div class="dashBoardBody">

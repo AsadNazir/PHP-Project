@@ -13,10 +13,10 @@ class UserModal
 
 
     //Checking if it is the true admin or not
-    public function isAdmin($_SESSION)
+    public function isAdmin($data)
     {
-        if(isset($_SESSION["user"]) && $_SESSION["user"]=="admin")
-        return true;
+        if (isset($data["user"]) && $data["user"] == "admin")
+            return true;
 
         return false;
     }
@@ -29,10 +29,14 @@ class UserModal
         $query = "SELECT * FROM $table WHERE email='$email' AND password='$password'";
         $result = mysqli_query($conn, $query);
 
-        if ($result && mysqli_num_rows($result) > 0) {
-            return true; // User exists and password is correct
+        $arr = [];
+
+        if (($result)) {
+            $arr = mysqli_fetch_array($result);
+
+            return $arr;
         } else {
-            return false; // User does not exist or password is incorrect
+            return null; // User does not exist or password is incorrect
         }
     }
 

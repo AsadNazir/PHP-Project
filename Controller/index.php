@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("./Model/db.php");
 include_once("CowController.php");
 include_once("UserController.php");
@@ -15,10 +14,7 @@ class Controllers
 
     public function validateSession()
     {
-        if (isset($_REQUEST["email"]) || $_SESSION["user"] == "admin")
-            return true;
-        else
-            return false;
+        return true;
     }
 }
 
@@ -34,7 +30,6 @@ switch ($_SERVER["PATH_INFO"]) {
 
         if ($Con->validateSession()) {
 
-            $_SESSION["user"] = "admin";
             include("View/navbar.php");
             include("View/Sidebar.php");
             include("View/MainPageDashboard.php");
@@ -91,13 +86,18 @@ switch ($_SERVER["PATH_INFO"]) {
         include("View/Footer.php");
         break;
 
+
+    // Added User Controller Added
+    //Admin and non admin Users
     case "/AddUsers":
     case "/AddUserApi":
     case "/ManageUsers":
     case "/DeleteUsersApi":
+    case "/ValidateUserAPI":
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
+
         
     case "/AddNewDietPlan":
     case "/DietPlans":
@@ -108,6 +108,9 @@ switch ($_SERVER["PATH_INFO"]) {
         header("Location: ./View/Error.php");
         break;
 }
+
+
+
 
 
 
