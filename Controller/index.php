@@ -14,7 +14,10 @@ class Controllers
 
     public function validateSession()
     {
-        return true;
+        if(isset($_SESSION["name"])){
+            return true;
+        }
+        return false;
     }
 }
 
