@@ -26,9 +26,12 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
         <div class="dropdown">
             <button class="dropdown-button">Select Options</button>
             <div class="dropdown-content">
-                <label><input type="checkbox" name="option1">Option 1</label><br>
-                <label><input type="checkbox" name="option2">Option 2</label><br>
-                <label><input type="checkbox" name="option3">Option 3</label><br>
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
             </div>
         </div>
 
