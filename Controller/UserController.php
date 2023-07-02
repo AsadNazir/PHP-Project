@@ -1,6 +1,8 @@
 <?php
 include_once("./index.php");
 require_once("./Model/UserModal.php");
+session_start();
+
 class UserController extends Controllers
 {
     public $pathInfo;
@@ -17,6 +19,27 @@ class UserController extends Controllers
     public function handleRequest()
     {
         switch ($this->pathInfo) {
+
+
+            case "/ValidateUserAPI":
+                $UModal = new UserModal();
+                $res = $UModal->validateUser($this->DbCon->connection, "users", $this->request);
+
+                $output = array();
+                $output['valid'] = false;
+                //User Exists
+                if (!is_null($res)) {
+
+                    //var_dump($res);
+                    $_SESSION["email"] = $res["email"];
+                    $_SESSION["isAdmin"] = $res["adminRIghts"];
+                    $_SESSION["name"] = $res["name"];
+                    $output['valid'] = true;
+
+                }
+
+                echo json_encode($output);
+                break;
 
             //This will display the Add user Form
             case "/AddUsers":

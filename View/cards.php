@@ -1,9 +1,13 @@
 <?php
-
 include_once("./Model/CowModal.php");
 
 $CowModelObj = new CowModal();
 $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
+
+
+// Getting the admin rigths of user 
+$isAdmin = $_SESSION["isAdmin"];
+
 
 for ($i = 0; $i < count($result); $i++) {
   $row = $result[$i];
@@ -33,12 +37,18 @@ for ($i = 0; $i < count($result); $i++) {
         </p>
       </div>
     </div>
-    <div class="CowCardbtn card-body">
+    <div class="CowCardbtn btnDivs card-body">
       <a href="" class="btn btn-primary">More Details</a>
-      <a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
-        onclick="setDeleteId(<?php echo $row['id']; ?>)">Delete</a>
-      <a href="./UpdateCowPage?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Update</a>
+      <?php
 
+      if ($isAdmin == 'yes') {
+        echo ('<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
+      onclick="setDeleteId(' . $row["id"] . ')">Delete</a>');
+
+
+        echo ('<a href="./UpdateCowPage?id=' . $row["id"] . '"' . ' class="btn btn-secondary">Update</a>');
+      }
+      ?>
     </div>
 
     <div id="deleteCowModal" class="modal fade">
@@ -62,7 +72,7 @@ for ($i = 0; $i < count($result); $i++) {
     </div>
   </div>
 
-  
+
 
   <?php
 
@@ -70,26 +80,26 @@ for ($i = 0; $i < count($result); $i++) {
 ?>
 
 <script>
-    function setDeleteId(id) {
-      $('#delete_id').val(id);
-    }
+  function setDeleteId(id) {
+    $('#delete_id').val(id);
+  }
 
-    function deleteCow() {
-      var id = $('#delete_id').val();
-      $('#deleteCowModal').modal('hide');
-      $.ajax({
-        type: 'get',
-        data: {
-          id: id,
-        },
-        url: "./DeleteCow",
-        success: function (data) {
-          var response = JSON.parse(data);
+  function deleteCow() {
+    var id = $('#delete_id').val();
+    $('#deleteCowModal').modal('hide');
+    $.ajax({
+      type: 'get',
+      data: {
+        id: id,
+      },
+      url: "./DeleteCow",
+      success: function (data) {
+        var response = JSON.parse(data);
 
-          if (response == "deleted") {
-            location.reload();
-          }
+        if (response == "deleted") {
+          location.reload();
         }
-      })
-    }
-  </script>
+      }
+    })
+  }
+</script>

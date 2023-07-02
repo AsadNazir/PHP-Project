@@ -46,7 +46,7 @@
     </button>
     <form method="POST" action="./MainDashBoard" onsubmit="return formSubmit()">
       <div class="left_login Login_form_logo">
-        <img class="login_logo" src="./View/Images/Asset 2.svg" alt="" />
+        <img class="login_logo" src="./Images/Asset 2.svg" alt="" />
       </div>
       <div class="mb-3 form-input">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -68,34 +68,56 @@
       </div>
     </form>
   </div>
+  <script>
+    // jQuery
+    // Submit button Validation
+    let formSubmit = function (event) {
+
+      const data = new FormData(document.querySelector('form'));
+
+      var settings = {
+        data: data,
+        contentType: false,
+        processData: false,
+
+        type: "POST",
+        url: "./ValidateUserAPI",
+        success: function (response) {
+
+          // Handle the response from the server
+          res = JSON.parse(response);
+          alert(res["valid"]);
+          if (res["valid"] === true) {
+            location.href = './MainDashBoard';
+          }
+
+          //Reappearing the Alert
+          $(".liveAlertPlaceHolder").css("top", `2%`);
+
+          //Disappearing the Alert after 4 secs
+          setTimeout(() => {
+            $(".liveAlertPlaceHolder").css("top", `-100%`);
+          }, 4000);
+
+
+          return false;
+        },
+        error: function (err, type, httpStatus) {
+
+          // Handle the error response
+          alert('An error has occurred');
+          console.log(err, type, httpStatus);
+          return false
+        }
+      };
+
+
+      $.ajax(settings);
+
+      return false;
+    };
+
+  </script>
 </body>
-<script>
-  //jQuery
-
-  //Submit button Validation
-  let formSubmit = function (event) {
-
-    const email = $("#email").val();
-    const pass = $("#pass").val();
-    debugger;
-    if (email === "admin@admin.com" && pass === "admin") {
-
-      return true;
-
-    }
-
-    //Reappearing the Alert
-    $(".liveAlertPlaceHolder").css("top", `2%`);
-
-    //Disappearing the Alert after 4 secs
-    setTimeout(() => {
-      $(".liveAlertPlaceHolder").css("top", `-100%`);
-    }, 4000);
-
-    return false;
-  }
-
-
-</script>
 
 </html>

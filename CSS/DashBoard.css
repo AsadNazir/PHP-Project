@@ -46,12 +46,12 @@
 }
 
 .dashBoardBody {
-    width: 70%;
+    width: clamp(300px,90%,1200px);
     margin: 2rem auto;
     display: grid;
     grid-auto-rows: 1fr;
     column-gap: 2rem;
-    grid-template-columns: 1fr 2.5fr;
+    grid-template-columns: 0.8fr 2.5fr;
 }
 
 .sideBar {
