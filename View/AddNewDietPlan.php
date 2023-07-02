@@ -3,33 +3,6 @@
     <form class="InputForms" id="AddNewDietPlan" enctype="multipart/form-data">
         <h1>Add Diet Plan</h1>
 
-        <div class="mb-3 form-input">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Select the Cow</option>
-                <?php
-
-                ?>
-                <!-- PHP se backend se cows ki ids along with names chye hoge idhr -->
-                <option value="1">Cow 1</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-
-
-
-        <div class="mb-3 form-input">
-            <label for="breed" class="form-label">Select date</label>
-            <input type="date" class="form-control" id="text" name="email" aria-describedby="breedHelp" required />
-        </div>
-
-
-        <div class="mb-3 form-input">
-            <label for="quantity" class="form-label">Milk Quantity</label>
-            <input type="number" class="form-control" min="0" id="text" name="password" aria-describedby="breedHelp"
-                required />
-        </div>
-
         <!-- DropDown CheckBox -->
         <div class="dropdown">
             <button class="dropdown-button">Select Options</button>
@@ -58,17 +31,3 @@
 </div>
 </div>
 <script>
-    (function ($) {
-        var CheckboxDropdown = function (el) {
-            var _this = this;
-            this.isOpen = false;
-            this.areAllChecked = false;
-            this.$el = $(el);
-            this.$label = this.$el.find('.dropdown-label');
-            this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
-            this.$inputs = this.$el.find('[type="checkbox"]');
-
-            this.onCheckBox();
-    )
-
-</html >
