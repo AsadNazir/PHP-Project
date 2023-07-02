@@ -1,0 +1,28 @@
+.MainPage label {
+    color: var(--foreground-primary) !important;
+    font-size: var(--fs4);
+}
+.InputForms >h1{
+    margin-bottom: 2rem ;
+}
+
+.MainPage h1,h2,h3,h4,h5,h6{
+    color: var(--foreground-primary) !important;
+    
+}
+.MainPage h3,h5{
+    font-size: var(--fs4);
+}
+
+.MainPage h1,h2{
+    font-size: var(--fs3);
+}
+
+#addNewCow, #addUsers, .InputForms {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.MainPage {
+     /* color: var(--foreground-primary) !important;  */
+}

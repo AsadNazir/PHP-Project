@@ -1,0 +1,22 @@
+.Chart{
+    margin-bottom: 2rem;
+
+}
+
+.PrintBtn{
+    font-size: var(--f4);
+    display: block;
+    background-color: var(--accent);
+    color: white;
+}
+
+.ChartBtnDiv
+{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1.5rem;
+}
+
+h1,h2{
+    color: var(--foreground-primary);
+}

@@ -1,0 +1,247 @@
+.sideBar {
+    height: fit-content;
+    background-color: var(--background-primary);
+
+}
+
+.MilkProduction {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    column-gap: 1rem;
+}
+
+.MilkProduction>div {
+    /* border: 2px solid green; */
+    background: #000046;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    background-position: center;
+    background-size: contain;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #1CB5E0, #010196);
+    padding: 1rem;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 5px;
+    color: white;
+}
+
+.MainPage>h1 {
+    font-size: var(--fs3);
+}
+
+.MilkProduction a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: right;
+    font-size: var(--fs4);
+    font-weight: normal;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.MilkProduction>div h1 {
+    font-size: var(--fs3);
+}
+
+.dashBoardBody {
+    width: clamp(300px,90%,1200px);
+    margin: 2rem auto;
+    display: grid;
+    grid-auto-rows: 1fr;
+    column-gap: 2rem;
+    grid-template-columns: 0.8fr 2.5fr;
+}
+
+.sideBar {
+    position: sticky;
+    top: 5%;
+    border-radius: 5px;
+    padding: 1rem;
+
+}
+
+.sideBar>h1 {
+    font-size: var(--fs3);
+
+}
+
+.sideBar a {
+    /* border:2px solid red; */
+    width: 100%;
+    background-color: var(--background-secondary);
+    border-radius: 5px;
+    height: 100%;
+    padding: clamp(0.5rem,2vw,1rem);
+    display: block;
+    text-decoration: none;
+    font-size: var(--fs4);
+
+}
+
+.sideBar ul {
+    padding: 0;
+}
+
+.sideBar a:hover {
+    fill: white;
+    background-color: var(--accent);
+    color: white;
+    transition: 0.3s all ease-in-out;
+}
+.sideBar a:hover .CowStatIcon{
+    fill: white;
+}
+
+
+
+.sideBar li {
+
+    /* border: 2px solid; */
+    border-radius: 5px;
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.sideBar li a{
+    display: flex;
+    align-items: center;
+}
+
+.CowStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.CowStats>div {
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    background-color: var(--background-primary);
+    padding: 0.6rem;
+    display: flex;
+    box-shadow: 1px 1px 1px 1px var(--accent);
+    align-items: center;
+}
+
+.CowStatValue,
+.CowStatInfo {
+    font-size: (--fs4);
+}
+
+.CowStatInfo {
+    font-weight: bold;
+    margin: 0 1rem;
+}
+
+.CowStats span {
+    display: block;
+}
+
+.CowStatIcon {
+    width: 20%;
+    height: 2rem;
+    min-width: 2rem;
+    margin-right: 1%;
+    fill: var(--foreground-primary);
+}
+.CowStatIconSidebar {
+    width: 20%;
+    height: 2rem;
+    min-width: 2rem;
+    margin-right: 4%;
+    fill: var(--foreground-primary);
+}
+.CowStatIcon > svg{
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.CowCard {
+    border: 2px solid var(--background-primary);
+    margin: 1rem 0;
+}
+
+.CowCardBody {
+    /* border: 2px solid yellow; */
+    display: flex;
+    align-items: center;
+    padding: 0rem !important;
+    background-color: var(--background-primary) !important;
+    color: var(--foreground-primary) !important;
+}
+
+.cowImage img {
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid green; */
+}
+
+.cowImage {
+    padding: 0.5rem;
+    border-radius: 50%;
+    /* border: 2px solid green; */
+    width: clamp(7rem, 5vw, 12rem);
+    height: clamp(7rem, 5vw, 12rem);
+    margin-right: 2%;
+}
+
+.card-header {
+    background-color: var(--background-secondary);
+    color: var(--foreground-primary);
+}
+
+.CowCard a {
+    width: fit-content;
+}
+
+.CowDetails>span {
+    margin: 0 1rem;
+}
+
+.CowDetails>span:nth-child(1) {
+    margin-left: 0;
+}
+
+.CowCardbtn {
+    background-color: var(--background-primary);
+}
+
+.submit_cont {
+    display: flex;
+    justify-content: end;
+}
+
+.active_sidebar {
+    background-color: var(--accent) !important;
+    color: white;
+    fill: white;
+}
+.active_sidebar .CowStatIcon{
+    fill: white;
+}
+
+.CowStatInfo, .CowStatValue
+{
+    color: var(--foreground-primary);
+}
+
+.submit_cont>a,
+button {
+    font-size: var(--fs4);
+}
+
+.submit_cont>a {
+    margin-left: 1rem;
+}
+
+.MainDashBoardHeadings:not(:nth-child(1))
+{
+    font-size: var(--fs3);
+    color: var(--foreground-primary);
+    margin: 1rem 0;
+}

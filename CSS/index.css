@@ -1,0 +1,98 @@
+/* This is going to be included in out every project */
+/* This is contains root Variables and some utillity classes*/
+/* Font Family as well */
+
+
+/* Light Theme Colors */
+.ltheme_body {
+    --background-primary: hsl(0, 0%, 100%);
+    --background-secondary: hsl(0, 0%, 95%);
+    --action-primary: hsl(214, 32%, 91%);
+    --action-secondary: hsl(210, 38%, 95%);
+    --foreground-primary: hsl(218, 23%, 23%);
+    --foreground-secondary: hsl(216, 15%, 52%);
+    --foreground-tertiary: hsl(214, 20%, 69%);
+    --accent: blueviolet;
+}
+
+/* Dark Theme Colors */
+.dtheme_body {
+    --background-primary: hsl(218, 23%, 23%);
+    --background-secondary: hsl(220, 26%, 14%);
+    --action-primary: hsl(216, 15%, 52%);
+    --action-secondary: hsl(218, 23%, 23%);
+    --foreground-primary: hsl(210, 38%, 95%);
+    --foreground-secondary: hsl(211, 25%, 84%);
+    --foreground-tertiary: hsl(214, 20%, 69%);
+    --accent: #9728ff;
+}
+
+
+:root {
+    --fs1: clamp(1.8rem, 4vw, 3.3rem);
+    --fs2: clamp(1.5rem, 3vw, 3rem);
+    --fs3: clamp(1.2rem, 2vw, 1.8rem);
+    --fs4: clamp(1rem, 1.1vw, 1.5rem);
+    --fs5: clamp(0.8rem, 0.92vw, 1.2rem);
+    --pdlr: clamp(0.5rem, 15vw, 12rem);
+}
+
+* {
+    box-sizing: border-box;
+    margin:0 ;
+    padding:0 ;
+}
+
+.logoText
+{
+    display: grid;
+    place-content: center;
+}
+body {
+    padding: 0;
+    margin: 0;
+    /* height: 200vh; */
+    /* padding-top: 1.5rem; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    transition: 0.3s all ease-in;
+    box-sizing: border-box;
+    background-color: var(--background-secondary);
+    scroll-behavior: smooth;
+}
+
+.SearchBar
+{
+    font-size: var(--fs4);
+    color: var(--foreground-primary);
+    margin-bottom: 1rem !important;
+}
+
+.SearchBar input
+{
+    font-size: var(--fs4);
+    
+}
+
+.SearchBar button
+{
+    padding: 0.6rem 2rem;
+    
+}
+
+.form-group-50-space >div
+{
+    width: 45% ;
+}
+.blueBadge
+{
+    color: white;
+}
+.MainPage .btnDivs
+{
+    margin-bottom: 1rem
+}
+.MainPage .btnDivs a:not(:last-child)
+{
+    margin-right: 1%;
+}
