@@ -31,7 +31,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
                 <!-- PHP se backend se Feed idhr aye gi -->
                 <option value="1">Cow 1</option>
                 <option value="2">Two</option>
-                <option value="3">Three</option> -->
+                <option value="3">Three</option>
             </select>
         </div>
 
