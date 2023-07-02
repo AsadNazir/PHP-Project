@@ -6,8 +6,9 @@
 
 .MilkProduction {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    column-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    column-gap: 3%;
+    row-gap: 3%;
 }
 
 .MilkProduction>div {
@@ -49,7 +50,6 @@
     width: clamp(300px,90%,1200px);
     margin: 2rem auto;
     display: grid;
-    grid-auto-rows: 1fr;
     column-gap: 2rem;
     grid-template-columns: 0.8fr 2.5fr;
 }
@@ -111,7 +111,7 @@
 
 .CowStats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 1rem;
     margin: 2rem 0;
 }
@@ -245,3 +245,73 @@ button {
     color: var(--foreground-primary);
     margin: 1rem 0;
 }
+
+/* Write media Queries */
+@media screen and (max-width: 850px) {
+    .dashBoardBody {
+        grid-template-columns: 1fr;
+    }
+
+    .sideBar {
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+
+    .CowCard {
+        margin: 1rem 0;
+    }
+
+    .CowCardBody {
+        flex-direction: column;
+    }
+
+    .cowImage {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    .CowDetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .CowDetails>span {
+        margin: 0.5rem 0;
+    }
+
+    .CowDetails>span:nth-child(1) {
+        margin-left: 0;
+    }
+
+    .submit_cont {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submit_cont>a {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .CowStatIcon {
+        width: 30%;
+        height: 2rem;
+        min-width: 2rem;
+        margin-right: 1%;
+        fill: var(--foreground-primary);
+    }
+    .CowStatIconSidebar {
+        width: 30%;
+        height: 2rem;
+        min-width: 2rem;
+        margin-right: 4%;
+        fill: var(--foreground-primary);
+    }
+    .CowStatIcon > svg{
+        width: 100%;
+        height: 100%;
+    }
+}
+    

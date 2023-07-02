@@ -36,33 +36,50 @@
                 Add beautiful image of your cow.
             </div>
         </div>
-        <div class="mb-3 form-check" style="margin-top:10px">
-            <input type="checkbox" class="form-check-input" id="dairy" name="dairy" />
-            <label class="form-check-label" for="dairy">Is your cow a dairy cow?</label>
+        <div class="form-group specialFormGroup">
+            <div class="mb-3 form-check" style="margin-top:10px">
+                <input type="checkbox" class="form-check-input" id="dairy" name="dairy" />
+                <label class="form-check-label" for="dairy">Is your cow a dairy cow?</label>
+            </div>
+            <div class="mb-3 form-check" style="margin-top:10px">
+                <input type="checkbox" class="form-check-input" id="Bull" name="bull" />
+                <label class="form-check-label" for="dairy">Bull Insemination</label>
+            </div>
+            <div class="mb-3 form-check" style="margin-top:10px">
+                <input type="checkbox" class="form-check-input" id="insemination" name="insemination" />
+                <label class="form-check-label" for="dairy">Insemination ?</label>
+            </div>
         </div>
-
         <div>
             <h4>
                 Add some more details about your cow
             </h4>
         </div>
-        <div class="mb-3 form-input">
-            <label for="weight" class="form-label">Weight</label>
-            <input type="number" class="form-control" id="weight" name="weight" min="0" />
+        <div class="form-group specialFormGroup">
+            <div class="mb-3 form-input">
+                <label for="weight" class="form-label">Weight</label>
+                <input type="number" class="form-control" id="weight" name="weight" min="0" />
+            </div>
+            <div class="mb-3 form-input">
+                <label for="height" class="form-label">Height</label>
+                <input type="number" class="form-control" id="height" name="height" min="0" />
+            </div>
         </div>
-        <div class="mb-3 form-input">
-            <label for="height" class="form-label">Height</label>
-            <input type="number" class="form-control" id="height" name="height" min="0" />
+        <div class="form-group specialFormGroup">
+            <div class="mb-3 form-input">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" class="form-control" id="color" name="color" />
+            </div>
+            <div class="mb-3 form-input">
+                <label for="color" class="form-label">Price in Rs</label>
+                <input type="number" min="0" class="form-control" id="price" name="price" />
+            </div>
         </div>
-        <div class="mb-3 form-input">
-            <label for="color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="color" name="color" />
-        </div>
-
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="mode btn submit">Add Animal</button>
             <a href="./MainDashBoard" class="mode btn submit">Cancel</a>
         </div>
+
     </form>
 </div>
 </div>

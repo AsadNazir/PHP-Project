@@ -77,7 +77,7 @@ $isAdmin = $_SESSION["isAdmin"];
     <nav class="navbar-expand-lg navbar-light navbar navbar-expand-lg navbar-custom ">
       <div class="container-fluid">
         <a class="navbar-brand logoText" href="#">
-          <img src="Images/Asset 2.svg" width="60" height="65" alt="Logo" class="d-inline-block align-text-top" />
+          <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
           Milkesters
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
