@@ -1,5 +1,51 @@
-.DietPlanCards{
+.DietPlanCards {
     margin-bottom: 0.5rem;
     background-color: var(--background-primary);
     color: var(--foreground-primary);
+}
+
+.dropdown {
+    font-size: var(--fs4);
+    position: relative;
+    /* display: inline-block; */
+    font-family: Arial, sans-serif;
+}
+
+.dropdown-button {
+    background-color: var(--background-primary);
+    border: 1px solid #ddd;
+    color: var(--foreground-primary);
+    padding: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.dropdown-button:hover {
+    background-color: var(--background-primary);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    max-height: 300px;
+    overflow-y: auto;
+    width: 90%;
+}
+
+.dropdown-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-content label input[type="checkbox"] {
+    margin-right: 1rem;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }

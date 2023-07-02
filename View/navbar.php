@@ -46,6 +46,11 @@ $isAdmin = $_SESSION["isAdmin"];
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Dynamic adding of CSS Files -->
   <?php
+  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
+
+      ?>
+  <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
     echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
 

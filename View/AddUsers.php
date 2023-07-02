@@ -40,8 +40,8 @@
             <input type="text" class="form-control" id="job" name="job"/>
         </div>
         <div class="submit_cont" style="margin-top:10px">
-            <button type="submit" class="mode btn submit">Add User</button>
-            <a href="./MainDashBoard" class="mode btn submit">Cancel</a>
+            <button type="submit" class="btn submit">Add User</button>
+            <a href="./MainDashBoard" class="btn submit btn-danger">Cancel</a>
         </div>
     </form>
 </div>

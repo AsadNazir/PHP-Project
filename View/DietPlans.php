@@ -27,18 +27,20 @@ $isAdmin = $_SESSION["isAdmin"];
         <div class="card-body">
             <h5 class="card-title">Weight Gain Diet Plan for Malnourished</h5>
             <p class="card-text">This is a customised Diet plan for cows</p>
+            <div id="nameHelp" class="btnDivs innerBtn">
 
-            <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
-            
-            <!-- Only Admins have edit priveleges -->
-            <?php
-            if ($isAdmin == 'yes') {
-                echo '<a href="#" class="btn btn-secondary">Update</a>
+
+                <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
+
+                <!-- Only Admins have edit priveleges -->
+                <?php
+                if ($isAdmin == 'yes') {
+                    echo '<a href="#" class="btn btn-secondary">Update</a>
             <a href="#" class="btn btn-secondary">Delete</a>';
-            }
+                }
 
-            ?>
-
+                ?>
+            </div>
         </div>
     </div>
 

@@ -39,15 +39,15 @@
 
 * {
     box-sizing: border-box;
-    margin:0 ;
-    padding:0 ;
+    margin: 0;
+    padding: 0;
 }
 
-.logoText
-{
+.logoText {
     display: grid;
     place-content: center;
 }
+
 body {
     padding: 0;
     margin: 0;
@@ -61,45 +61,76 @@ body {
     scroll-behavior: smooth;
 }
 
-.SearchBar
-{
+.SearchBar {
     font-size: var(--fs4);
     color: var(--foreground-primary);
     margin-bottom: 1rem !important;
 }
 
-.SearchBar input
-{
+.SearchBar input {
     font-size: var(--fs4);
-    
+
 }
 
-.SearchBar button
-{
+.SearchBar button {
     padding: 0.6rem 2rem;
-    
+
 }
 
-.form-group-50-space >div
-{
-    width: 45% ;
+.form-group-50-space>div {
+    width: 45%;
 }
-.blueBadge
-{
+
+.blueBadge {
     color: white;
 }
-.MainPage .btnDivs
-{
-    margin-bottom: 1rem
+
+.MainPage .btnDivs {
+    margin-bottom: 1rem;
+    display: flex;
 }
-.MainPage .btnDivs a:not(:last-child)
-{
+
+.MainPage .btnDivs a:not(:last-child) {
     margin-right: 1%;
 }
 
-.specialFormGroup
-{
+.specialFormGroup {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+}
+
+.btn {
+    font-size: var(--fs4);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent);
+    color: white;
+    width: fit-content;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+
+}
+
+.btn-primary {
+    background-color: #0275d8;
+}
+
+.innerBtn {
+    font-size: var(--fs5) !important;
+    margin: 0 !important;
+}
+
+.innerBtn {
+    font-size: var(--fs5) !important;
+}
+
+.form-text {
+    font-size: var(--fs5) !important;
+    color: var(--foreground-secondary);
+    margin: 0.5rem 0;
 }

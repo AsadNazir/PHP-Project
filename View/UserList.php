@@ -40,10 +40,10 @@ for ($i = 0; $i < count($result); $i++) {
           </p>
         </div>
       </div>
-      <div class="CowCardbtn card-body">
+      <div class="CowCardbtn btnDivs card-body">
 
         <a href="./UpdateUserPage?id=<?php echo $row['id']; ?>" class="btn btn-primary">Update</a>
-        <a href="#deleteUserModal" class="btn btn-secondary" data-toggle="modal"
+        <a href="#deleteUserModal" class="btn btn-danger" data-toggle="modal"
           onclick="setDeleteId(<?php echo $row['id']; ?>)">Delete</a>
 
       </div>
