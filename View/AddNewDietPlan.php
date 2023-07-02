@@ -29,10 +29,18 @@
             <input type="number" class="form-control" min="0" id="text" name="password" aria-describedby="breedHelp"
                 required />
         </div>
-        <div class="mb-3 form-input">
-            <label for="breed" class="form-label">Ph Level</label>
-            <input type="number" class="form-control" min="2" max="12" id="text" name="email"
-                aria-describedby="breedHelp" required />
+
+        <!-- DropDown CheckBox -->
+        <div class="dropdown">
+            <button class="dropdown-button">Select Options</button>
+            <div class="dropdown-content">
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
+            </div>
         </div>
 
         <div class="submit_cont" style="margin-top:10px">
