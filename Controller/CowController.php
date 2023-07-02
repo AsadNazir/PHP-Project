@@ -90,7 +90,7 @@ class CowController extends Controllers
                 $CowModalObj->UpadteCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
 
                 break;
-
+           
             case "/MilkEntry":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
@@ -98,29 +98,6 @@ class CowController extends Controllers
                 include("View/Footer.php");
 
                 break;
-
-            case "/AddMilkApi":
-
-                $cow = $this->request['id'];
-                $date = $this->request['date'];
-                $milk = $this->request['milk'];
-                $ph = $this->request['ph'];
-
-                $data = [
-                    'cow' => $cow,
-                    'date' => $date,
-                    'milk' => $milk,
-                    'ph' => $ph
-                ];
-
-                $CowModalObj = new CowModal();
-
-                $insertion = $CowModalObj->AddMilkEntry($this->DbCon->connection, 'milk', $data);
-                $output["status"] = $insertion;
-
-                echo json_encode($output);
-                break;
-
 
             default:
                 echo "Default";

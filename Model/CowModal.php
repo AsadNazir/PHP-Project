@@ -35,21 +35,7 @@ class CowModal
 
     public function AddMilkEntry($conn,$table,$data)
     {
-        $columns = implode(",", array_keys($data));
 
-        $cow = $data['cow'];
-        $date = $data['date'];
-        $milk = $data['milk'];
-        $ph = $data['ph'];
-        
-        $sql = "INSERT INTO $table($columns) VALUES ('$cow', '$date', '$milk', '$ph')";
-
-        if (mysqli_query($conn, $sql)) {
-
-            return "added";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
     }
 
     public function UploadImage($directory, $file)
@@ -214,10 +200,6 @@ class CowModal
         echo json_encode($output["status"]);
 
     }
-
-
-
-
 }
 
 
