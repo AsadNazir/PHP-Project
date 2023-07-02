@@ -59,6 +59,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/updateCowApi":
     case "/DeleteCow":
     case "/MilkEntry":
+    case "/AddMilkApi":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
             $CowCont->handleRequest();
@@ -94,11 +95,14 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/ManageUsers":
     case "/DeleteUsersApi":
     case "/ValidateUserAPI":
+    case "/UpdateUserPage":
+    case "/updateUserApi":
         $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Uc->handleRequest();
         break;
-        
+
     case "/AddNewDietPlan":
+    case "/AddNewDietPlanApi":
     case "/DietPlans":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();

@@ -111,8 +111,21 @@ class UserController extends Controllers
                     echo json_encode($output['status']);
                 }
 
+                break;
+
+            case "/UpdateUserPage":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/updateUser.php");
+                include("View/Footer.php");
+                break;
+
+            case "/updateUserApi":
+                $UserModalObj = new UserModal();
+                $UserModalObj->UpadteUserAPI($this->DbCon->connection, "users", $this->request, $this->file);
 
                 break;
+
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;
