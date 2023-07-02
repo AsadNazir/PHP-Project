@@ -12,26 +12,42 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
         <h1>Add Diet Plan</h1>
 
         <div class="mb-3 form-input">
-            <label for="breed" class="form-label">Diet Plane Name</label>
-            <input type="text" class="form-control" id="text" name="email" aria-describedby="breedHelp" required />
+            <label for="planName" class="form-label">Diet Plane Name</label>
+            <input type="text" class="form-control" id="text" name="planName" aria-describedby="breedHelp" required />
         </div>
 
         <div class="mb-3 form-input">
-            <label for="quantity" class="form-label">Description</label>
-            <input type="number" class="form-control" min="0" id="text" name="password" aria-describedby="breedHelp"
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" min="0" id="text" name="description" aria-describedby="breedHelp"
                 required />
         </div>
 
-        <!-- DropDown CheckBox -->
-        <div class="dropdown-custom">
-            <button class="dropdown-button-custom btn">Select Options</button>
-            <div class="dropdown-content-custom">
-                <label><input type="checkbox" name="options[]" >Bhoosa 2</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+        <div class="specialFormGroup">
+            <!-- DropDown CheckBox -->
+            <div class="dropdown-custom form-input">
+                <button class="dropdown-button-custom btn">Select Feed</button>
+
+                <div class="dropdown-content-custom">
+                    <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
+                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+                    <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
+                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+                </div>
             </div>
+            <!-- Or Add New Feed -->
+            <div class="mb-3 form-input">
+                <a href="./DietPlans" class="btn btn-primary submit">Add New Feed</a>
+            </div>
+
+        </div>
+
+        <div class="form-input">
+            <h1>Selected Feed</h1>
+            <div class="specialFormGroup" id="selected-items">
+                Nothing is selected
+            </div>
+            <span class="feedError"></span>
         </div>
 
         <div class="submit_cont" style="margin-top:10px">
@@ -50,96 +66,86 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 </div>
 </div>
 <script>
-    (function ($) {
-        var CheckboxDropdown = function (el) {
-            var _this = this;
-            this.isOpen = false;
-            this.areAllChecked = false;
-            this.$el = $(el);
-            this.$label = this.$el.find('.dropdown-label');
-            this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
-            this.$inputs = this.$el.find('[type="checkbox"]');
 
-            this.onCheckBox();
+    // Add event listener to the form's submit event for validating the selection
+    const form = document.querySelector('#AddNewDietPlan');
+    form.addEventListener('submit', function (event) {
 
-            this.$label.on('click', function (e) {
-                e.preventDefault();
-                _this.toggleOpen();
-            });
+        const feedError = document.querySelector('.feedError');
+        console.log(feedError);
 
-            this.$checkAll.on('click', function (e) {
-                e.preventDefault();
-                _this.onCheckAll();
-            });
-
-            this.$inputs.on('change', function (e) {
-                _this.onCheckBox();
-            });
-        };
-
-        CheckboxDropdown.prototype.onCheckBox = function () {
-            this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.updateStatus = function () {
-            var checked = this.$el.find(':checked');
-
-            this.areAllChecked = false;
-            this.$checkAll.html('Check All');
-
-            if (checked.length <= 0) {
-                this.$label.html('Select Options');
-            }
-            else if (checked.length === 1) {
-                this.$label.html(checked.parent('label').text());
-            }
-            else if (checked.length === this.$inputs.length) {
-                this.$label.html('All Selected');
-                this.areAllChecked = true;
-                this.$checkAll.html('Uncheck All');
-            }
-            else {
-                this.$label.html(checked.length + ' Selected');
-            }
-        };
-
-        CheckboxDropdown.prototype.onCheckAll = function (checkAll) {
-            if (!this.areAllChecked || checkAll) {
-                this.areAllChecked = true;
-                this.$checkAll.html('Uncheck All');
-                this.$inputs.prop('checked', true);
-            }
-            else {
-                this.areAllChecked = false;
-                this.$checkAll.html('Check All');
-                this.$inputs.prop('checked', false);
-            }
-
-            this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.toggleOpen = function (forceOpen) {
-            var _this = this;
-
-            if (!this.isOpen || forceOpen) {
-                this.isOpen = true;
-                this.$el.addClass('on');
-                $(document).on('click', function (e) {
-                    if (!$(e.target).closest('[data-control]').length) {
-                        _this.toggleOpen();
-                    }
-                });
-            }
-            else {
-                this.isOpen = false;
-                this.$el.removeClass('on');
-                $(document).off('click');
-            }
-        };
-
-        var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
-        for (var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
-            new CheckboxDropdown(checkboxesDropdowns[i]);
+        if (!isAnyChecked()) {
+            event.preventDefault(); // Prevent form submission
+            feedError.innerHTML = 'Please select at least one feed';
+            dropdownContent.classList.add('required-error');
+            return false;
         }
-    })(jQuery);
+
+        feedError.innerHTML = '';
+        return false;
+    });
+
+    // Get the dropdown button and dropdown content elements
+    const dropdownButton = document.querySelector('.dropdown-button-custom');
+    const dropdownContent = document.querySelector('.dropdown-content-custom');
+
+    // Get the checkboxes inside the dropdown content
+    const checkboxes = dropdownContent.querySelectorAll('input[type="checkbox"]');
+
+    // Add event listener to the dropdown button for toggling the dropdown content
+    dropdownButton.addEventListener('click', function () {
+        dropdownContent.classList.toggle('show');
+    });
+
+    // Add event listener to each checkbox for updating the selected items list and validating the selection
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            updateSelectedItems();
+        });
+    });
+
+    // Function to update the selected items list
+    function updateSelectedItems() {
+        const selectedItemsDiv = document.getElementById('selected-items');
+        selectedItemsDiv.innerHTML = '';
+
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                const label = checkbox.parentNode.textContent.trim();
+                // const listItem = document.createElement('li');
+                // listItem.textContent = label;
+                // selectedItemsDiv.appendChild(listItem);
+                selectedItemsDiv.innerHTML += `<div class="mb-3 form-input">
+            <label for="description" class="form-label">${label}</label>
+            <input type="number" class="form-control" min="0" id="text" name="feedQty" aria-describedby="breedHelp"
+                required />
+        </div>`
+            }
+        });
+
+        if (selectedItemsDiv.innerHTML == '') {
+            selectedItemsDiv.innerHTML = 'Nothing is selected';
+        }
+        validateSelection();
+    }
+
+    // Function to validate the selection
+    function validateSelection() {
+        const isAnyChecked = Array.from(checkboxes).some(function (checkbox) {
+            return checkbox.checked;
+        });
+
+        if (isAnyChecked) {
+            dropdownContent.classList.remove('required-error');
+        } else {
+            dropdownContent.classList.add('required-error');
+        }
+    }
+
+    // Function to check if any checkbox is checked
+    function isAnyChecked() {
+        return Array.from(checkboxes).some(function (checkbox) {
+            return checkbox.checked;
+        });
+    }
 </script>

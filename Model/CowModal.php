@@ -33,7 +33,29 @@ class CowModal
         }
     }
 
-    public function AddMilkEntry($conn,$table,$data)
+    //Returns all the cow breeds with their respective count
+    public function GetCowBreedsApi($conn, $table)
+    {
+        $query = "SELECT breed, COUNT(*) AS breed_count FROM {$table} GROUP BY breed";
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $breeds = [];
+            while ($row = $result->fetch_assoc()) {
+                $breeds[] = $row;
+            }
+            return $breeds;
+        } else {
+            return null;
+        }
+    }
+
+
+    public function AddMilkEntry($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
 
@@ -41,7 +63,7 @@ class CowModal
         $date = $data['date'];
         $milk = $data['milk'];
         $ph = $data['ph'];
-        
+
         $sql = "INSERT INTO $table($columns) VALUES ('$cow', '$date', '$milk', '$ph')";
 
         if (mysqli_query($conn, $sql)) {
@@ -216,6 +238,25 @@ class CowModal
     }
 
 
+    // Gett All Milk Records API will return all the mils records from DB
+    public function getAllMilkRecordsAPI($conn, $table)
+    {
+        $sql = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $sql);
+        $arr = [];
+
+        if (($result)) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            return null;
+        }
+    }
 
 
 }

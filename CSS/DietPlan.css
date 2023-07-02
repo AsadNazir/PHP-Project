@@ -7,7 +7,6 @@
 .dropdown-custom {
     font-size: var(--fs4);
     position: relative;
-    /* display: inline-block; */
     font-family: Arial, sans-serif;
 }
 
@@ -43,4 +42,21 @@
 
 .dropdown-custom:hover .dropdown-content-custom {
     display: block;
+}
+
+#selected-items {
+    list-style: none;
+    font-size: var(--fs4);
+    border-radius: 5px;
+}
+
+.dropdown-custom.required-error {
+    border-color: red;
+}
+
+.feedError
+{
+    margin: 2rem 0;
+    font-size: var(--fs5);
+    color: red;
 }

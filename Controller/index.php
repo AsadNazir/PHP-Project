@@ -60,6 +60,8 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/DeleteCow":
     case "/MilkEntry":
     case "/AddMilkApi":
+    case "/GetMilkRecordsApi":
+    case "/GetCowBreedsApi":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
             $CowCont->handleRequest();
