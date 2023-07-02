@@ -1,42 +1,36 @@
-<?php
-
-include_once("./Model/CowModal.php");
-require_once("./Model/DietModal.php");
-
-$CowModelObj = new CowModal();
-$result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
-?>
-
+<!--  Purpose: Add new diet plan to the database -->
 <div class="MainPage">
-    <form class="InputForms" id="AddNewDietPlan">
+    <form class="InputForms" id="AddNewDietPlan" enctype="multipart/form-data">
         <h1>Add Diet Plan</h1>
 
         <div class="mb-3 form-input">
-            <label for="breed" class="form-label">Diet Plane Name</label>
-            <input type="text" class="form-control" id="text" name="email" aria-describedby="breedHelp" required />
+            <label for="planName" class="form-label">Diet Plane Name</label>
+            <input type="text" class="form-control" id="text" name="planName" aria-describedby="breedHelp" required />
         </div>
 
         <div class="mb-3 form-input">
-            <label for="quantity" class="form-label">Description</label>
-            <input type="number" class="form-control" min="0" id="text" name="password" aria-describedby="breedHelp"
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" min="0" id="text" name="description" aria-describedby="breedHelp"
                 required />
         </div>
 
         <!-- DropDown CheckBox -->
-        <div class="dropdown-custom">
-            <button class="dropdown-button-custom btn">Select Options</button>
-            <div class="dropdown-content-custom">
-                <label><input type="checkbox" name="options[]" >Bhoosa 2</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
-                <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+        <div class="dropdown">
+            <button class="dropdown-button">Select Options</button>
+            <div class="dropdown-content">
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
+                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
+                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
             </div>
+            <span class="feedError"></span>
         </div>
 
         <div class="submit_cont" style="margin-top:10px">
-            <button type="submit" class="btn submit"><span><svg style="fill: white;" xmlns="http://www.w3.org/2000/svg"
-                        width="20" height="16">
+            <button type="submit" class="mode btn submit"><span><svg style="fill: white;"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                         <path
                             d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z">
                         </path>
@@ -136,10 +130,3 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
                 $(document).off('click');
             }
         };
-
-        var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
-        for (var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
-            new CheckboxDropdown(checkboxesDropdowns[i]);
-        }
-    })(jQuery);
-</script>

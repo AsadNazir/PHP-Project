@@ -67,6 +67,13 @@ class CowController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/Milk":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/Milk.php");
+                include("View/Footer.php");
+                break;
+
             case "/DeleteCow":
 
                 $id = $this->request['id'];
@@ -121,6 +128,29 @@ class CowController extends Controllers
                 echo json_encode($output);
                 break;
 
+            // API to get all milk records
+            case "/GetMilkRecordsApi":
+                $CowModalObj = new CowModal();
+                //getting the records from the database
+                $data = $CowModalObj->getAllMilkRecordsAPI($this->DbCon->connection, 'milk');
+
+                //checking if the data is null
+                if($data == null){
+                    $data = [];
+                }
+                //sending the data to the view
+                echo json_encode($data);
+                break;
+
+            case "/GetCowBreedsApi":
+                $CowModalObj = new CowModal();
+                $data=$CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
+
+                if($data == null){
+                    $data = [];
+                }
+                echo json_encode($data);
+                break;
 
             default:
                 echo "Default";

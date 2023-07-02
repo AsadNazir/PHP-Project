@@ -14,7 +14,10 @@ class Controllers
 
     public function validateSession()
     {
-        return true;
+        if (isset($_SESSION["name"])) {
+            return true;
+        }
+        return false;
     }
 }
 
@@ -59,8 +62,11 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/updateCowApi":
     case "/DeleteCow":
     case "/MilkEntry":
+    case "/Milk":
     case "/AddMilkApi":
-        if ($Con->validateSession()) {
+    case "/GetMilkRecordsApi":
+    case "/GetCowBreedsApi":
+        if (true) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
             $CowCont->handleRequest();
         } else {
@@ -103,7 +109,10 @@ switch ($_SERVER["PATH_INFO"]) {
 
     case "/AddNewDietPlan":
     case "/AddNewDietPlanApi":
+    case "/AddFeedApi":
+    case "/AddNewFeed":
     case "/DietPlans":
+    case "/Feed":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();
         break;
