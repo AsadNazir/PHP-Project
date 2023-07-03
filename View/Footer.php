@@ -10,6 +10,9 @@
 if ($_SERVER["PATH_INFO"] == "/Chart") {
   echo '<script src="./JS/Charts.js"></script>';
 }
+if($_SERVER["PATH_INFO"] == "/AddNewDietPlan"){
+  echo '<script src="./JS/DietPlan.js"></script>';
+}
 
 ?>
 

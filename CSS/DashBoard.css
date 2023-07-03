@@ -47,7 +47,7 @@
 }
 
 .dashBoardBody {
-    width: clamp(300px,90%,1200px);
+    width: clamp(300px, 90%, 1200px);
     margin: 2rem auto;
     display: grid;
     column-gap: 2rem;
@@ -73,7 +73,7 @@
     background-color: var(--background-secondary);
     border-radius: 5px;
     height: 100%;
-    padding: clamp(0.5rem,2vw,1rem);
+    padding: clamp(0.5rem, 2vw, 1rem);
     display: block;
     text-decoration: none;
     font-size: var(--fs4);
@@ -90,7 +90,8 @@
     color: white;
     transition: 0.3s all ease-in-out;
 }
-.sideBar a:hover .CowStatIcon{
+
+.sideBar a:hover .CowStatIcon {
     fill: white;
 }
 
@@ -104,7 +105,7 @@
     margin: 1rem 0;
 }
 
-.sideBar li a{
+.sideBar li a {
     display: flex;
     align-items: center;
 }
@@ -144,26 +145,34 @@
     width: 20%;
     height: 2rem;
     min-width: 2rem;
-    margin-right: 1%;
+    margin-right: 10%;
     fill: var(--foreground-primary);
 }
+
 .CowStatIconSidebar {
     width: 20%;
     height: 2rem;
     min-width: 2rem;
-    margin-right: 4%;
+    margin-right: 10%;
     fill: var(--foreground-primary);
 }
-.CowStatIcon > svg{
-    width: 100%;
-    height: 100%;
 
+.CowStatIcon>svg {
+    width: 68%;
+    height: 100%;
+    aspect-ratio: 1/1;
 
 }
 
 .CowCard {
     border: 2px solid var(--background-primary);
     margin: 1rem 0;
+    background: var(--background-primary);
+}
+
+.card {
+    background: var(--background-primary);
+    color: var(--foreground-secondary);
 }
 
 .CowCardBody {
@@ -221,12 +230,13 @@
     color: white;
     fill: white;
 }
-.active_sidebar .CowStatIcon{
+
+.active_sidebar .CowStatIcon {
     fill: white;
 }
 
-.CowStatInfo, .CowStatValue
-{
+.CowStatInfo,
+.CowStatValue {
     color: var(--foreground-primary);
 }
 
@@ -239,8 +249,7 @@ button {
     margin-left: 1rem;
 }
 
-.MainDashBoardHeadings:not(:nth-child(1))
-{
+.MainDashBoardHeadings:not(:nth-child(1)) {
     font-size: var(--fs3);
     color: var(--foreground-primary);
     margin: 1rem 0;
@@ -302,6 +311,7 @@ button {
         margin-right: 1%;
         fill: var(--foreground-primary);
     }
+
     .CowStatIconSidebar {
         width: 30%;
         height: 2rem;
@@ -309,9 +319,9 @@ button {
         margin-right: 4%;
         fill: var(--foreground-primary);
     }
-    .CowStatIcon > svg{
+
+    .CowStatIcon>svg {
         width: 100%;
         height: 100%;
     }
 }
-    

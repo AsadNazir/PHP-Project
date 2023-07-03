@@ -54,9 +54,30 @@
     border-color: red;
 }
 
-.feedError
-{
+.feedError {
     margin: 2rem 0;
     font-size: var(--fs5);
     color: red;
+}
+
+.btnDivsFeed {
+    margin: 0.5rem 0;
+}
+
+.btnDivsFeed a {
+    font-size: var(--fs5);
+}
+
+table {
+    background-color: var(--background-primary);
+    color: var(--foreground-primary);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+table td,table th {
+    padding: 0.8rem 0.5rem !important;
+}
+table td:first-child,table th:first-child {
+    padding-left: 1rem !important;
 }

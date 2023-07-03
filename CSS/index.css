@@ -94,6 +94,11 @@ body {
     margin-right: 1%;
 }
 
+.card .btnDivs
+{
+    margin-bottom: 0;
+}
+
 .specialFormGroup {
     display: grid;
     grid-template-columns: 1fr 1fr;

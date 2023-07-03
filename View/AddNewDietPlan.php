@@ -1,12 +1,4 @@
-<?php
-
-include_once("./Model/CowModal.php");
-require_once("./Model/DietModal.php");
-
-$CowModelObj = new CowModal();
-$result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
-?>
-
+<!--  Purpose: Add new diet plan to the database -->
 <div class="MainPage">
     <form class="InputForms" id="AddNewDietPlan">
         <h1>Add Diet Plan</h1>
@@ -37,7 +29,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
             </div>
             <!-- Or Add New Feed -->
             <div class="mb-3 form-input">
-                <a href="./DietPlans" class="btn btn-primary submit">Add New Feed</a>
+                <a href="./AddNewFeed" class="btn btn-primary submit">Add New Feed</a>
             </div>
 
         </div>
@@ -65,87 +57,5 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
     </form>
 </div>
 </div>
-<script>
-
-    // Add event listener to the form's submit event for validating the selection
-    const form = document.querySelector('#AddNewDietPlan');
-    form.addEventListener('submit', function (event) {
-
-        const feedError = document.querySelector('.feedError');
-        console.log(feedError);
-
-        if (!isAnyChecked()) {
-            event.preventDefault(); // Prevent form submission
-            feedError.innerHTML = 'Please select at least one feed';
-            dropdownContent.classList.add('required-error');
-            return false;
-        }
-
-        feedError.innerHTML = '';
-        return false;
-    });
-
-    // Get the dropdown button and dropdown content elements
-    const dropdownButton = document.querySelector('.dropdown-button-custom');
-    const dropdownContent = document.querySelector('.dropdown-content-custom');
-
-    // Get the checkboxes inside the dropdown content
-    const checkboxes = dropdownContent.querySelectorAll('input[type="checkbox"]');
-
-    // Add event listener to the dropdown button for toggling the dropdown content
-    dropdownButton.addEventListener('click', function () {
-        dropdownContent.classList.toggle('show');
-    });
-
-    // Add event listener to each checkbox for updating the selected items list and validating the selection
-    checkboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('change', function () {
-            updateSelectedItems();
-        });
-    });
-
-    // Function to update the selected items list
-    function updateSelectedItems() {
-        const selectedItemsDiv = document.getElementById('selected-items');
-        selectedItemsDiv.innerHTML = '';
-
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                const label = checkbox.parentNode.textContent.trim();
-                // const listItem = document.createElement('li');
-                // listItem.textContent = label;
-                // selectedItemsDiv.appendChild(listItem);
-                selectedItemsDiv.innerHTML += `<div class="mb-3 form-input">
-            <label for="description" class="form-label">${label}</label>
-            <input type="number" class="form-control" min="0" id="text" name="feedQty" aria-describedby="breedHelp"
-                required />
-        </div>`
-            }
-        });
-
-        if (selectedItemsDiv.innerHTML == '') {
-            selectedItemsDiv.innerHTML = 'Nothing is selected';
-        }
-        validateSelection();
-    }
-
-    // Function to validate the selection
-    function validateSelection() {
-        const isAnyChecked = Array.from(checkboxes).some(function (checkbox) {
-            return checkbox.checked;
-        });
-
-        if (isAnyChecked) {
-            dropdownContent.classList.remove('required-error');
-        } else {
-            dropdownContent.classList.add('required-error');
-        }
-    }
-
-    // Function to check if any checkbox is checked
-    function isAnyChecked() {
-        return Array.from(checkboxes).some(function (checkbox) {
-            return checkbox.checked;
-        });
-    }
-</script>
+<!-- If you see this it means the script has already been dynamically included in the footer -->
+<!-- JS is in DietPlan.Js you should also put AJAX over there -->

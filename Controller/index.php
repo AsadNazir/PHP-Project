@@ -14,7 +14,7 @@ class Controllers
 
     public function validateSession()
     {
-        if(isset($_SESSION["name"])){
+        if (isset($_SESSION["name"])) {
             return true;
         }
         return false;
@@ -108,7 +108,10 @@ switch ($_SERVER["PATH_INFO"]) {
 
     case "/AddNewDietPlan":
     case "/AddNewDietPlanApi":
+    case "/AddFeedApi":
+    case "/AddNewFeed":
     case "/DietPlans":
+    case "/Feed":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();
         break;

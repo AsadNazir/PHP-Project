@@ -60,10 +60,6 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 </div>
 </div>
 
-</body>
-
-</html>
-
 <script type="text/javascript">
     $(document).on('submit', '#AddMilk', async function (e) {
         e.preventDefault();
