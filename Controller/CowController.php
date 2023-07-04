@@ -67,6 +67,13 @@ class CowController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/Milk":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/Milk.php");
+                include("View/Footer.php");
+                break;
+
             case "/DeleteCow":
 
                 $id = $this->request['id'];

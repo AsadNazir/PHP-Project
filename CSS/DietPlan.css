@@ -76,6 +76,7 @@ table {
 }
 
 table td,table th {
+    color: var(--foreground-primary);
     padding: 0.8rem 0.5rem !important;
 }
 table td:first-child,table th:first-child {
