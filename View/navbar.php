@@ -81,7 +81,7 @@ $isAdmin = $_SESSION["isAdmin"];
   <body class="ltheme_body">
     <nav class="navbar-expand-lg navbar-light navbar navbar-expand-lg navbar-custom ">
       <div class="container-fluid">
-        <a class="navbar-brand logoText" href="#">
+        <a class="navbar-brand logoText" href="./MainDashBoard">
           <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
           Milkesters
         </a>

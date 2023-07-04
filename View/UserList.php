@@ -20,7 +20,7 @@ for ($i = 0; $i < count($result); $i++) {
     ?>
     <div class="card CowCard" id="">
       <div class="card-body CowCardBody">
-        <div class="cowImage"><img src="Images/upload/asset-2-1685325821.svg" alt="Image"></div>
+        <div class="cowImage"><img src="Images/upload/<?php echo $row["image"]; ?>" alt="Image"></div>
         <div class="cowDetails">
           <h5 class="card-title">
             <?php echo $row["name"]; ?>

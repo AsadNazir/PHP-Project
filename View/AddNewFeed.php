@@ -1,23 +1,25 @@
 <div class="MainPage">
-    <form class="InputForms" id="AddMilk">
+    <form class="InputForms" id="AddFeed">
         <h1>Add Feed</h1>
-
 
         <div class="mb-3 form-input">
             <label for="feed" class="form-label">Enter Feed</label>
-            <input type="text" class="form-control" id="date" name="date" aria-describedby="breedHelp" required />
+            <input type="text" class="form-control" id="feedName" name="feedName" aria-describedby="breedHelp"
+                required />
         </div>
         <div class="mb-3 form-input">
             <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control" min="0" id="qty" name="quantity" aria-describedby="breedHelp"
-                required />
+            <input type="number" class="form-control" min="2" max="12" id="quantity" name="quantity"
+                aria-describedby="breedHelp" required />
+
         </div>
         <div class="mb-3 form-input">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" min="2" max="12" id="ph" name="ph" aria-describedby="breedHelp"
+            <input type="number" class="form-control" min="0" id="price" name="price" aria-describedby="breedHelp"
                 required />
+
         </div>
-        
+
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="btn btn-success submit"><span><svg style="fill: white;"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="16">
@@ -32,3 +34,8 @@
     </form>
 </div>
 </div>
+
+<script>
+
+
+</script>

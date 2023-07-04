@@ -66,12 +66,14 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddMilkApi":
     case "/GetMilkRecordsApi":
     case "/GetCowBreedsApi":
-        if (true) {
-            $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-            $CowCont->handleRequest();
-        } else {
-            header("Location: ./login");
-        }
+        $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $CowCont->handleRequest();
+        // if (true) {
+        //     $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        //     $CowCont->handleRequest();
+        // } else {
+        //     header("Location: ./login");
+        // }
         break;
 
     case "/logout":
@@ -113,6 +115,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddNewFeed":
     case "/DietPlans":
     case "/Feed":
+    case "/DeleteFeedApi":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();
         break;
@@ -120,10 +123,5 @@ switch ($_SERVER["PATH_INFO"]) {
         header("Location: ./View/Error.php");
         break;
 }
-
-
-
-
-
 
 ?>
