@@ -33,9 +33,7 @@ class CowController extends Controllers
                 $height = $this->request['height'];
                 $color = $this->request['color'];
 
-
                 $CowModal = new CowModal();
-
 
                 $NewImageName = $CowModal->UploadImage("Images/upload", $this->file);
 
@@ -85,7 +83,6 @@ class CowController extends Controllers
                 $output["status"] = $deletion;
 
                 if ($output['status'] == "deleted") {
-
                     echo json_encode($output['status']);
                 }
 
@@ -107,7 +104,6 @@ class CowController extends Controllers
                 break;
 
             case "/AddMilkApi":
-
                 $cow = $this->request['id'];
                 $date = $this->request['date'];
                 $milk = $this->request['milk'];
@@ -135,7 +131,7 @@ class CowController extends Controllers
                 $data = $CowModalObj->getAllMilkRecordsAPI($this->DbCon->connection, 'milk');
 
                 //checking if the data is null
-                if($data == null){
+                if ($data == null) {
                     $data = [];
                 }
                 //sending the data to the view
@@ -144,11 +140,12 @@ class CowController extends Controllers
 
             case "/GetCowBreedsApi":
                 $CowModalObj = new CowModal();
-                $data=$CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
+                $data = $CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
 
-                if($data == null){
+                if ($data == null) {
                     $data = [];
                 }
+
                 echo json_encode($data);
                 break;
 
@@ -159,6 +156,5 @@ class CowController extends Controllers
     }
 
 }
-
 
 ?>

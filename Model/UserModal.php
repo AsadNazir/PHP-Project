@@ -152,7 +152,7 @@ class UserModal
         $name = $data['name'];
         $email = $data['email'];
         $job = $data['job'];
-        
+
         $image = $data['image'];
 
         if ($image == "NoImage") {
@@ -179,7 +179,7 @@ class UserModal
         } else {
             $adminRights = "no";
         }
-        
+
         $RandomNum = time();
         $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
 
@@ -223,15 +223,6 @@ class UserModal
 
     }
 
-
-
-
-
-
-
-
 }
-
-
 
 ?>
