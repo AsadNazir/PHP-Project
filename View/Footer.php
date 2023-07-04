@@ -123,9 +123,41 @@ if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan") {
 
   });
 
-   //AJAX for adding new feed
 
-   $(document).on('submit', '#AddFeed', async function (e) {
+  //AJAX for adding milk entry
+
+  $(document).on('submit', '#AddMilk', async function (e) {
+    e.preventDefault();
+
+    var data = new FormData(this);
+    data.set("id", id.value);
+
+    //AJAX Request for saving the data --------------------------
+
+    $.ajax({
+      data: data,
+      type: "POST",
+      url: "./AddMilkApi",
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (JSON.parse(data).status == "added") {
+          alert('success');
+          window.location.href = './Milk';
+        } else {
+          alert('error');
+
+        }
+      },
+      error: function (xhr, textStatus, responseText) { }
+    });
+
+  });
+
+  //AJAX for adding new feed
+
+  $(document).on('submit', '#AddFeed', async function (e) {
     e.preventDefault();
 
     var data = new FormData(this);
@@ -153,7 +185,7 @@ if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan") {
 
   });
 
- 
+
 
 
 </script>

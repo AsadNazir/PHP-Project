@@ -1,3 +1,13 @@
+<?php
+$isAdmin = $_SESSION["isAdmin"];
+
+include_once("./Model/DietModal.php");
+
+$DietModelObj = new DietModal();
+$result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
+
+?>
+
 <!--  Purpose: Add new diet plan to the database -->
 <div class="MainPage">
     <form class="InputForms" id="AddNewDietPlan">
@@ -20,13 +30,24 @@
                 <button class="dropdown-button-custom btn">Select Feed</button>
 
                 <div class="dropdown-content-custom">
-                    <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
-                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
-                    <label><input type="checkbox" name="options[]">Bhoosa 2</label><br>
-                    <label><input type="checkbox" name="options[]">Bhoosa 3</label><br>
+                    <?php
+
+                    for ($i = 0; $i < count($result); $i++) {
+                        $row = $result[$i];
+                        ?>
+                        <label><input type="checkbox" name="options[]">
+                            <?php echo $row['name']; ?>
+                        </label><br>
+                        <?php
+                    }
+                    ?>
+
                 </div>
             </div>
+            <div>
+            <!-- <input type="hidden" id="id" name="arr_ids" class="form-control" value="<?php //echo $arr_id; ?>" required>
+            <input type="hidden" id="id" name="arr_names" class="form-control" value="<?php //echo $arr_names; ?>" required> -->
+        </div>
             <!-- Or Add New Feed -->
             <div class="mb-3 form-input">
                 <a href="./AddNewFeed" class="btn btn-primary submit">Add New Feed</a>

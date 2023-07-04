@@ -45,10 +45,14 @@ function updateSelectedItems() {
       // const listItem = document.createElement('li');
       // listItem.textContent = label;
       // selectedItemsDiv.appendChild(listItem);
+
       selectedItemsDiv.innerHTML += `<div class="mb-3 form-input">
             <label for="description" class="form-label">${label}</label>
-            <input type="number" class="form-control" min="0" id="text" name="feedQty" aria-describedby="breedHelp"
+            <input type="number" class="form-control" min="0" id="text" name=${label} aria-describedby="breedHelp"
                 required />
+                <!--<div>
+                <input type="hidden" id="id" name="id" class="form-control" value=${label} required>
+            </div>-->
         </div>`;
     }
   });

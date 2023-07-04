@@ -68,12 +68,6 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/GetCowBreedsApi":
         $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $CowCont->handleRequest();
-        // if (true) {
-        //     $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        //     $CowCont->handleRequest();
-        // } else {
-        //     header("Location: ./login");
-        // }
         break;
 
     case "/logout":

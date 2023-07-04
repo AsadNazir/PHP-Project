@@ -5,7 +5,6 @@ require_once("./Model/CowModal.php");
 
 $CowModalObj2 = new CowModal();
 
-
 $data = $CowModalObj2->getAllMilkRecordsAPI($CowModalObj2->conn->connection, "milk");
 
 //var_dump($data);
@@ -25,8 +24,8 @@ if ($data == null) {
 
     <!-- Only Admins have edit priveleges -->
     <div class="d-flex btnDivs">
-        <a href="./AddNewFeed" class="btn btn-success" type="submit">Add Milk Entry</a>
-        <a href="./DeleteAllFeed" class="btn btn-danger" type="submit"> Print Data</a>';
+        <a href="./MilkEntry" class="btn btn-success" type="submit">Add Milk Entry</a>
+        <a href="./DeleteAllMilk" class="btn btn-danger" type="submit">Delete All</a>
     </div>
     <div class="d-flex btnDivs">
         <div class="mb-3 form-input">
@@ -56,7 +55,7 @@ if ($data == null) {
                 for ($i = 0; $i < count($data); $i++) {
 
                     echo "<tr>" .
-                        "<td>" . $data[$i]["id"] . "</td>";
+                        "<td>" . $data[$i]["cow"] . "</td>";
                     echo "<td>" . "Group -A" . "</td>";
                     echo "<td>" . $data[$i]["date"] . "</td>";
                     echo "<td>" . $data[$i]["milk"] . "</td>";
