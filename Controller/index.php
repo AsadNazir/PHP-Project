@@ -23,14 +23,16 @@ class Controllers
 
 $Con = new Controllers();
 
-switch ($_SERVER["PATH_INFO"]) {
 
+switch ($_SERVER["PATH_INFO"]) {
     case '/login':
         include("View/login.php");
         break;
 
     case '/MainDashBoard':
+
         if ($Con->validateSession()) {
+
             include("View/navbar.php");
             include("View/Sidebar.php");
             include("View/MainPageDashboard.php");
@@ -64,14 +66,12 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddMilkApi":
     case "/GetMilkRecordsApi":
     case "/GetCowBreedsApi":
-        $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $CowCont->handleRequest();
-        // if (true) {
-        //     $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        //     $CowCont->handleRequest();
-        // } else {
-        //     header("Location: ./login");
-        // }
+        if (true) {
+            $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $CowCont->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
         break;
 
     case "/logout":
@@ -120,5 +120,10 @@ switch ($_SERVER["PATH_INFO"]) {
         header("Location: ./View/Error.php");
         break;
 }
+
+
+
+
+
 
 ?>
