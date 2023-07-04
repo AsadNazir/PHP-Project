@@ -61,9 +61,22 @@ class DietController extends Controllers
 
                 $DietModalObj = new DietModal();
                 $DietModalObj->deleteFeedApi($this->DbCon->connection, "feed", $this->request);
-               
+
                 break;
 
+            case "/UpdateFeedPage":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/updateFeed.php");
+                include("View/Footer.php");
+                break;
+
+            case "/updateFeedApi":
+
+                $DietModalObj = new DietModal();
+                $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
+
+                break;
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;

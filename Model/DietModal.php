@@ -117,32 +117,35 @@ class DietModal
 
     public function updateFeed($conn, $table, $data, $id)
     {
-        // $sql = "UPDATE $table SET `name`='$name', `email`='$email', `job`='$job' WHERE id='$id'";
-        // if (mysqli_query($conn, $sql)) {
-        //     return "updated";
-        // } else {
-        //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        // }
+        $name = $data['name'];
+        $quantity = $data['quantity'];
+        $price = $data['price'];
+        
+        $sql = "UPDATE $table SET `name`='$name', `quantity`='$quantity', `price`='$price' WHERE id='$id'";
+       
+        if (mysqli_query($conn, $sql)) {
+            return "updated";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     }
 
     public function UpdateFeedAPI($conn, $table, $req, $file)
     {
-        // $id = $req['id'];
-        // $name = $req['name'];
-        // $email = $req['email'];
-        // $job = $req['job'];
-        //     $data = [
-        //         'name' => $name,
-        //         'email' => $email,
-        //         'job' => $job,
-        //         'adminRights' => $adminRights,
-        //         'image' => $NewImageName
-        //     ];
+        $id = $req['id'];
+        $name = $req['feedName'];
+        $quantity = $req['quantity'];
+        $price = $req['price'];
+            $data = [
+                'name' => $name,
+                'quantity' => $quantity,
+                'price' => $price
+            ];
 
 
-        // $updation = $this->updateFeed($conn, 'users', $data, $id);
-        // $output["status"] = $updation;
-        // echo json_encode($output["status"]);
+        $updation = $this->updateFeed($conn, 'feed', $data, $id);
+        $output["status"] = $updation;
+        echo json_encode($output["status"]);
 
     }
 

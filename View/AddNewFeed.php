@@ -29,7 +29,7 @@
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z">
                         </path>
                     </svg></span>Add Feed</button>
-            <a href="./DietPlans" class=" btn-danger btn submit">Cancel</a>
+            <a href="./Feed" class=" btn-danger btn submit">Cancel</a>
         </div>
     </form>
 </div>

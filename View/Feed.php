@@ -61,7 +61,7 @@ $result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
                                 <?php
 
                                 if ($isAdmin == 'yes') {
-                                    echo ('<a href="./UpdateFeed?id=' . $row["id"] . '"' . ' class="btn btn-success" type="submit">Update</a>');
+                                    echo ('<a href="./UpdateFeedPage?id=' . $row["id"] . '"' . ' class="btn btn-success" type="submit">Update</a>');
 
                                     echo ('<a href="#deleteFeedModal" class="btn btn-danger" data-toggle="modal"
                                     onclick="setDeleteId(' . $row["id"] . ')">Delete</a>');
