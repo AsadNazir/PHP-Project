@@ -55,6 +55,52 @@ class DietModal
         echo json_encode($output["status"]);   
     }
 
+    public function addNewDietPlan($conn, $table, $data)
+    {
+        $columns = implode(",", array_keys($data));
+        $placeholders = implode(",", array_fill(0, count($data), "?"));
+
+        $values = array_values($data);
+
+        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $stmt = mysqli_prepare($conn, $query);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, str_repeat('s', count($values)), ...$values);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                return "added";
+            } else {
+                echo "Error inserting dietplan: " . mysqli_stmt_error($stmt);
+            }
+
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+    public function AddDietPlanApi($conn, $table, $req, $result)
+    {
+        $name = $req['planName'];
+        $description = $req['description'];
+        $feedId = $result['id'];
+        $feedName = $result['name'];
+        $quantity = $req[$result['name']];
+            $data = [
+                'name' => $name,
+                'description' => $description,
+                'feedId' => $feedId,
+                'feedName' => $feedName,
+                'quantity' => $quantity
+            ];
+
+
+        $insertion = $this->addNewDietPlan($conn, 'diet', $data);
+        $output["status"] = $insertion;
+        echo json_encode($output["status"]);   
+    }
+
     public function deleteFeed($conn, $table, $id)
     {
         $query = "DELETE FROM $table WHERE id = ?";

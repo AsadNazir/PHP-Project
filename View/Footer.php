@@ -50,9 +50,6 @@ if ($_SERVER["PATH_INFO"] == "/AddNewFeed" || $_SERVER["PATH_INFO"] == "/Feed") 
     })
   }
 
- 
-
-
   //Function for deleting cow using ajax
 
   function deleteCow() {

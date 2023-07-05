@@ -2,7 +2,7 @@
 const form = document.querySelector("#AddNewDietPlan");
 form.addEventListener("submit", function (event) {
   const feedError = document.querySelector(".feedError");
-  console.log(feedError);
+  // console.log(feedError);
 
   if (!isAnyChecked()) {
     event.preventDefault(); // Prevent form submission
@@ -50,9 +50,6 @@ function updateSelectedItems() {
             <label for="description" class="form-label">${label}</label>
             <input type="number" class="form-control" min="0" id="text" name=${label} aria-describedby="breedHelp"
                 required />
-                <!--<div>
-                <input type="hidden" id="id" name="id" class="form-control" value=${label} required>
-            </div>-->
         </div>`;
     }
   });
@@ -85,4 +82,35 @@ function isAnyChecked() {
 
 //--------------------------------------------------------------
 
-//Ajax call for the Add New Diet Plan here
+//Ajax call for the Add New Diet Plan
+
+$(document).on('submit', '#AddNewDietPlan', async function (e) {
+  e.preventDefault();
+
+  var data = new FormData(this);
+
+  //AJAX Request for saving the data --------------------------
+
+  $.ajax({
+    data: data,
+    type: "POST",
+    url: "./AddNewDietPlanApi",
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      // console.log(data);
+      var arr = data;
+      console.log(arr[0]);
+      console.log(JSON.parse(data));
+      if (arr == "added") {
+        alert('success');
+        window.location.href = './DietPlans';
+      } else {
+        alert('error');
+
+      }
+    },
+    error: function (xhr, textStatus, responseText) { }
+  });
+
+});

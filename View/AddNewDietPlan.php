@@ -35,8 +35,8 @@ $result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
                     for ($i = 0; $i < count($result); $i++) {
                         $row = $result[$i];
                         ?>
-                        <label><input type="checkbox" name="options[]">
-                            <?php echo $row['name']; ?>
+                        <label><input type="checkbox" name="checkboxes[]"
+                            value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?>
                         </label><br>
                         <?php
                     }

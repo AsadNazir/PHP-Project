@@ -33,6 +33,26 @@ class DietController extends Controllers
                 break;
 
             case "/AddNewDietPlanApi":
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Check if the checkboxes were submitted
+                    if (isset($_POST['checkboxes']) && is_array($_POST['checkboxes'])) {
+                        $selectedCheckboxes = $_POST['checkboxes'];
+                        $DietModelObj = new DietModal();
+                        $DietModelObj2 = new DietModal();
+
+                        // Process the selected checkboxes as needed
+                        foreach ($selectedCheckboxes as $checkbox) {
+                            // Do something with each selected checkbox
+                            // echo $checkbox . '<br>';
+
+                            $row = $DietModelObj->getFeedById($DietModelObj->conn->connection, "feed", $checkbox);
+
+                            $DietModelObj2->AddDietPlanApi($this->DbCon->connection, "diet", $this->request, $row);
+
+                        }
+                    }
+                }
+
 
                 break;
 
@@ -77,6 +97,7 @@ class DietController extends Controllers
                 $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
 
                 break;
+
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;
