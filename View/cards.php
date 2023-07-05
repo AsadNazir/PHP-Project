@@ -37,7 +37,7 @@ for ($i = 0; $i < count($result); $i++) {
       </div>
     </div>
     <div class="CowCardbtn btnDivs card-body">
-      <a href="" class="btn btn-primary">More Details</a>
+      <a href="./CowProfile" class="btn btn-primary">More Details</a>
       <?php
 
       if ($isAdmin == 'yes') {

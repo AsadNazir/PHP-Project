@@ -66,6 +66,8 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AddMilkApi":
     case "/GetMilkRecordsApi":
     case "/GetCowBreedsApi":
+    case "/CowProfile":
+    case "/GetACowMilkRecordsApi":
         $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $CowCont->handleRequest();
         break;

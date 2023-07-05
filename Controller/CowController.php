@@ -135,7 +135,7 @@ class CowController extends Controllers
                 $data = $CowModalObj->getAllMilkRecordsAPI($this->DbCon->connection, 'milk');
 
                 //checking if the data is null
-                if($data == null){
+                if ($data == null) {
                     $data = [];
                 }
                 //sending the data to the view
@@ -144,12 +144,29 @@ class CowController extends Controllers
 
             case "/GetCowBreedsApi":
                 $CowModalObj = new CowModal();
-                $data=$CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
+                $data = $CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
 
-                if($data == null){
+                if ($data == null) {
                     $data = [];
                 }
                 echo json_encode($data);
+                break;
+
+            //Returning Annual, weekly and monthly, Daily milk records
+            case "/GetACowMilkRecordsApi":
+                $CowModalObj = new CowModal();
+                $data = $CowModalObj->getACowMilkRecord($this->DbCon->connection, 'milk', $this->request['id']);
+                if ($data == null) {
+                    $data = [];
+                }
+                echo json_encode($data);
+                break;
+            case "/CowProfile":
+
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/CowProfile.php");
+                include("View/Footer.php");
                 break;
 
             default:

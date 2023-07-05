@@ -30,6 +30,10 @@
     font-size: var(--fs3);
 }
 
+.MainPage {
+    height: fit-content;
+}
+
 .MilkProduction a {
     text-decoration: none;
     color: white;

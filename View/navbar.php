@@ -65,6 +65,11 @@ $isAdmin = $_SESSION["isAdmin"];
     echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
 
       ?>
+       <?php
+  if ($_SERVER["PATH_INFO"] == "/CowProfile")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/Profile.css\"/>"
+
+      ?>
 
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

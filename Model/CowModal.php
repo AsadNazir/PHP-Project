@@ -110,6 +110,26 @@ class CowModal
         }
     }
 
+    //Returns Annual, Monthly, Weekly and Daily Milk Records of a Cow with ID
+    public function getACowMilkRecord($conn, $table, $id)
+    {
+        $sql = "SELECT
+            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
+            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
+            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
+            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+    
+        return $row;
+    }
+    
+
+
     public function getAllCows($conn, $table)
     {
         $sql = "SELECT * FROM $table";
