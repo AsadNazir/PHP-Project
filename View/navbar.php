@@ -15,7 +15,16 @@ $isAdmin = $_SESSION["isAdmin"];
   <title>DashBoard | Page Title here</title>
 
   <!-- JQuery -->
-  <script src="./jquery.js"></script>
+
+  <!-- ✅ load jquery ✅ -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- ✅ Load CSS file for jQuery UI and JQuery UI -->
+  <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <!-- I don'nt know what is this -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"
     integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,7 +34,6 @@ $isAdmin = $_SESSION["isAdmin"];
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
@@ -41,16 +49,18 @@ $isAdmin = $_SESSION["isAdmin"];
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- JS Pdf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
     integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Dynamic adding of CSS Files -->
   <?php
-  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"]=="/Feed")
+  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed")
     echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
 
       ?>
-  <?php
+    <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
     echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
 
@@ -65,7 +75,7 @@ $isAdmin = $_SESSION["isAdmin"];
     echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
 
       ?>
-       <?php
+    <?php
   if ($_SERVER["PATH_INFO"] == "/CowProfile")
     echo "<link rel=\"stylesheet\" href=\"./CSS/Profile.css\"/>"
 
