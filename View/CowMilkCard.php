@@ -2,7 +2,7 @@
 
 include_once("Model/CowModal.php");
 $CowModelObj = new CowModal();
-$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 14)
+$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', $_REQUEST['id'])
 
     ?>
 <div class="d-flex CowProfileCard CowMilkCard">
@@ -54,8 +54,8 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
         <div class="d-flex btnDivs">
             <div class="mb-3 form-input">
                 <label for="startDate" class="form-label">From</label>
-                <input type="date" class="form-control" min="0" id="startDate" name="startDate"
-                    aria-describedby="startDate" required />
+                <input type="text" class="form-control" min="0" id="date" name="startDate" aria-describedby="startDate"
+                    required />
             </div>
             <div class="mb-3 form-input">
                 <label for="endDate" class="form-label">to</label>
@@ -64,7 +64,7 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
             </div>
         </div>
         <div class="graphAndStats">
-            <div  class="graph" ><canvas id="myChart"></canvas></div>
+            <div class="graph"><canvas id="myChart"></canvas></div>
             <div class="stats">
                 <p>
                 <h1>Avg</h1>
@@ -91,33 +91,81 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
 </div>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
 
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-            datasets: [{
-                label: 'Milk Production',
-                data: [0, 10, 5, 2, 20, 30, 45, 50, 60],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+    let dataOfMilkProduction = [];
+    let date = [];
+    let d = "<?php echo $_REQUEST['id'] . "&month=7" ?>";
+    const milkSettings =
+    {
+        contentType: false,
+        processData: false,
+        type: "POST",
+        url: "./GetAllMilkRecordsByDays?id=" + d,
+        success: function (response) {
+            console.log(JSON.parse(response));
+            let data = JSON.parse(response);
 
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    display: false
+            console.log(dataOfMilkProduction);
+            //Iterating through the response and adding the milk production to the array
+            for (let i = 0; i < JSON.parse(response).length; i++) {
+                {
+                    date.push(data[i]["date"]);
+                    dataOfMilkProduction[i] = parseInt(
+                        data[i]["total_milk_production"],
+                        10
+                    );
                 }
             }
-        }
+
+            printChart();
+        },
+        error: function (err,) {
+            console.log(err);
+        },
+
+    };
+
+
+    $.ajax(milkSettings);
+
+    function printChart() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+
+            data: {
+                labels: date,
+                datasets: [{
+                    label: 'Milk Production',
+                    data: dataOfMilkProduction,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+
+
+    $('#date').datepicker({
+        changeMonth: false,
+        changeYear: false,
+        stepMonths: false,
+        dateFormat: 'dd MM'
     });
 </script>

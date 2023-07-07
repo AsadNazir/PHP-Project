@@ -37,8 +37,9 @@ for ($i = 0; $i < count($result); $i++) {
       </div>
     </div>
     <div class="CowCardbtn btnDivs card-body">
-      <a href="./CowProfile" class="btn btn-primary">More Details</a>
-      <?php
+    <?php
+      echo "<a href='./CowProfile?id=". $row["id"] ."' class='btn btn-primary'>More Details</a>";
+      
 
       if ($isAdmin == 'yes') {
         echo ('<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
