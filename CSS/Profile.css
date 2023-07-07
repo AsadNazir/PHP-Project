@@ -87,8 +87,9 @@
     height: 100%;
 
 }
-
-.stats {
+.DietGraph {
+    width: 50%;
+   
 }
 .graphAndStats
 {
@@ -97,7 +98,3 @@
     justify-content: space-between;
 }
 
-.statsAndGraph {
-
-
-}
