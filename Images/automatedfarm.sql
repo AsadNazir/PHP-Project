@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 07, 2023 at 06:58 PM
+-- Generation Time: Jul 07, 2023 at 07:22 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -40,7 +40,14 @@ CREATE TABLE IF NOT EXISTS `cows` (
   `color` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cows`
+--
+
+INSERT INTO `cows` (`id`, `name`, `breed`, `gender`, `age`, `dairy`, `weight`, `height`, `color`, `image`) VALUES
+(1, 'Daisy', 'Holstein', 'Female', 2, 'yes', 200, 6, 'brown', 'asset 2.svg');
 
 -- --------------------------------------------------------
 
@@ -86,7 +93,14 @@ CREATE TABLE IF NOT EXISTS `feed` (
   `quantity` int DEFAULT NULL,
   `price` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `feed`
+--
+
+INSERT INTO `feed` (`id`, `name`, `quantity`, `price`) VALUES
+(1, 'feed1', 2, 100);
 
 -- --------------------------------------------------------
 
@@ -105,6 +119,13 @@ CREATE TABLE IF NOT EXISTS `milk` (
   KEY `cowId_idx` (`cowId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `milk`
+--
+
+INSERT INTO `milk` (`id`, `cowId`, `date`, `quantity`, `ph`) VALUES
+(0, 1, '2023-06-08', 12, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -121,7 +142,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `job` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `adminRights`, `job`, `image`) VALUES
+(1, 'Asad', 'b@b.com', 'e10adc3949ba59abbe56e057f20f883e', 'yes', 'Admin', 'cool_image.jfif');
 
 --
 -- Constraints for dumped tables
