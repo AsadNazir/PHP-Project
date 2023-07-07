@@ -59,12 +59,12 @@ class CowModal
     {
         $columns = implode(",", array_keys($data));
 
-        $cow = $data['cow'];
+        $cowId = $data['cowId'];
         $date = $data['date'];
         $quantity = $data['quantity'];
         $ph = $data['ph'];
 
-        $sql = "INSERT INTO $table($columns) VALUES ('$cow', '$date', '$quantity', '$ph')";
+        $sql = "INSERT INTO $table($columns) VALUES ('$cowId', '$date', '$quantity', '$ph')";
 
         if (mysqli_query($conn, $sql)) {
 

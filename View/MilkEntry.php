@@ -34,7 +34,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 
         <div class="mb-3 form-input">
             <label for="quantity" class="form-label">Milk Quantity</label>
-            <input type="number" class="form-control" min="0" id="milk" name="milk" aria-describedby="breedHelp"
+            <input type="number" class="form-control" min="0" id="milk" name="quantity" aria-describedby="breedHelp"
                 required />
         </div>
         <div class="mb-3 form-input">

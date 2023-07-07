@@ -55,23 +55,15 @@ if ($data == null) {
                 for ($i = 0; $i < count($data); $i++) {
 
                     echo "<tr>" .
-                        "<td>" . $data[$i]["cow"] . "</td>";
+                        "<td>" . $data[$i]["cowId"] . "</td>";
                     echo "<td>" . "Group -A" . "</td>";
                     echo "<td>" . $data[$i]["date"] . "</td>";
-                    echo "<td>" . $data[$i]["milk"] . "</td>";
+                    echo "<td>" . $data[$i]["quantity"] . "</td>";
                     echo "</tr>";
                 }
-
-
-
-
                 ?>
-
-
-
 
             </tbody>
         </table>
     </div>
 </div>
-<!-- All Scripts Will be added inside the footer or Navbar -->

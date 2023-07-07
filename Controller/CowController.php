@@ -110,13 +110,13 @@ class CowController extends Controllers
 
                 $cow = $this->request['id'];
                 $date = $this->request['date'];
-                $milk = $this->request['milk'];
+                $quantity = $this->request['quantity'];
                 $ph = $this->request['ph'];
 
                 $data = [
-                    'cow' => $cow,
+                    'cowId' => $cow,
                     'date' => $date,
-                    'milk' => $milk,
+                    'quantity' => $quantity,
                     'ph' => $ph
                 ];
 
