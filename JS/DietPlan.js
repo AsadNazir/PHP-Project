@@ -98,11 +98,8 @@ $(document).on('submit', '#AddNewDietPlan', async function (e) {
     contentType: false,
     processData: false,
     success: function (data) {
-      // console.log(data);
-      var arr = data;
-      console.log(arr[0]);
-      console.log(JSON.parse(data));
-      if (arr == "added") {
+      console.log(data);
+      if (JSON.parse(data) == "added") {
         alert('success');
         window.location.href = './DietPlans';
       } else {

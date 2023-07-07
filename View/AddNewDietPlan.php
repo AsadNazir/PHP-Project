@@ -14,7 +14,7 @@ $result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
         <h1>Add Diet Plan</h1>
 
         <div class="mb-3 form-input">
-            <label for="planName" class="form-label">Diet Plane Name</label>
+            <label for="planName" class="form-label">Diet Plan Name</label>
             <input type="text" class="form-control" id="text" name="planName" aria-describedby="breedHelp" required />
         </div>
 

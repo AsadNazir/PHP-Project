@@ -33,11 +33,13 @@ class DietController extends Controllers
                 break;
 
             case "/AddNewDietPlanApi":
+                $DietModelObj = new DietModal();
+                $DietModelObj->AddDietPlanApi($this->DbCon->connection, "diet", $this->request);
+
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Check if the checkboxes were submitted
                     if (isset($_POST['checkboxes']) && is_array($_POST['checkboxes'])) {
                         $selectedCheckboxes = $_POST['checkboxes'];
-                        $DietModelObj = new DietModal();
                         $DietModelObj2 = new DietModal();
 
                         // Process the selected checkboxes as needed
@@ -45,10 +47,11 @@ class DietController extends Controllers
                             // Do something with each selected checkbox
                             // echo $checkbox . '<br>';
 
-                            $row = $DietModelObj->getFeedById($DietModelObj->conn->connection, "feed", $checkbox);
-
-                            $DietModelObj2->AddDietPlanApi($this->DbCon->connection, "diet", $this->request, $row);
-
+                            if($DietModelObj2->AddDietFeedApi($this->DbCon->connection, "diet_feed", $this->request, $checkbox) == false)
+                            {
+                                echo "Error:" . $checkbox . " not Inserted.";
+                                //Do something
+                            }
                         }
                     }
                 }
