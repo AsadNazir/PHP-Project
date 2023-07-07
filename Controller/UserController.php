@@ -32,7 +32,7 @@ class UserController extends Controllers
 
                     //var_dump($res);
                     $_SESSION["email"] = $res["email"];
-                    $_SESSION["isAdmin"] = $res["adminRIghts"];
+                    $_SESSION["isAdmin"] = $res["adminRights"];
                     $_SESSION["name"] = $res["name"];
                     $output['valid'] = true;
 

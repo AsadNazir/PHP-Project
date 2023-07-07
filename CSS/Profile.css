@@ -87,10 +87,28 @@
     height: 100%;
 
 }
-.DietGraph {
-    width: 50%;
-   
+
+.CowDietCard
+{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 }
+
+.CowDietCard .DietPlanAndFeed
+{
+    width: 90%;
+}
+
+.DietPlanAndFeed> h1
+{
+    margin-bottom: 1rem;
+}
+.DietPlanAndFeed a
+{
+    margin: 1rem 0;
+}
+
 .graphAndStats
 {
     display: flex;
@@ -98,3 +116,8 @@
     justify-content: space-between;
 }
 
+.FeedsName
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}

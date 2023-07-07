@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,19 +85,18 @@
 
           // Handle the response from the server
           res = JSON.parse(response);
-          alert(res["valid"]);
+          //alert(res["valid"]);
           if (res["valid"] === true) {
             location.href = './MainDashBoard';
           }
+          else {//Reappearing the Alert
+            $(".liveAlertPlaceHolder").css("top", `2%`);
 
-          //Reappearing the Alert
-          $(".liveAlertPlaceHolder").css("top", `2%`);
-
-          //Disappearing the Alert after 4 secs
-          setTimeout(() => {
-            $(".liveAlertPlaceHolder").css("top", `-100%`);
-          }, 4000);
-
+            //Disappearing the Alert after 4 secs
+            setTimeout(() => {
+              $(".liveAlertPlaceHolder").css("top", `-100%`);
+            }, 4000);
+          }
 
           return false;
         },
