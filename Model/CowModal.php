@@ -61,10 +61,10 @@ class CowModal
 
         $cow = $data['cow'];
         $date = $data['date'];
-        $milk = $data['milk'];
+        $quantity = $data['quantity'];
         $ph = $data['ph'];
 
-        $sql = "INSERT INTO $table($columns) VALUES ('$cow', '$date', '$milk', '$ph')";
+        $sql = "INSERT INTO $table($columns) VALUES ('$cow', '$date', '$quantity', '$ph')";
 
         if (mysqli_query($conn, $sql)) {
 
@@ -114,10 +114,10 @@ class CowModal
     public function getACowMilkRecord($conn, $table, $id)
     {
         $sql = "SELECT
-            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
-            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
-            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
-            (SELECT SUM(`milk`) FROM $table WHERE cow = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
         
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
