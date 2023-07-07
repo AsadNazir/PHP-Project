@@ -18,7 +18,7 @@
     font-size: var(--fs3);
 }
 
-#addNewCow, #addUsers, .InputForms {
+#addNewCow, #updateCow, #addUsers, .InputForms {
     width: 70%;
     margin: 0 auto;
 }

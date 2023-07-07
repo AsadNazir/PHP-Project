@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id'];
 
-$obj= new CowModal();
+$obj = new CowModal();
 $row = $obj->getCowById($obj->conn->connection, "cows", $id);
 // var_dump($row);
 ?>
@@ -23,13 +23,13 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
         </div>
         <label for="gender" class="form-label">Gender</label>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="gender" value="female" <?php if($row['gender'] == "female"){ ?>checked <?php }?>>
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="female" <?php if ($row['gender'] == "female") { ?>checked <?php } ?>>
             <label class="form-check-label" for="gender">
                 Female
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="gender" value="male" <?php if($row['gender'] == "male"){ ?>checked <?php }?>>
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="male" <?php if ($row['gender'] == "male") { ?>checked <?php } ?>>
             <label class="form-check-label" for="gender">
                 Male
             </label>
@@ -48,26 +48,37 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
             </div>
         </div>
         <div class="mb-3 form-check" style="margin-top:10px">
-            <input type="checkbox" class="form-check-input" id="dairy" name="dairy"  <?php if($row['dairy'] == "yes"){ ?>checked <?php }?>/>
+            <input type="checkbox" class="form-check-input" id="dairy" name="dairy" <?php if ($row['dairy'] == "yes") { ?>checked <?php } ?> />
             <label class="form-check-label" for="dairy">Is your cow a dairy cow?</label>
         </div>
-
+        <div class="mb-3 form-check" style="margin-top:10px">
+            <input type="checkbox" class="form-check-input" id="insemination" name="insemination" />
+            <label class="form-check-label" for="dairy">Insemination ?</label>
+        </div>
         <div>
             <h4>
                 Add some more details about your cow
             </h4>
         </div>
-        <div class="mb-3 form-input">
-            <label for="weight" class="form-label">Weight</label>
-            <input type="number" class="form-control" id="weight" name="weight" value="<?php echo $row['weight'] ?>" min="0" />
+        <div class="form-group specialFormGroup">
+            <div class="mb-3 form-input">
+                <label for="weight" class="form-label">Weight</label>
+                <input type="number" class="form-control" id="weight" name="weight" min="0" />
+            </div>
+            <div class="mb-3 form-input">
+                <label for="height" class="form-label">Height</label>
+                <input type="number" class="form-control" id="height" name="height" min="0" />
+            </div>
         </div>
-        <div class="mb-3 form-input">
-            <label for="height" class="form-label">Height</label>
-            <input type="number" class="form-control" id="height" name="height" value="<?php echo $row['height'] ?>" min="0" />
-        </div>
-        <div class="mb-3 form-input">
-            <label for="color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="color" name="color" value="<?php echo $row['color'] ?>" />
+        <div class="form-group specialFormGroup">
+            <div class="mb-3 form-input">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" class="form-control" id="color" name="color" />
+            </div>
+            <div class="mb-3 form-input">
+                <label for="color" class="form-label">Price in Rs</label>
+                <input type="number" min="0" class="form-control" id="price" name="price" />
+            </div>
         </div>
         <div>
             <input type="hidden" id="id" name="id" class="form-control" value="<?php echo $row['id'] ?>" required>

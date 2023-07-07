@@ -10,15 +10,15 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
     <form class="InputForms" id="AddMilk">
         <h1>Add Milk Entry</h1>
         <div class="mb-3 form-input">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="cow" id="cow">
 
-                <option selected>Select the Cow</option>
+                <option selected required>Select the Cow</option>
                 <?php
                 for ($i = 0; $i < count($result); $i++) {
                     $row = $result[$i];
                     # code...
                     ?>
-                    <option value="$i" name="cow">
+                    <option value="<?php echo $row['id']; ?>">
                         <?php echo $row['name']; ?>
                     </option>
                 <?php } ?>
@@ -61,7 +61,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 </div>
 
 <script type="text/javascript">
-  
+
 
 // ------------------------------------
 </script>

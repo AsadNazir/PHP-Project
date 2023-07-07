@@ -275,6 +275,26 @@ class DietModal
         }
     }
 
+    //Getting All DietPlans from diet table
+    public function getAllDietPlans($conn, $table)
+    {
+        $sql = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $sql);
+        $arr = [];
+
+        if (($result)) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
 }
 
 

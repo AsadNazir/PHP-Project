@@ -42,10 +42,6 @@
                 <label class="form-check-label" for="dairy">Is your cow a dairy cow?</label>
             </div>
             <div class="mb-3 form-check" style="margin-top:10px">
-                <input type="checkbox" class="form-check-input" id="Bull" name="bull" />
-                <label class="form-check-label" for="dairy">Bull Insemination</label>
-            </div>
-            <div class="mb-3 form-check" style="margin-top:10px">
                 <input type="checkbox" class="form-check-input" id="insemination" name="insemination" />
                 <label class="form-check-label" for="dairy">Insemination ?</label>
             </div>
@@ -104,7 +100,7 @@
             processData: false,
             success: function (data) {
                 console.log(data);
-                if (JSON.parse(data).status == "updated") {
+                if (JSON.parse(data) == "added") {
                     alert('success');
                     window.location.href = './MainDashBoard';
                 } else {

@@ -53,13 +53,22 @@ if ($data == null) {
             <tbody>
                 <?php
                 for ($i = 0; $i < count($data); $i++) {
-
-                    echo "<tr>" .
-                        "<td>" . $data[$i]["cowId"] . "</td>";
-                    echo "<td>" . "Group -A" . "</td>";
-                    echo "<td>" . $data[$i]["date"] . "</td>";
-                    echo "<td>" . $data[$i]["quantity"] . "</td>";
-                    echo "</tr>";
+                    $row = $data[$i]; ?>
+                    <tr>
+                        <td>
+                            <?php echo $row['cowId']; ?>
+                        </td>
+                        <td>
+                            Group -A
+                        </td>
+                        <td>
+                            <?php echo $row['date']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row['quantity']; ?>
+                        </td>
+                    </tr>
+                    <?php
                 }
                 ?>
 

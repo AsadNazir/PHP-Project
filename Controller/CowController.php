@@ -6,6 +6,8 @@ class CowController extends Controllers
     public $pathInfo;
     public $request;
     public $file;
+
+    //Constructor
     public function __construct($path, $req, $file)
     {
         parent::__construct();
@@ -18,47 +20,6 @@ class CowController extends Controllers
     {
         switch ($this->pathInfo) {
 
-            case '/AddCow':
-
-                $name = $this->request['name'];
-                $breed = $this->request['breed'];
-                $gender = $this->request['gender'];
-                $age = $this->request['age'];
-                if (isset($this->request['dairy'])) {
-                    $dairy = "yes";
-                } else {
-                    $dairy = "no";
-                }
-                $weight = $this->request['weight'];
-                $height = $this->request['height'];
-                $color = $this->request['color'];
-
-
-                $CowModal = new CowModal();
-
-
-                $NewImageName = $CowModal->UploadImage("Images/upload", $this->file);
-
-                $data = [
-                    'name' => $name,
-                    'breed' => $breed,
-                    'gender' => $gender,
-                    'age' => $age,
-                    'dairy' => $dairy,
-                    'weight' => $weight,
-                    'height' => $height,
-                    'color' => $color,
-                    'image' => $NewImageName
-                ];
-
-                $CowModalObj = new CowModal();
-
-                $insertion = $CowModalObj->addNewCow($this->DbCon->connection, 'cows', $data);
-                $output["status"] = $insertion;
-
-                echo json_encode($output);
-
-                break;
 
             case "/UpdateCowPage":
                 include("View/navbar.php");
@@ -74,8 +35,18 @@ class CowController extends Controllers
                 include("View/Footer.php");
                 break;
 
-            case "/DeleteCow":
+            case '/AddCow':
+                $CowModalObj = new CowModal();
+                $CowModalObj->addCowApi($this->DbCon->connection, "cows", $this->request, $this->file);
+                break;
 
+            case "/updateCowApi":
+                $CowModalObj = new CowModal();
+                $CowModalObj->UpdateCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
+
+                break;
+
+            case "/DeleteCow":
                 $id = $this->request['id'];
 
                 $CowModalObj = new CowModal();
@@ -88,14 +59,6 @@ class CowController extends Controllers
 
                     echo json_encode($output['status']);
                 }
-
-                break;
-
-            //API are named API's
-            case "/updateCowApi":
-                $CowModalObj = new CowModal();
-                $CowModalObj->UpadteCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
-
                 break;
 
             case "/MilkEntry":
@@ -103,29 +66,11 @@ class CowController extends Controllers
                 include("View/Sidebar.php");
                 include("View/MilkEntry.php");
                 include("View/Footer.php");
-
                 break;
 
             case "/AddMilkApi":
-
-                $cow = $this->request['id'];
-                $date = $this->request['date'];
-                $quantity = $this->request['quantity'];
-                $ph = $this->request['ph'];
-
-                $data = [
-                    'cowId' => $cow,
-                    'date' => $date,
-                    'quantity' => $quantity,
-                    'ph' => $ph
-                ];
-
                 $CowModalObj = new CowModal();
-
-                $insertion = $CowModalObj->AddMilkEntry($this->DbCon->connection, 'milk', $data);
-                $output["status"] = $insertion;
-
-                echo json_encode($output);
+                $CowModalObj->AddMilkEntryApi($this->DbCon->connection, "milk", $this->request);
                 break;
 
             // API to get all milk records

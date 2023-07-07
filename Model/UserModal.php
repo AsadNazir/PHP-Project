@@ -40,7 +40,7 @@ class UserModal
         }
     }
 
-    //Modifiied the function using chatGPT to prevent SQL Injections
+    //Function for adding a new user using prepared statement
     public function addNewUser($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
@@ -69,6 +69,37 @@ class UserModal
         }
     }
 
+    //API for Adding a user
+    public function addNewUserApi($conn, $table, $req, $file)
+    {
+        $name = $req['name'];
+        $email = $req['email'];
+        $job = $req['job'];
+        if (isset($req['adminRights'])) {
+            $adminRights = "yes";
+        } else {
+            $adminRights = "no";
+        }
+
+        $output_dir = "Images/upload";
+
+        $ImageName = $this->UploadImage($output_dir, $file);
+
+        $data = [
+            'name' => $name,
+            'email' => $email,
+            'job' => $job,
+            'adminRights' => $adminRights,
+            'image' => $ImageName
+        ];
+
+        $insertion = $this->addNewUser($conn, $table, $data);
+        $output["status"] = $insertion;
+        echo json_encode($output["status"]);
+
+    }
+
+    //Function for uploading the image to Images/upload folder
     public function UploadImage($directory, $file)
     {
         //Upload Files 
@@ -88,13 +119,13 @@ class UserModal
             @mkdir($output_dir, 0777);
         }
 
-        //Uploadding file to thre directory
+        //Uploading file to thre directory
         move_uploaded_file($file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
 
         return $NewImageName;
     }
 
-    //Modifiied the function using chatGPT to prevent SQL Injections
+    //Function to delete user
     public function deleteUser($conn, $table, $id)
     {
         $query = "DELETE FROM $table WHERE id = ?";
@@ -112,13 +143,18 @@ class UserModal
         mysqli_stmt_close($stmt);
     }
 
+    //Function to get all records of user from user table
     public function getAllUsers($conn, $table)
     {
         $sql = "SELECT * FROM $table";
-        $result = mysqli_query($conn, $sql);
+        $stmt = mysqli_prepare($conn, $sql);
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
         $arr = [];
 
-        if (($result)) {
+        if ($result) {
             $x = 0;
             while ($row = mysqli_fetch_array($result)) {
                 $arr[$x] = $row;
@@ -129,14 +165,20 @@ class UserModal
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
+
     }
 
     public function getUserById($conn, $table, $id)
     {
-        $sql = "SELECT * FROM $table WHERE id = $id";
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM $table WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
 
-        if (($result)) {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result) {
             $row = mysqli_fetch_array($result);
 
             // var_dump($row);
@@ -152,7 +194,7 @@ class UserModal
         $name = $data['name'];
         $email = $data['email'];
         $job = $data['job'];
-        
+
         $image = $data['image'];
 
         if ($image == "NoImage") {
@@ -179,44 +221,25 @@ class UserModal
         } else {
             $adminRights = "no";
         }
-        
-        $RandomNum = time();
+
         $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
 
         if ($ImageName != "") {
             $output_dir = "Images/upload";
 
-            $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
-            $ImageType = $file['image']['type'];
-
-            $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-            $ImageExt = str_replace('.', '', $ImageExt);
-            $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-            $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
-            $ret[$NewImageName] = $output_dir . $NewImageName;
-            //IF folder does not exist it will create the folder 
-            if (!file_exists($output_dir)) {
-                @mkdir($output_dir, 0777);
-            }
-            //Move the file to the folder
-            move_uploaded_file($file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
-
-            $data = [
-                'name' => $name,
-                'email' => $email,
-                'job' => $job,
-                'adminRights' => $adminRights,
-                'image' => $NewImageName
-            ];
+            $ImageName = $this->UploadImage($output_dir, $file);
         } else {
-            $data = [
-                'name' => $name,
-                'email' => $email,
-                'job' => $job,
-                'adminRights' => $adminRights,
-                'image' => "NoImage"
-            ];
+            $ImageName = "NoImage";
         }
+
+        $data = [
+            'name' => $name,
+            'email' => $email,
+            'job' => $job,
+            'adminRights' => $adminRights,
+            'image' => $ImageName
+        ];
+
         $updation = $this->updateUser($conn, 'users', $data, $id);
         $output["status"] = $updation;
         echo json_encode($output["status"]);

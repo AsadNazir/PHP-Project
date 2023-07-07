@@ -109,7 +109,10 @@ if ($_SERVER["PATH_INFO"] == "/AddNewFeed" || $_SERVER["PATH_INFO"] == "/Feed") 
     e.preventDefault();
 
     var data = new FormData(this);
-    data.set("id", id.value);
+    selectElement = document.querySelector('#cow');
+    var x = selectElement.value;
+    console.log(x);
+    data.set("id", x);
 
     //AJAX Request for saving the data --------------------------
 

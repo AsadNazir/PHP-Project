@@ -5,16 +5,24 @@ include_once("./Model/UserModal.php");
 $UserModelObj = new UserModal();
 $result = $UserModelObj->getAllUsers($UserModelObj->conn->connection, "users");
 
-for ($i = 0; $i < count($result); $i++) {
-  $row = $result[$i];
-  # code...
-  ?>
 
-  <div class="MainPage">
+# code...
+?>
 
-
+<div class="MainPage">
+  <div class="d-flex btnDivs">
     <?php
 
+    if ($isAdmin == 'yes') {
+      echo '<a href="./AddUsers" class="btn btn-success" type="submit">Add New</a>';
+    }
+    ?>
+
+  </div>
+
+  <?php
+  for ($i = 0; $i < count($result); $i++) {
+    $row = $result[$i];
     // PHP For loops for displaying the users
   
     ?>
@@ -70,8 +78,8 @@ for ($i = 0; $i < count($result); $i++) {
     </div>
     <?php
 
-}
-?>
+  }
+  ?>
 
 
   <!-- No Ajax Here -->
