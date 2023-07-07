@@ -133,6 +133,25 @@ class CowModal
         }
     }
 
+    //Returns Annual, Monthly, Weekly and Daily Milk Records of a Cow with ID
+    public function getACowMilkRecord($conn, $table, $id)
+    {
+        $sql = "SELECT
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
+            (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+    
+        return $row;
+    }
+    
+
 
     public function getAllCows($conn, $table)
     {
@@ -288,9 +307,15 @@ class CowModal
         return $row;
     }
 
-    // Gett All Milk Records API will return all the mils records from DB
-    public function getAllMilkRecordsAPI($conn, $table, $id = -99)
+    //Gett All Milk Records API will return all the mils records from DB
+    public function getAllMilkRecordsAPI($conn, $table, $id = -99, $id = -99)
     {
+        if ($id == -99) {
+            $sql = "SELECT * FROM $table";
+        } else {
+            $sql = "SELECT * FROM $table WHERE cowId = $id";
+        }
+
         if ($id == -99) {
             $sql = "SELECT * FROM $table";
         } else {
@@ -301,6 +326,55 @@ class CowModal
         $arr = [];
 
         if (($result)) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            return null;
+        }
+    }
+    public function getAllMilkRecordsByMonthAPI($conn, $table, $id = -99)
+    {
+        if ($id == -99) {
+            $sql = "SELECT SUM(quantity) AS total_milk_production, MONTH(date) AS month FROM $table WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)";
+        } else {
+            $sql = "SELECT SUM(quantity) AS total_milk_production, MONTH(date) AS month FROM $table WHERE cowId = $id AND YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)";
+        }
+
+        $result = mysqli_query($conn, $sql);
+        $arr = [];
+
+        if ($result) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            return null;
+        }
+    }
+
+
+
+    public function getAllMilkRecordsByMonthAPI($conn, $table, $id = -99)
+    {
+        if ($id == -99) {
+            $sql = "SELECT SUM(quantity) AS total_milk_production, MONTH(date) AS month FROM $table WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)";
+        } else {
+            $sql = "SELECT SUM(quantity) AS total_milk_production, MONTH(date) AS month FROM $table WHERE cowId = $id AND YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)";
+        }
+
+        $result = mysqli_query($conn, $sql);
+        $arr = [];
+
+        if ($result) {
             $x = 0;
             while ($row = mysqli_fetch_array($result)) {
                 $arr[$x] = $row;
@@ -338,6 +412,7 @@ class CowModal
     }
 
 }
+
 
 
 
