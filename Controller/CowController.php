@@ -142,6 +142,31 @@ class CowController extends Controllers
                 echo json_encode($data);
                 break;
 
+
+            case "/GetAllMilkRecordsByDays":
+                $CowModalObj = new CowModal();
+
+                //getting the records from the database
+                $data = $CowModalObj->getAllMilkRecordsByDaysAPI($this->DbCon->connection, 'milk', $this->request['id'],$this->request["month"]);
+
+                if ($data == null) {
+                    $data = [];
+                }
+                echo json_encode($data);
+                break;
+            // API to get all milk records by month
+            case "/GetAllMilkRecordsByMonth":
+                $CowModalObj = new CowModal();
+                //getting the records from the database
+                $data = $CowModalObj->getAllMilkRecordsByMonthAPI($this->DbCon->connection, 'milk', $this->request['id']);
+
+                //checking if the data is null
+                if ($data == null) {
+                    $data = [];
+                }
+                //sending the data to the view
+                echo json_encode($data);
+                break;
             case "/GetCowBreedsApi":
                 $CowModalObj = new CowModal();
                 $data = $CowModalObj->GetCowBreedsAPI($this->DbCon->connection, 'cows');
