@@ -2,7 +2,7 @@
 
 include_once("Model/CowModal.php");
 $CowModelObj = new CowModal();
-$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 14)
+$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 3)
 
     ?>
 <div class="d-flex CowProfileCard CowMilkCard">
@@ -54,8 +54,8 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
         <div class="d-flex btnDivs">
             <div class="mb-3 form-input">
                 <label for="startDate" class="form-label">From</label>
-                <input type="date" class="form-control" min="0" id="startDate" name="startDate"
-                    aria-describedby="startDate" required />
+                <input type="text" class="form-control" min="0" id="date" name="startDate" aria-describedby="startDate"
+                    required />
             </div>
             <div class="mb-3 form-input">
                 <label for="endDate" class="form-label">to</label>
@@ -64,7 +64,7 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
             </div>
         </div>
         <div class="graphAndStats">
-            <div  class="graph" ><canvas id="myChart"></canvas></div>
+            <div class="graph"><canvas id="myChart"></canvas></div>
             <div class="stats">
                 <p>
                 <h1>Avg</h1>
@@ -119,5 +119,13 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
                 }
             }
         }
+    });
+
+
+    $('#date').datepicker({
+        changeMonth: false,
+        changeYear: false,
+        stepMonths: false,
+        dateFormat: 'dd MM'
     });
 </script>
