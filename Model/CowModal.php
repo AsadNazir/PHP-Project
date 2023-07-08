@@ -187,6 +187,17 @@ class CowModal
 
     }
 
+    //API for deleting cow
+    public function deleteCowApi($conn, $table, $req)
+    {
+        $id = $req['id'];
+
+        $deletion = $this->deleteCow($conn, 'cows', $id);
+        $output["status"] = $deletion;
+
+        echo json_encode($output["status"]);
+    }
+
     //Uploading image into Images/upload folder
     public function UploadImage($directory, $file)
     {

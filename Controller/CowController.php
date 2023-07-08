@@ -54,22 +54,11 @@ class CowController extends Controllers
             case "/updateCowApi":
                 $CowModalObj = new CowModal();
                 $CowModalObj->UpadteCowAPI($this->DbCon->connection, "cows", $this->request, $this->file);
-
                 break;
 
             case "/DeleteCow":
-                $id = $this->request['id'];
-
                 $CowModalObj = new CowModal();
-
-                $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
-                $deletion = $CowModalObj->deleteCow($this->DbCon->connection, 'cows', $id);
-                $output["status"] = $deletion;
-
-                if ($output['status'] == "deleted") {
-
-                    echo json_encode($output['status']);
-                }
+                $CowModalObj->deleteCowApi($this->DbCon->connection, "cows", $this->request);
                 break;
 
             case "/AddMilkApi":

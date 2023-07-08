@@ -32,6 +32,34 @@ class DietController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/AddNewFeed":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/AddNewFeed.php");
+                include("View/Footer.php");
+                break;
+
+            case "/AssignAllDietPlan":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/AssignAllDietPlan.php");
+                include("View/Footer.php");
+                break;
+
+            case "/Feed":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/Feed.php");
+                include("View/Footer.php");
+                break;
+
+            case "/UpdateFeedPage":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/updateFeed.php");
+                include("View/Footer.php");
+                break;
+
             case "/AddNewDietPlanApi":
                 $DietModelObj = new DietModal();
                 $DietModelObj->AddDietPlanApi($this->DbCon->connection, "diet", $this->request);
@@ -47,64 +75,28 @@ class DietController extends Controllers
                             // Do something with each selected checkbox
                             // echo $checkbox . '<br>';
 
-                            if($DietModelObj2->AddDietFeedApi($this->DbCon->connection, "diet_feed", $this->request, $checkbox) == false)
-                            {
+                            if ($DietModelObj2->AddDietFeedApi($this->DbCon->connection, "diet_feed", $this->request, $checkbox) == false) {
                                 echo "Error:" . $checkbox . " not Inserted.";
                                 //Do something
                             }
                         }
                     }
                 }
-
-
                 break;
 
             case "/AddFeedApi":
                 $DietModalObj = new DietModal();
                 $DietModalObj->AddFeedApi($this->DbCon->connection, "feed", $this->request);
-
                 break;
-
-            case "/AddNewFeed":
-                include("View/navbar.php");
-                include("View/Sidebar.php");
-                include("View/AddNewFeed.php");
-                include("View/Footer.php");
-                break;
-
-            case "/AssignAllDietPlan":
-                include("View/navbar.php");
-                include("View/Sidebar.php");
-                include("View/AssignAllDietPlan.php");
-                include("View/Footer.php");
-                break;
-            case "/Feed":
-                include("View/navbar.php");
-                include("View/Sidebar.php");
-                include("View/Feed.php");
-                include("View/Footer.php");
-                break;
-
 
             case "/DeleteFeedApi":
-
                 $DietModalObj = new DietModal();
                 $DietModalObj->deleteFeedApi($this->DbCon->connection, "feed", $this->request);
-
-                break;
-
-            case "/UpdateFeedPage":
-                include("View/navbar.php");
-                include("View/Sidebar.php");
-                include("View/updateFeed.php");
-                include("View/Footer.php");
                 break;
 
             case "/updateFeedApi":
-
                 $DietModalObj = new DietModal();
                 $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
-
                 break;
 
             default:
