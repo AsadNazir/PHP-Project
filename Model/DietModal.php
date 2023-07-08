@@ -267,9 +267,19 @@ class DietModal
     }
 
     //Getting All DietPlans from diet table
-    public function getAllDietPlans($conn, $table)
+    //get All Diet Plans
+    public function getAllDietPlans($conn, $table, $id = -99)
     {
-        return $this->getAllRecords($conn, $table);
+        if ($id == -99) {
+            $query = "SELECT * FROM $table";
+        } else {
+            $query = "SELECT * FROM $table WHERE dietId = $id";
+        }
+
+        $query = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
     }
 
 }
