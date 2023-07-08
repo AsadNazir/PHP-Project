@@ -47,8 +47,7 @@ class DietController extends Controllers
                             // Do something with each selected checkbox
                             // echo $checkbox . '<br>';
 
-                            if($DietModelObj2->AddDietFeedApi($this->DbCon->connection, "diet_feed", $this->request, $checkbox) == false)
-                            {
+                            if ($DietModelObj2->AddDietFeedApi($this->DbCon->connection, "diet_feed", $this->request, $checkbox) == false) {
                                 echo "Error:" . $checkbox . " not Inserted.";
                                 //Do something
                             }
@@ -105,6 +104,15 @@ class DietController extends Controllers
                 $DietModalObj = new DietModal();
                 $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
 
+                break;
+            case "/GetAllDietFeedsApi":
+                $DietModalObj = new DietModal();
+                $data= $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
+                if($data==null)
+                {
+                    $data=[];
+                }
+                echo json_encode($data);
                 break;
 
             default:
