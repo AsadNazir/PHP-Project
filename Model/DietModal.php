@@ -12,50 +12,8 @@ class DietModal
         $this->conn = new Db();
     }
 
-
     //Function for adding a row into a table
     public function addNewRow($conn, $table, $data)
-    {
-        $columns = implode(",", array_keys($data));
-        $placeholders = implode(",", array_fill(0, count($data), "?"));
-
-        $values = array_values($data);
-
-        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-        $stmt = mysqli_prepare($conn, $query);
-
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, str_repeat('s', count($values)), ...$values);
-            mysqli_stmt_execute($stmt);
-
-            if (mysqli_stmt_affected_rows($stmt) > 0) {
-                return "added";
-            } else {
-                echo "Error inserting: " . mysqli_stmt_error($stmt);
-            }
-
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
-    }
-    //Crud operations for feed
-
-    //get All Diet Plans
-    public function getAllDietPlans($conn, $table, $id = -99)
-    {
-        if ($id == -99) {
-            $query = "SELECT * FROM $table";
-        } else {
-            $query = "SELECT * FROM $table WHERE id = $id";
-        }
-        
-        $result = mysqli_query($conn, $query);
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $rows;
-    }
-    //Adding New Feed into feed table
-    public function addNewFeed($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
         $placeholders = implode(",", array_fill(0, count($data), "?"));
@@ -309,10 +267,20 @@ class DietModal
     }
 
     //Getting All DietPlans from diet table
-    // public function getAllDietPlans($conn, $table)
-    // {
-    //     return $this->getAllRecords($conn, $table);
-    // }
+    //get All Diet Plans
+    public function getAllDietPlans($conn, $table, $id = -99)
+    {
+        if ($id == -99) {
+            $query = "SELECT * FROM $table";
+        } else {
+            $query = "SELECT * FROM $table WHERE dietId = $id";
+        }
+
+        $query = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
 
 }
 
