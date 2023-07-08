@@ -1,7 +1,11 @@
 .DietPlanCards {
     margin-bottom: 0.5rem;
-    background-color: var(--background-primary);
+}
+
+.DietPlanCards>div {
     color: var(--foreground-primary);
+    background-color: var(--background-primary);
+    margin: 1rem 0 !important;
 }
 
 .dropdown-custom {
@@ -75,10 +79,13 @@ table {
     border-radius: 5px;
 }
 
-table td,table th {
+table td,
+table th {
     color: var(--foreground-primary);
     padding: 0.8rem 0.5rem !important;
 }
-table td:first-child,table th:first-child {
+
+table td:first-child,
+table th:first-child {
     padding-left: 1rem !important;
 }

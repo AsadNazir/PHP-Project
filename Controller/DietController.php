@@ -72,6 +72,12 @@ class DietController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/AssignAllDietPlan":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/AssignAllDietPlan.php");
+                include("View/Footer.php");
+                break;
             case "/Feed":
                 include("View/navbar.php");
                 include("View/Sidebar.php");

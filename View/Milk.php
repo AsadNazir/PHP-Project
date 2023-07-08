@@ -26,6 +26,7 @@ if ($data == null) {
     <div class="d-flex btnDivs">
         <a href="./MilkEntry" class="btn btn-success" type="submit">Add Milk Entry</a>
         <a href="./DeleteAllMilk" class="btn btn-danger" type="submit">Delete All</a>
+
     </div>
     <div class="d-flex btnDivs">
         <div class="mb-3 form-input">
@@ -37,6 +38,10 @@ if ($data == null) {
             <label for="endDate" class="form-label">to</label>
             <input type="date" class="form-control" min="0" id="endDate" name="endDate" aria-describedby="endDate"
                 required />
+        </div>
+        <div class="mb-3 form-input">
+            <label for="endDate" class="form-label">&nbsp;</label>
+            <button class="btn filter btn-primary">Filter</button>
         </div>
     </div>
 
