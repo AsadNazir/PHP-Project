@@ -1,5 +1,10 @@
 <?php
 $isAdmin = $_SESSION["isAdmin"];
+
+$DietPlan = new DietModal();
+$result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
+// echo "<pre>";
+// print_r($result);
 ?>
 
 <div class="MainPage">
@@ -16,32 +21,40 @@ $isAdmin = $_SESSION["isAdmin"];
 
         if ($isAdmin == 'yes') {
             echo '<a href="./AddNewDietPlan" class="btn btn-success" type="submit">Add New</a>
-            <button class="btn btn-danger" type="submit">Delet All</button>';
+            <a class="btn btn-danger" type="submit">Delet All</a>;
+            <a href="./AssignAllDietPlan" class="btn btn-primary" type="submit">Assign All</a>';
         }
         ?>
 
     </div>
 
-    <div class="DietPlanCards card">
-
-        <div class="card-body">
-            <h5 class="card-title">Weight Gain Diet Plan for Malnourished</h5>
-            <p class="card-text">This is a customised Diet plan for cows</p>
-            <div id="nameHelp" class="btnDivs innerBtn">
+    <div class="DietPlanCards">
 
 
-                <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
+        <?php
 
-                <!-- Only Admins have edit priveleges -->
-                <?php
-                if ($isAdmin == 'yes') {
-                    echo '<a href="#" class="btn btn-secondary">Update</a>
-            <a href="#" class="btn btn-secondary">Delete</a>';
-                }
+        for ($i = 0; $i < count($result); $i++) {
 
-                ?>
-            </div>
-        </div>
+            echo "<div class='card-body card'>
+    <h5 class='card-title'>" . $result[$i]["name"] . "</h5>
+    <p class='card-text'>" . $result[$i]["description"] . "</p>
+    <div id='nameHelp' class='btnDivs innerBtn'>
+
+
+        <a href='#'  class='btn btn-primary'>&nbsp;View&nbsp;</a>
+
+        <!-- Only Admins have edit priveleges -->";
+
+            if ($isAdmin == 'yes') {
+                echo '<a href="#" class="btn btn-secondary">Update</a>
+    <a href="#" class="btn btn-secondary">Delete</a>';
+
+                echo " </div>
+    </div>";
+            }
+        }
+        ?>
+
     </div>
 
 </div>

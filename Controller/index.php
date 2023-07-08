@@ -69,7 +69,8 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/CowProfile":
     case "/GetACowMilkRecordsApi":
     case "/GetAllMilkRecordsByMonth":
-    case "/GetAllMilkRecordsByDays" :
+    case "/GetAllMilkRecordsByDays":
+    case "/GetAvgHighestRankOfCowApi":
         $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $CowCont->handleRequest();
         break;
@@ -116,6 +117,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/DeleteFeedApi":
     case "/UpdateFeedPage":
     case "/updateFeedApi":
+    case "/AssignAllDietPlan":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();
         break;

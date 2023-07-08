@@ -90,7 +90,8 @@ body {
     display: flex;
 }
 
-.MainPage .btnDivs a:not(:last-child), .btnDivs div:not(:last-child) {
+.MainPage .btnDivs a:not(:last-child),
+.btnDivs div:not(:last-child) {
     margin-right: 1%;
 }
 
@@ -137,6 +138,10 @@ body {
     font-size: var(--fs5) !important;
     color: var(--foreground-secondary);
     margin: 0.5rem 0;
+}
+
+.MainPage h1:first-child {
+    margin-bottom: 2rem;
 }
 
 table {

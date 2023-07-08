@@ -147,7 +147,7 @@ class CowController extends Controllers
                 $CowModalObj = new CowModal();
 
                 //getting the records from the database
-                $data = $CowModalObj->getAllMilkRecordsByDaysAPI($this->DbCon->connection, 'milk', $this->request['id'],$this->request["month"]);
+                $data = $CowModalObj->getAllMilkRecordsByDaysAPI($this->DbCon->connection, 'milk', $this->request['id'], $this->request["month"]);
 
                 if ($data == null) {
                     $data = [];
@@ -193,7 +193,14 @@ class CowController extends Controllers
                 include("View/CowProfile.php");
                 include("View/Footer.php");
                 break;
-
+            case "/GetAvgHighestRankOfCowApi":
+                $CowModalObj = new CowModal();
+                $data = $CowModalObj->GetAvgHighestRankOfCowApi($this->DbCon->connection, 'milk', $this->request['id']);
+                if ($data == null) {
+                    $data = [];
+                }
+                echo json_encode($data);
+                break;
             default:
                 echo "Default";
                 break;

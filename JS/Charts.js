@@ -7,8 +7,9 @@ const milkAPIsettings = {
   contentType: false,
   processData: false,
   type: "POST",
-  url: "./GetAllMilkRecordsByMonth",
+  url: "./GetAllMilkRecordsByMonth?id=-99",
   success: function (response) {
+    console.log(response)
     console.log(JSON.parse(response));
     let data = JSON.parse(response);
 

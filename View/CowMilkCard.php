@@ -53,30 +53,38 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
 
         <div class="d-flex btnDivs">
             <div class="mb-3 form-input">
-                <label for="startDate" class="form-label">From</label>
-                <input type="text" class="form-control" min="0" id="date" name="startDate" aria-describedby="startDate"
-                    required />
+                <label for="month_select">Month</label>
+                <select class="form-select months" aria-label="Default select example">
+                    <option value="1">1 January</option>
+                    <option value="2">2 February</option>
+                    <option value="3">3 March</option>
+                    <option value="4">4 April</option>
+                    <option value="5">5 May</option>
+                    <option value="6">6 June</option>
+                    <option selected value="7">7 July</option>
+                    <option value="8">8 August</option>
+                    <option value="9">9 September</option>
+                    <option value="10">10 October</option>
+                    <option value="11">11 November</option>
+                    <option value="12">12 December</option>
+                </select>
             </div>
-            <div class="mb-3 form-input">
-                <label for="endDate" class="form-label">to</label>
-                <input type="date" class="form-control" min="0" id="endDate" name="endDate" aria-describedby="endDate"
-                    required />
-            </div>
+
         </div>
         <div class="graphAndStats">
             <div class="graph"><canvas id="myChart"></canvas></div>
             <div class="stats">
                 <p>
                 <h1>Avg</h1>
-                <span>0 ltr</span>
+                <span class="avg">0 ltr</span>
                 </p>
                 <p>
                 <h1>Highest</h1>
-                <span>0 ltr</span>
+                <span class="highest">0 ltr</span>
                 </p>
                 <p>
                 <h1>Rank</h1>
-                <span>0 ltr</span>
+                <span class="rank">0 ltr</span>
                 </p>
                 <div class="CowCardbtn btnDivs innerBtn">
 
@@ -92,6 +100,77 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
 
 <script>
 
+
+    const monthSelector = document.querySelector(".months");
+    monthSelector.addEventListener("change", () => {
+
+        dataOfMilkProduction = [];
+        date = [];
+        let d = "<?php echo $_REQUEST['id'] ?>" + "&month=" + monthSelector.value;
+        const milkSettings =
+        {
+            contentType: false,
+            processData: false,
+            type: "POST",
+            url: "./GetAllMilkRecordsByDays?id=" + d,
+            success: function (response) {
+                console.log(JSON.parse(response));
+                let data = JSON.parse(response);
+
+                //Iterating through the response and adding the milk production to the array
+                for (let i = 0; i < JSON.parse(response).length; i++) {
+                    {
+                        date.push(data[i]["date"]);
+                        dataOfMilkProduction[i] = parseInt(
+                            data[i]["total_milk_production"],
+                            10
+                        );
+                    }
+                }
+
+                printChart();
+            },
+            error: function (err,) {
+                console.log(err);
+            },
+
+        };
+        $.ajax(milkSettings);
+
+    }
+    )
+    const milkStatsSettings =
+    {
+        contentType: false,
+        processData: false,
+        type: "POST",
+        url: "./GetAvgHighestRankOfCowApi?id=" + "<?php echo $_REQUEST["id"] ?>",
+        success: function (response) {
+
+            let data = JSON.parse(response);
+            //console.log(JSON.parse(response));
+            const avg = document.querySelector(".avg");
+            const highest = document.querySelector(".highest");
+            const rank = document.querySelector(".rank");
+            avg.innerHTML = data[0][0] + " ltr";
+            highest.innerHTML = data[1][0] + " ltr";
+
+            for (let i = 2; i < data.length; i++) {
+                if (data[i]["cowId"] == "<?php echo $_REQUEST["id"] ?>") {
+                    rank.innerHTML = data[i]["cow_rank"];
+                    break;
+                }
+            }
+
+        },
+        error: function (err,) {
+            console.log(err);
+        },
+
+    };
+    $.ajax(milkStatsSettings);
+
+
     let dataOfMilkProduction = [];
     let date = [];
     let d = "<?php echo $_REQUEST['id'] . "&month=7" ?>";
@@ -102,10 +181,10 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
         type: "POST",
         url: "./GetAllMilkRecordsByDays?id=" + d,
         success: function (response) {
-            console.log(JSON.parse(response));
+            //console.log(JSON.parse(response));
             let data = JSON.parse(response);
 
-            console.log(dataOfMilkProduction);
+            //console.log(dataOfMilkProduction);
             //Iterating through the response and adding the milk production to the array
             for (let i = 0; i < JSON.parse(response).length; i++) {
                 {
@@ -125,12 +204,16 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
 
     };
 
-
+    let myChart;
     $.ajax(milkSettings);
 
     function printChart() {
+        if (myChart != null)
+            myChart.destroy();
+
+
         var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        myChart = new Chart(ctx, {
             type: 'line',
 
             data: {

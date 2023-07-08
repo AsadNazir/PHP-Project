@@ -14,6 +14,15 @@ class DietModal
 
     //Crud operations for feed
 
+    //get All Diet Plans
+
+    public function getAllDietPlans($conn, $table)
+    {
+        $query = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
     //Adding New Feed into feed table
     public function addNewFeed($conn, $table, $data)
     {

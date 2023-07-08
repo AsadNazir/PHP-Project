@@ -141,16 +141,16 @@ class CowModal
             (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
             (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
             (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
-        
+
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
-    
+
         return $row;
     }
-    
+
 
 
     public function getAllCows($conn, $table)
@@ -285,28 +285,6 @@ class CowModal
 
     //Crud operations for milk
 
-
-
-
-
-    //Returns Annual, Monthly, Weekly and Daily Milk Records of a Cow with ID
-    // public function getACowMilkRecord($conn, $table, $id)
-    // {
-    //     $sql = "SELECT
-    //         (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
-    //         (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
-    //         (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND DATE(`date`) = CURRENT_DATE()) AS total_day,
-    //         (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
-
-    //     $stmt = mysqli_prepare($conn, $sql);
-    //     mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
-    //     mysqli_stmt_execute($stmt);
-    //     $result = mysqli_stmt_get_result($stmt);
-    //     $row = mysqli_fetch_assoc($result);
-
-    //     return $row;
-    // }
-
     //Gett All Milk Records API will return all the mils records from DB
     public function getAllMilkRecordsAPI($conn, $table, $id = -99)
     {
@@ -337,7 +315,6 @@ class CowModal
             return null;
         }
     }
-  
 
     public function getAllMilkRecordsByMonthAPI($conn, $table, $id = -99)
     {
@@ -354,6 +331,77 @@ class CowModal
             $x = 0;
             while ($row = mysqli_fetch_array($result)) {
                 $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            return null;
+        }
+    }
+
+    public function GetAvgHighestRankOfCowApi($conn, $table, $id = -99)
+    {
+        if ($id == -99) {
+            $sql = "SELECT 
+            AVG(quantity) AS avg_milk_production
+        FROM 
+            milk";
+            $sql2 = "SELECT 
+            MAX(quantity) AS highest_milk_production
+        FROM 
+            milk";
+        } else {
+            $sql = "SELECT 
+            AVG(quantity) AS avg_milk_production
+        FROM 
+            milk
+        WHERE 
+            cowId = $id"
+        ;
+            $sql2 = "SELECT 
+            MAX(quantity) AS highest_milk_production
+        FROM 
+            milk
+        WHERE 
+            cowId = $id";
+        }
+
+        $sql3 = "SELECT
+        cowId,
+        total_milk_production,
+        RANK() OVER (ORDER BY total_milk_production DESC) AS cow_rank
+    FROM
+        (SELECT
+            cowId,
+            SUM(quantity) AS total_milk_production
+        FROM
+            milk
+        WHERE
+            YEAR(date) = YEAR(CURRENT_DATE)
+        GROUP BY
+            cowId) AS subquery
+    ORDER BY
+        total_milk_production DESC";
+
+        $result = mysqli_query($conn, $sql);
+        $result2 = mysqli_query($conn, $sql2);
+        $result3 = mysqli_query($conn, $sql3);
+
+        $arr = [];
+
+        if ($result) {
+            $x = 0;
+            $row = mysqli_fetch_array($result);
+            $arr[$x] = $row;
+            $x++;
+
+            $row2 = mysqli_fetch_array($result2);
+            $arr[$x] = $row2;
+            $x++;
+
+            while($row3 = mysqli_fetch_array($result3)){
+                $arr[$x] = $row3;
                 $x++;
             }
 

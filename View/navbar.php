@@ -56,7 +56,7 @@ $isAdmin = $_SESSION["isAdmin"];
 
   <!-- Dynamic adding of CSS Files -->
   <?php
-  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed")
+  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed" || $_SERVER["PATH_INFO"] == "/DietPlans")
     echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
 
       ?>
