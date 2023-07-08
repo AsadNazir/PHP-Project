@@ -12,19 +12,8 @@ class DietModal
         $this->conn = new Db();
     }
 
-    //Crud operations for feed
-
-    //get All Diet Plans
-
-    public function getAllDietPlans($conn, $table)
-    {
-        $query = "SELECT * FROM $table";
-        $result = mysqli_query($conn, $query);
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $rows;
-    }
-    //Adding New Feed into feed table
-    public function addNewFeed($conn, $table, $data)
+    //Function for adding a row into a table
+    public function addNewRow($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
         $placeholders = implode(",", array_fill(0, count($data), "?"));
@@ -41,7 +30,7 @@ class DietModal
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 return "added";
             } else {
-                echo "Error inserting user: " . mysqli_stmt_error($stmt);
+                echo "Error inserting: " . mysqli_stmt_error($stmt);
             }
 
             mysqli_stmt_close($stmt);
@@ -50,6 +39,29 @@ class DietModal
         }
     }
 
+    //Function to get all records from a table
+    public function getAllRecords($conn, $table)
+    {
+        $sql = "SELECT * FROM $table";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $arr = [];
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $arr[] = $row;
+            }
+
+            return $arr;
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
+    //Crud operations for feed
+
+    //Adding New Feed into feed table
     //Add feed Api to get data from form and calling add function
     public function AddFeedApi($conn, $table, $req)
     {
@@ -63,7 +75,7 @@ class DietModal
         ];
 
 
-        $insertion = $this->addNewFeed($conn, 'feed', $data);
+        $insertion = $this->addNewRow($conn, 'feed', $data);
         $output["status"] = $insertion;
         echo json_encode($output["status"]);
     }
@@ -104,13 +116,16 @@ class DietModal
         $quantity = $data['quantity'];
         $price = $data['price'];
 
-        $sql = "UPDATE $table SET `name`='$name', `quantity`='$quantity', `price`='$price' WHERE id='$id'";
+        $sql = "UPDATE $table SET `name`=?, `quantity`=?, `price`=? WHERE id=?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "siii", $name, $quantity, $price, $id);
 
-        if (mysqli_query($conn, $sql)) {
+        if (mysqli_stmt_execute($stmt)) {
             return "updated";
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . mysqli_error($conn);
         }
+
     }
 
     //API for updating feed entry
@@ -126,7 +141,6 @@ class DietModal
             'price' => $price
         ];
 
-
         $updation = $this->updateFeed($conn, 'feed', $data, $id);
         $output["status"] = $updation;
         echo json_encode($output["status"]);
@@ -136,30 +150,19 @@ class DietModal
     //Getting all entries from feed table
     public function getAllFeeds($conn, $table)
     {
-        $sql = "SELECT * FROM $table";
-        $result = mysqli_query($conn, $sql);
-        $arr = [];
-
-        if (($result)) {
-            $x = 0;
-            while ($row = mysqli_fetch_array($result)) {
-                $arr[$x] = $row;
-                $x++;
-            }
-
-            return $arr;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+        $this->getAllRecords($conn, $table);
     }
 
     //Getting a feed from table using its id
     public function getFeedById($conn, $table, $id)
     {
-        $sql = "SELECT * FROM $table WHERE id = $id";
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM $table WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        if (($result)) {
+        if ($result) {
             $row = mysqli_fetch_array($result);
 
             // var_dump($row);
@@ -167,37 +170,12 @@ class DietModal
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
+
     }
 
     //Crud operations for diet plan
 
     //Adding new diet plan
-    public function addNewDietPlan($conn, $table, $data)
-    {
-        $columns = implode(",", array_keys($data));
-        $placeholders = implode(",", array_fill(0, count($data), "?"));
-
-        $values = array_values($data);
-
-        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-        $stmt = mysqli_prepare($conn, $query);
-
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, str_repeat('s', count($values)), ...$values);
-            mysqli_stmt_execute($stmt);
-
-            if (mysqli_stmt_affected_rows($stmt) > 0) {
-                return "added";
-            } else {
-                echo "Error inserting dietplan: " . mysqli_stmt_error($stmt);
-            }
-
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
-    }
-
     //API for adding diet plan
     public function AddDietPlanApi($conn, $table, $req)
     {
@@ -209,7 +187,7 @@ class DietModal
             'description' => $description
         ];
 
-        $insertion = $this->addNewDietPlan($conn, 'diet', $data);
+        $insertion = $this->addNewRow($conn, 'diet', $data);
         $output["status"] = $insertion;
 
         echo json_encode($output["status"]);
@@ -219,8 +197,10 @@ class DietModal
     //for diet_feed table
     public function getDietId($conn, $table)
     {
-        $sql = "SELECT * FROM $table ORDER BY id DESC LIMIT 1";
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT id FROM $table ORDER BY id DESC LIMIT 1";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
         if ($result) {
             $row = mysqli_fetch_array($result);
@@ -228,39 +208,10 @@ class DietModal
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-    }
 
+    }
 
     //Adding diet feed entry
-    public function addNewDietFeed($conn, $table, $data)
-    {
-        $columns = implode(",", array_keys($data));
-        $placeholders = implode(",", array_fill(0, count($data), "?"));
-
-        $values = array_values($data);
-
-        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-        $stmt = mysqli_prepare($conn, $query);
-
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, str_repeat('s', count($values)), ...$values);
-            mysqli_stmt_execute($stmt);
-
-            if (mysqli_stmt_affected_rows($stmt) > 0) {
-                return true;
-            } else {
-                echo "Error inserting dietplan: " . mysqli_stmt_error($stmt);
-                mysqli_stmt_close($stmt);
-                return false;
-            }
-
-            // mysqli_stmt_close($stmt);
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
-
-    }
-
     //API for adding diet and feed entry in diet_feed table to 
     //have a record for all the feeds in a diet
     public function AddDietFeedApi($conn, $table, $req, $checkbox)
@@ -276,7 +227,7 @@ class DietModal
             'quantity' => $quantity
         ];
 
-        $insertion = $this->addNewDietFeed($conn, "diet_feed", $data);
+        $insertion = $this->addNewRow($conn, "diet_feed", $data);
         if ($insertion) {
             return true;
         } else {
@@ -287,25 +238,9 @@ class DietModal
     //Getting All DietPlans from diet table
     public function getAllDietPlans($conn, $table)
     {
-        $sql = "SELECT * FROM $table";
-        $result = mysqli_query($conn, $sql);
-        $arr = [];
-
-        if (($result)) {
-            $x = 0;
-            while ($row = mysqli_fetch_array($result)) {
-                $arr[$x] = $row;
-                $x++;
-            }
-
-            return $arr;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+        $this->getAllRecords($conn, $table);
     }
 
 }
-
-
 
 ?>
