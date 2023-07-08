@@ -12,8 +12,25 @@ class DietModal
         $this->conn = new Db();
     }
 
-    //Function for adding a row into a table
-    public function addNewRow($conn, $table, $data)
+    //Crud operations for feed
+
+    //get All Diet Plans
+    public function getAllDietPlans($conn, $table, $id = -99)
+    {
+        if ($id == -99) {
+            $query = "SELECT * FROM $table";
+        } else {
+            $query = "SELECT * FROM $table WHERE dietId = $id";
+        }
+
+        
+        $query = "SELECT * FROM $table";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+    //Adding New Feed into feed table
+    public function addNewFeed($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
         $placeholders = implode(",", array_fill(0, count($data), "?"));
@@ -267,10 +284,10 @@ class DietModal
     }
 
     //Getting All DietPlans from diet table
-    public function getAllDietPlans($conn, $table)
-    {
-        return $this->getAllRecords($conn, $table);
-    }
+    // public function getAllDietPlans($conn, $table)
+    // {
+    //     return $this->getAllRecords($conn, $table);
+    // }
 
 }
 
