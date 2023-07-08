@@ -26,6 +26,7 @@ if ($data == null) {
     <div class="d-flex btnDivs">
         <a href="./MilkEntry" class="btn btn-success" type="submit">Add Milk Entry</a>
         <a href="./DeleteAllMilk" class="btn btn-danger" type="submit">Delete All</a>
+
     </div>
     <div class="d-flex btnDivs">
         <div class="mb-3 form-input">
@@ -37,6 +38,10 @@ if ($data == null) {
             <label for="endDate" class="form-label">to</label>
             <input type="date" class="form-control" min="0" id="endDate" name="endDate" aria-describedby="endDate"
                 required />
+        </div>
+        <div class="mb-3 form-input">
+            <label for="endDate" class="form-label">&nbsp;</label>
+            <button class="btn filter btn-primary">Filter</button>
         </div>
     </div>
 
@@ -67,3 +72,81 @@ if ($data == null) {
         </table>
     </div>
 </div>
+
+
+<script>
+
+    const jsonData = <?php echo json_encode($data); ?>;
+    console.log(jsonData);
+    // const startDate = '2023-06-10'; // Replace with your start date
+    // const endDate = '2023-06-22'; // Replace with your end date
+    const filter = document.querySelector('.filter');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+
+    filter.addEventListener('click', () => {
+
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+
+        filteredData = filterData(startDate, endDate);
+
+        const tableData = document.querySelector('table tbody');
+        tableData.innerHTML = '';
+
+        filteredData.forEach(obj => {
+            const tableRow = document.createElement('tr');
+            tableRow.innerHTML = `
+                <td>${obj.cowId}</td>
+                <td>Group -A</td>
+                <td>${obj.date}</td>
+                <td>${obj.quantity}</td>
+            `;
+
+            tableData.appendChild(tableRow);
+        });
+    });
+
+    const filterData = (startDate, endDate) => {
+        const filteredData = jsonData.filter(obj => {
+            const objDate = new Date(obj.date);
+            return objDate >= new Date(startDate) && objDate <= new Date(endDate);
+        });
+
+        return (filteredData);
+    };
+
+
+
+    // const filteredData = jsonData.filter(obj => {
+    //     const objDate = new Date(obj.date);
+    //     return objDate >= new Date(startDate) && objDate <= new Date(endDate);
+    // });
+
+    console.log(filteredData);
+
+    // -----------------------------------------------------------
+
+
+    startDateInput.addEventListener('change', () => {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        if (startDate > endDate && endDateInput.value !== '') {
+            startDateInput.value = '';
+            alert('Please select a valid date range.');
+        }
+    });
+
+    endDateInput.addEventListener('change', () => {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        if (startDate > endDate) {
+            endDateInput.value = '';
+            alert('Please select a valid date range.');
+        }
+    });
+
+</script>

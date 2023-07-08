@@ -55,7 +55,7 @@
 
     // Create the pie chart
     var ctx = document.querySelector('.DietPlanChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    var myChart2 = new Chart(ctx, {
         type: 'pie',
         data: data,
         options: options

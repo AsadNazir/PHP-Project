@@ -281,7 +281,25 @@ class CowModal
 
     }
 
+    public function getMikRecordsBetweenDates($conn, $table, $id, $from=-99, $to=-99)
+    {
+        
+        $sql = "SELECT * FROM $table WHERE cowId = $id AND date BETWEEN '$from' AND '$to'";
+        $result = mysqli_query($conn, $sql);
+        $arr = [];
 
+        if (($result)) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
+            }
+
+            return $arr;
+        } else {
+            return null;
+        }
+    }
 
     //Crud operations for milk
 
@@ -343,73 +361,72 @@ class CowModal
     public function GetAvgHighestRankOfCowApi($conn, $table, $id = -99)
     {
         if ($id == -99) {
-            $sql = "SELECT 
-            AVG(quantity) AS avg_milk_production
-        FROM 
-            milk";
-            $sql2 = "SELECT 
-            MAX(quantity) AS highest_milk_production
-        FROM 
-            milk";
+            $sql = "SELECT AVG(quantity) AS avg_milk_production FROM milk";
+            $sql2 = "SELECT MAX(quantity) AS highest_milk_production FROM milk";
         } else {
-            $sql = "SELECT 
-            AVG(quantity) AS avg_milk_production
-        FROM 
-            milk
-        WHERE 
-            cowId = $id"
-        ;
-            $sql2 = "SELECT 
-            MAX(quantity) AS highest_milk_production
-        FROM 
-            milk
-        WHERE 
-            cowId = $id";
+            $sql = "SELECT AVG(quantity) AS avg_milk_production FROM milk WHERE cowId = ?";
+            $sql2 = "SELECT MAX(quantity) AS highest_milk_production FROM milk WHERE cowId = ?";
         }
 
-        $sql3 = "SELECT
-        cowId,
-        total_milk_production,
-        RANK() OVER (ORDER BY total_milk_production DESC) AS cow_rank
-    FROM
-        (SELECT
-            cowId,
-            SUM(quantity) AS total_milk_production
-        FROM
-            milk
-        WHERE
-            YEAR(date) = YEAR(CURRENT_DATE)
-        GROUP BY
-            cowId) AS subquery
-    ORDER BY
-        total_milk_production DESC";
+        $sql3 = "SELECT cowId, total_milk_production, RANK() OVER (ORDER BY total_milk_production DESC) AS cow_rank
+        FROM (
+            SELECT cowId, SUM(quantity) AS total_milk_production
+            FROM milk
+            WHERE YEAR(date) = YEAR(CURRENT_DATE)
+            GROUP BY cowId
+        ) AS subquery
+        ORDER BY total_milk_production DESC";
 
-        $result = mysqli_query($conn, $sql);
-        $result2 = mysqli_query($conn, $sql2);
-        $result3 = mysqli_query($conn, $sql3);
+        $stmt1 = mysqli_prepare($conn, $sql);
+        $stmt2 = mysqli_prepare($conn, $sql2);
+        $stmt3 = mysqli_prepare($conn, $sql3);
 
         $arr = [];
 
-        if ($result) {
+        if ($stmt1 && $stmt2 && $stmt3) {
+            if ($id != -99) {
+                mysqli_stmt_bind_param($stmt1, "i", $id);
+                mysqli_stmt_bind_param($stmt2, "i", $id);
+            }
+
+            mysqli_stmt_execute($stmt1);
+            $result1 = mysqli_stmt_get_result($stmt1);
+
+            mysqli_stmt_execute($stmt2);
+            $result2 = mysqli_stmt_get_result($stmt2);
+
+            mysqli_stmt_execute($stmt3);
+            $result3 = mysqli_stmt_get_result($stmt3);
+
             $x = 0;
-            $row = mysqli_fetch_array($result);
-            $arr[$x] = $row;
+
+            $row1 = mysqli_fetch_array($result1);
+            $arr[$x] = $row1;
             $x++;
 
             $row2 = mysqli_fetch_array($result2);
             $arr[$x] = $row2;
             $x++;
 
-            while($row3 = mysqli_fetch_array($result3)){
+            while ($row3 = mysqli_fetch_array($result3)) {
                 $arr[$x] = $row3;
                 $x++;
             }
+
+            mysqli_stmt_close($stmt1);
+            mysqli_stmt_close($stmt2);
+            mysqli_stmt_close($stmt3);
+            mysqli_free_result($result1);
+            mysqli_free_result($result2);
+            mysqli_free_result($result3);
 
             return $arr;
         } else {
             return null;
         }
     }
+
+
 
 }
 

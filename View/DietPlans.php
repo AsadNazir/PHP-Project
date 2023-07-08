@@ -30,7 +30,6 @@ $result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
 
     <div class="DietPlanCards">
 
-
         <?php
 
         for ($i = 0; $i < count($result); $i++) {
@@ -47,15 +46,16 @@ $result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
 
             if ($isAdmin == 'yes') {
                 echo '<a href="#" class="btn btn-secondary">Update</a>
-    <a href="#" class="btn btn-secondary">Delete</a>';
+                     <a href="#" class="btn btn-secondary">Delete</a>';
 
-                echo " </div>
-    </div>";
+
             }
+            echo "</div>
+            </div>";
         }
         ?>
-
     </div>
+</div>
 
 </div>
 <!-- All Scripts Will be added inside the footer or Navbar -->
