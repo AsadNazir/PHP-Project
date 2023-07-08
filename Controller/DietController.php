@@ -100,19 +100,18 @@ class DietController extends Controllers
                 break;
             case "/GetAllDietFeedsApi":
                 $DietModalObj = new DietModal();
-                $data= $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
-                if($data==null)
-                {
-                    $data=[];
+                $data = $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
+                if ($data == null) {
+                    $data = [];
                 }
                 echo json_encode($data);
                 break;
+
             case "/GetAllDietFeedsApi":
                 $DietModalObj = new DietModal();
-                $data= $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
-                if($data==null)
-                {
-                    $data=[];
+                $data = $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
+                if ($data == null) {
+                    $data = [];
                 }
                 echo json_encode($data);
                 break;

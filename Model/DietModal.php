@@ -47,11 +47,9 @@ class DietModal
         if ($id == -99) {
             $query = "SELECT * FROM $table";
         } else {
-            $query = "SELECT * FROM $table WHERE dietId = $id";
+            $query = "SELECT * FROM $table WHERE id = $id";
         }
-
-
-        $query = "SELECT * FROM $table";
+        
         $result = mysqli_query($conn, $query);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $rows;

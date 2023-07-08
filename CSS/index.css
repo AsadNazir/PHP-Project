@@ -161,3 +161,8 @@ table td:first-child,
 table th:first-child {
     padding-left: 1rem !important;
 }
+
+.form-check-input
+{
+    transform : scale(1.6);
+}
