@@ -107,6 +107,15 @@ class DietController extends Controllers
                 }
                 echo json_encode($data);
                 break;
+            case "/GetAllDietFeedsApi":
+                $DietModalObj = new DietModal();
+                $data= $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
+                if($data==null)
+                {
+                    $data=[];
+                }
+                echo json_encode($data);
+                break;
 
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
