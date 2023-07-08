@@ -29,13 +29,11 @@ class UserController extends Controllers
                 $output['valid'] = false;
                 //User Exists
                 if (!is_null($res)) {
-
                     //var_dump($res);
                     $_SESSION["email"] = $res["email"];
                     $_SESSION["isAdmin"] = $res["adminRights"];
                     $_SESSION["name"] = $res["name"];
                     $output['valid'] = true;
-
                 }
 
                 echo json_encode($output);
@@ -49,68 +47,12 @@ class UserController extends Controllers
                 include("View/Footer.php");
                 break;
 
-            //Api based Insertions into the database
-            case "/AddUserApi":
-
-                $name = $this->request['name'];
-                $email = $this->request['email'];
-                $password = $this->request['password'];
-
-                // echo $name;
-
-                if (isset($this->request['adminRights'])) {
-                    $adminRights = "yes";
-                } else {
-                    $adminRights = "no";
-                }
-                $job = $this->request['job'];
-
-                $UserModal = new UserModal();
-
-
-                $NewImageName = $UserModal->UploadImage("Images/upload", $this->file);
-
-                $data = [
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => $password,
-                    'adminRights' => $adminRights,
-                    'job' => $job,
-                    'image' => $NewImageName
-                ];
-
-                $UserModalObj = new UserModal();
-
-                $insertion = $UserModalObj->addNewUser($this->DbCon->connection, 'users', $data);
-                $output["status"] = $insertion;
-
-                echo json_encode($output);
-                break;
-
             //This will basically dispaly the list of all the users
             case "/ManageUsers":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
                 include("View/UserList.php");
                 include("View/Footer.php");
-                break;
-
-            //Deleter User Api here 
-            //Name All the Apis so that we may know where we are calling the ajax funcions
-            case "/DeleteUsersApi":
-                $id = $this->request['id'];
-
-                $UserModalObj = new UserModal();
-
-                //$UserModalObj->deleteUser($this->DbCon->connection, 'users', $id);
-                $deletion = $UserModalObj->deleteUser($this->DbCon->connection, 'users', $id);
-                $output["status"] = $deletion;
-
-                if ($output['status'] == "deleted") {
-
-                    echo json_encode($output['status']);
-                }
-
                 break;
 
             case "/UpdateUserPage":
@@ -120,10 +62,22 @@ class UserController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            //Api based Insertions into the database
+            case "/AddUserApi":
+                $UserModalObj = new UserModal();
+                $UserModalObj->addUserApi($this->DbCon->connection, "users", $this->request, $this->file);
+                break;
+
+
+            //Delete User Api here 
+            case "/DeleteUsersApi":
+                $UserModalObj = new UserModal();
+                $UserModalObj->deleteUserApi($this->DbCon->connection, "users", $this->request);
+                break;
+
             case "/updateUserApi":
                 $UserModalObj = new UserModal();
                 $UserModalObj->UpadteUserAPI($this->DbCon->connection, "users", $this->request, $this->file);
-
                 break;
 
             default:

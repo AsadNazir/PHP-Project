@@ -11,7 +11,6 @@ class UserModal
         $this->conn = new Db();
     }
 
-
     //Checking if it is the true admin or not
     public function isAdmin($data)
     {
@@ -40,7 +39,7 @@ class UserModal
         }
     }
 
-    //Function for adding a new user using prepared statement
+    //Modified the function using chatGPT to prevent SQL Injections
     public function addNewUser($conn, $table, $data)
     {
         $columns = implode(",", array_keys($data));
@@ -69,9 +68,10 @@ class UserModal
         }
     }
 
-    //API for Adding a user
-    public function addNewUserApi($conn, $table, $req, $file)
+    //Api for adding user
+    public function addUserApi($conn, $table, $req, $file)
     {
+        $id = $req['id'];
         $name = $req['name'];
         $email = $req['email'];
         $job = $req['job'];
@@ -96,96 +96,6 @@ class UserModal
         $insertion = $this->addNewUser($conn, $table, $data);
         $output["status"] = $insertion;
         echo json_encode($output["status"]);
-
-    }
-
-    //Function for uploading the image to Images/upload folder
-    public function UploadImage($directory, $file)
-    {
-        //Upload Files 
-        $output_dir = $directory;
-        $RandomNum = time();
-        $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
-        $ImageType = $file['image']['type'];
-
-        $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-        $ImageExt = str_replace('.', '', $ImageExt);
-        $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
-        $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
-        $ret[$NewImageName] = $output_dir . $NewImageName;
-
-
-        if (!file_exists($output_dir)) {
-            @mkdir($output_dir, 0777);
-        }
-
-        //Uploading file to thre directory
-        move_uploaded_file($file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
-
-        return $NewImageName;
-    }
-
-    //Function to delete user
-    public function deleteUser($conn, $table, $id)
-    {
-        $query = "DELETE FROM $table WHERE id = ?";
-        $stmt = mysqli_prepare($conn, $query);
-
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        mysqli_stmt_execute($stmt);
-
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            return "deleted";
-        } else {
-            echo "Error deleting user: " . mysqli_stmt_error($stmt);
-        }
-
-        mysqli_stmt_close($stmt);
-    }
-
-    //Function to get all records of user from user table
-    public function getAllUsers($conn, $table)
-    {
-        $sql = "SELECT * FROM $table";
-        $stmt = mysqli_prepare($conn, $sql);
-
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-
-        $arr = [];
-
-        if ($result) {
-            $x = 0;
-            while ($row = mysqli_fetch_array($result)) {
-                $arr[$x] = $row;
-                $x++;
-            }
-
-            return $arr;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-
-    }
-
-    public function getUserById($conn, $table, $id)
-    {
-        $sql = "SELECT * FROM $table WHERE id = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        mysqli_stmt_execute($stmt);
-        
-        $result = mysqli_stmt_get_result($stmt);
-
-        if ($result) {
-            $row = mysqli_fetch_array($result);
-
-            // var_dump($row);
-            return $row;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
     }
 
     public function updateUser($conn, $table, $data, $id)
@@ -194,20 +104,24 @@ class UserModal
         $name = $data['name'];
         $email = $data['email'];
         $job = $data['job'];
-
         $image = $data['image'];
 
         if ($image == "NoImage") {
-            $sql = "UPDATE $table SET `name`='$name', `email`='$email', `job`='$job' WHERE id='$id'";
+            $sql = "UPDATE $table SET `name`=?, `email`=?, `job`=? WHERE id=?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $job, $id);
         } else {
-            $sql = "UPDATE $table SET `name`='$name', `email`='$email', `job`='$job', `image`='$image' WHERE id='$id'";
+            $sql = "UPDATE $table SET `name`=?, `email`=?, `job`=?, `image`=? WHERE id=?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "ssssi", $name, $email, $job, $image, $id);
         }
 
-        if (mysqli_query($conn, $sql)) {
+        if (mysqli_stmt_execute($stmt)) {
             return "updated";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
+
     }
 
     public function UpadteUserAPI($conn, $table, $req, $file)
@@ -246,15 +160,100 @@ class UserModal
 
     }
 
+    //Function to delete user entry from users table using id
+    public function deleteUser($conn, $table, $id)
+    {
+        $query = "DELETE FROM $table WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            return "deleted";
+        } else {
+            echo "Error deleting user: " . mysqli_stmt_error($stmt);
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+
+    //API for deleting cow
+    public function deleteUserApi($conn, $table, $req)
+    {
+        $id = $req['id'];
+
+        $deletion = $this->deleteUser($conn, 'users', $id);
+        $output["status"] = $deletion;
+
+        echo json_encode($output["status"]);
+    }
+
+    //Function to upload image and move it to Images/upload folder
+    public function UploadImage($directory, $file)
+    {
+        //Upload Files 
+        $output_dir = $directory;
+        $RandomNum = time();
+        $ImageName = str_replace(' ', '-', strtolower($file['image']['name']));
+        $ImageType = $file['image']['type'];
+
+        $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+        $ImageExt = str_replace('.', '', $ImageExt);
+        $ImageName = preg_replace("/\.[^.\s]{3,4}$/", "", $ImageName);
+        $NewImageName = $ImageName . '-' . $RandomNum . '.' . $ImageExt;
+        $ret[$NewImageName] = $output_dir . $NewImageName;
 
 
+        if (!file_exists($output_dir)) {
+            @mkdir($output_dir, 0777);
+        }
 
+        //Uploadding file to the directory
+        move_uploaded_file($file["image"]["tmp_name"], $output_dir . "/" . $NewImageName);
 
+        return $NewImageName;
+    }
 
+    //Get all users from users table
+    public function getAllUsers($conn, $table)
+    {
+        $sql = "SELECT * FROM $table";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $arr = [];
 
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $arr[] = $row;
+            }
+
+            return $arr;
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
+    //Get user by its id
+    public function getUserById($conn, $table, $id)
+    {
+        $sql = "SELECT * FROM $table WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+
+            // var_dump($row);
+            return $row;
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
 
 }
-
-
 
 ?>
