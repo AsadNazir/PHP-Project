@@ -1,8 +1,9 @@
 <?php
 $isAdmin = $_SESSION["isAdmin"];
 
-$DietPlan = new DietModal();
-$result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
+$DietModelObj = new DietModal();
+$result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet");
+
 // echo "<pre>";
 // print_r($result);
 ?>
@@ -20,7 +21,7 @@ $result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
 
         if ($isAdmin == 'yes') {
             echo '<a href="./AddNewDietPlan" class="btn btn-success" type="submit">Add New</a>
-            <a class="btn btn-danger" type="submit">Delet All</a>;
+            <a class="btn btn-danger" type="submit">Delete All</a>
             <a href="./AssignAllDietPlan" class="btn btn-primary" type="submit">Assign All</a>';
         }
         ?>
@@ -30,27 +31,32 @@ $result = $DietPlan->getAllDietPlans($DietPlan->conn->connection, "diet");
     <div class="DietPlanCards">
 
         <?php
-
         for ($i = 0; $i < count($result); $i++) {
+            $row = $result[$i];
+            ?>
+            <div class="DietPlanCards card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php echo $row['name']; ?>
+                    </h5>
+                    <p class="card-text">
+                        <?php echo $row['description']; ?>
+                    </p>
+                    <div id="nameHelp" class="btnDivs innerBtn">
+                        <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
 
-            echo "<div class='card-body card'>
-    <h5 class='card-title'>" . $result[$i]["name"] . "</h5>
-    <p class='card-text'>" . $result[$i]["description"] . "</p>
-    <div id='nameHelp' class='btnDivs innerBtn'>
+                        <!-- Only Admins have edit priveleges -->
+                        <?php
+                        if ($isAdmin == 'yes') {
+                            echo '<a href="#" class="btn btn-secondary">Update</a>
+                            <a href="#" class="btn btn-secondary">Delete</a>';
+                        }
 
-
-        <a href='#'  class='btn btn-primary'>&nbsp;View&nbsp;</a>
-
-        <!-- Only Admins have edit priveleges -->";
-
-            if ($isAdmin == 'yes') {
-                echo '<a href="#" class="btn btn-secondary">Update</a>
-                     <a href="#" class="btn btn-secondary">Delete</a>';
-
-
-            }
-            echo "</div>
-            </div>";
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
         ?>
     </div>

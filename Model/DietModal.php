@@ -48,9 +48,11 @@ class DietModal
         $result = mysqli_stmt_get_result($stmt);
         $arr = [];
 
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $arr[] = $row;
+        if (($result)) {
+            $x = 0;
+            while ($row = mysqli_fetch_array($result)) {
+                $arr[$x] = $row;
+                $x++;
             }
 
             return $arr;
@@ -150,7 +152,7 @@ class DietModal
     //Getting all entries from feed table
     public function getAllFeeds($conn, $table)
     {
-        $this->getAllRecords($conn, $table);
+        return $this->getAllRecords($conn, $table);
     }
 
     //Getting a feed from table using its id
@@ -267,7 +269,7 @@ class DietModal
     //Getting All DietPlans from diet table
     public function getAllDietPlans($conn, $table)
     {
-        $this->getAllRecords($conn, $table);
+        return $this->getAllRecords($conn, $table);
     }
 
 }

@@ -1,5 +1,3 @@
-
-
 <div class="MainPage">
   <h1 class="MainDashBoardHeadings">Milk Production</h1>
   <div class="MilkProduction">
@@ -99,8 +97,8 @@
   <!-- Cards.php has the cards function now just including it here now -->
   <!-- Footer.php has the Footer function now just including it here now -->
   <h1 class="MainDashBoardHeadings">Search</h1>
-  <form class="d-flex SearchBar">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <form class="d-flex SearchBar" id="searchCow">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
 
@@ -111,3 +109,5 @@
   include("cards.php");
 
   ?>
+
+ 

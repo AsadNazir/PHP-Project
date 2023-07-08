@@ -504,7 +504,6 @@ class CowModal
         }
     }
 
-
 }
 
 ?>
