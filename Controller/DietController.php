@@ -67,6 +67,35 @@ class DietController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/AddFeedApi":
+                $DietModalObj = new DietModal();
+                $DietModalObj->AddFeedApi($this->DbCon->connection, "feed", $this->request);
+                break;
+
+            case "/DeleteFeedApi":
+                $DietModalObj = new DietModal();
+                $DietModalObj->deleteFeedApi($this->DbCon->connection, "feed", $this->request);
+                break;
+
+            case "/updateFeedApi":
+                $DietModalObj = new DietModal();
+                $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
+                break;
+
+            case "/DeleteDietPlanApi":
+                $DietModalObj = new DietModal();
+                $DietModalObj->deleteDietPlanApi($this->DbCon->connection, "diet", $this->request);
+                break;
+
+            case "/GetAllDietFeedsApi":
+                $DietModalObj = new DietModal();
+                $data = $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
+                if ($data == null) {
+                    $data = [];
+                }
+                echo json_encode($data);
+                break;
+
             case "/AddNewDietPlanApi":
                 $DietModelObj = new DietModal();
                 $DietModelObj->AddDietPlanApi($this->DbCon->connection, "diet", $this->request);
@@ -91,34 +120,8 @@ class DietController extends Controllers
                 }
                 break;
 
-            case "/AddFeedApi":
-                $DietModalObj = new DietModal();
-                $DietModalObj->AddFeedApi($this->DbCon->connection, "feed", $this->request);
-                break;
-
-            case "/DeleteFeedApi":
-                $DietModalObj = new DietModal();
-                $DietModalObj->deleteFeedApi($this->DbCon->connection, "feed", $this->request);
-                break;
-
-            case "/updateFeedApi":
-                $DietModalObj = new DietModal();
-                $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
-                break;
-
-            case "/GetAllDietFeedsApi":
-                $DietModalObj = new DietModal();
-                $data = $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
-                if ($data == null) {
-                    $data = [];
-                }
-                echo json_encode($data);
-                break;
-
             case "/AssignDietPlanApi":
-
                 $done = true;
-
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Check if the checkboxes were submitted
                     if (isset($_POST['checkboxes']) && is_array($_POST['checkboxes'])) {

@@ -48,7 +48,8 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
                         <?php
                         if ($isAdmin == 'yes') {
                             echo '<a href="./UpdateDietPlanPage?id=' . $row["id"] . '"' . ' class="btn btn-secondary">Update</a>
-                            <a href="#" class="btn btn-secondary">Delete</a>
+                            <a href="#deleteDietPlanModal" class="btn btn-secondary" data-toggle="modal"
+                            onclick="setDeleteId(' . $row["id"] . ')">Delete</a>
                             <a href="./AssignAllDietPlan?id=' . $row["id"] . '" class="btn btn-primary">Assign</a>';
                         }
 
@@ -60,6 +61,27 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
         }
         ?>
     </div>
+    <div id="deleteDietPlanModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Diet Plan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this Record?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <input type="hidden" id="delete_id">
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger" onclick="deleteDietPlan()" value="Delete">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 </div>

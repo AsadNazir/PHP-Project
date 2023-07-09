@@ -195,6 +195,36 @@ class DietModal
         echo json_encode($output["status"]);
     }
 
+    //Deleting cow entry from diet table
+    public function deleteDietPlan($conn, $table, $id)
+    {
+        $query = "DELETE FROM $table WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            return "deleted";
+        } else {
+            echo "Error deleting diet plan: " . mysqli_stmt_error($stmt);
+        }
+
+        mysqli_stmt_close($stmt);
+
+    }
+
+      //API for deleting diet Plan
+      public function deleteDietPlanApi($conn, $table, $req)
+      {
+          $id = $req['id'];
+  
+          $deletion = $this->deleteDietPlan($conn, 'diet', $id);
+          $output["status"] = $deletion;
+  
+          echo json_encode($output["status"]);
+      }
+
     //Getting last record from diet table to get the diet id
     //for diet_feed table
     public function getDietId($conn, $table)

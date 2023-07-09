@@ -13,7 +13,7 @@ for ($i = 0; $i < count($result); $i++) {
   $row = $result[$i];
   ?>
   <div class="card CowCard" id="<?php echo "GR-" . $row['id']; ?>">
-    <h5 class="card-header">GR-
+    <h5 class="card-header">RFID Tag-
       <?php echo $row['id']; ?>
     </h5>
     <div class="card-body CowCardBody">

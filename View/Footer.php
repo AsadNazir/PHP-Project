@@ -140,7 +140,26 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
 
   });
 
+//Function for deleting dietplan using ajax
 
+function deleteDietPlan() {
+    var id = $('#delete_id').val();
+    $('#deleteDietPlanModal').modal('hide');
+    $.ajax({
+      type: 'get',
+      data: {
+        id: id,
+      },
+      url: "./DeleteDietPlanApi",
+      success: function (data) {
+        var response = JSON.parse(data);
+
+        if (response == "deleted") {
+          location.reload();
+        }
+      }
+    })
+  }
 
 </script>
 </body>

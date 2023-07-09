@@ -119,6 +119,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/AssignAllDietPlan":
     case "/AssignDietPlanApi":
     case "/UpdateDietPlanPage":
+    case "/DeleteDietPlanApi":
         $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $Dc->handleRequest();
         break;
