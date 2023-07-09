@@ -116,6 +116,7 @@ class DietController extends Controllers
                 break;
 
             case "/AssignDietPlanApi":
+
                 $done = true;
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -129,10 +130,22 @@ class DietController extends Controllers
                             // Do something with each selected checkbox
                             // echo $checkbox . '<br>';
 
-                            if ($DietModelObj2->AddCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $checkbox) == false) {
-                                echo "Error:" . $checkbox . " not Inserted.";
-                                $done = false;
-                                //Do something
+                            $cowD = $DietModelObj2->getCowDietByCowId($this->DbCon->connection, "cow_diet", $checkbox);
+
+                            if ($cowD) {
+                                if ($cowD[0]['dietId'] != $_REQUEST['id']) {
+                                    if ($DietModelObj2->UpdateCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $checkbox, $cowD[0]['id']) == false) {
+                                        echo "Error:" . $checkbox . " not Updated.";
+                                        $done = false;
+                                        //Do something
+                                    }
+                                }
+                            } else {
+                                if ($DietModelObj2->AddCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $checkbox) == false) {
+                                    echo "Error:" . $checkbox . " not Inserted.";
+                                    $done = false;
+                                    //Do something
+                                }
                             }
                         }
                     }
@@ -141,6 +154,7 @@ class DietController extends Controllers
                     echo json_encode("added");
                 }
                 break;
+
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;

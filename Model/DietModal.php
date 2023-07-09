@@ -360,7 +360,7 @@ class DietModal
 
         $data = [
             'dietId' => $dietId,
-            'cowId' => $cowId,
+            'cowId' => $cowId
         ];
 
         $insertion = $this->addNewCowDiet($conn, "cow_diet", $data);
@@ -370,6 +370,66 @@ class DietModal
             return false;
         }
     }
+
+    public function updateCowDiet($conn, $table, $data, $id)
+    {
+        $dietId = $data['dietId'];
+        // $cowId = $data['cowId'];
+
+        $sql = "UPDATE $table SET `dietId`=? WHERE id=?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ii", $dietId, $id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            return true;
+        } else {
+            echo "Error: " . mysqli_error($conn);
+            return false;
+        }
+    }
+
+    public function UpdateCowDietApi($conn, $table, $req, $checkbox, $id)
+    {
+        $dietId = $req['id'];
+        $cowId = $checkbox;
+
+        $data = [
+            'dietId' => $dietId,
+            'cowId' => $cowId
+        ];
+
+        $insertion = $this->updateCowDiet($conn, "cow_diet", $data, $id);
+        if ($insertion) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Getting all entries from feed table
+    public function getAllCowDietByDietId($conn, $table, $dietId)
+    {
+        $query = "SELECT * FROM $table WHERE dietID = $dietId";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+
+    public function getCowDietByCowId($conn, $table, $dietId)
+    {
+        $query = "SELECT * FROM $table WHERE cowID = $dietId";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+
+
+
+    public function getAllCowDiet($conn, $table)
+    {
+        return $this->getAllRecords($conn, $table);
+    }
+
 }
 
 ?>
