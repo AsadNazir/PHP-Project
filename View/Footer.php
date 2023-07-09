@@ -92,7 +92,7 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
       processData: false,
       success: function (data) {
         console.log(data);
-        if (JSON.parse(data).status == "updated") {
+        if (JSON.parse(data) == "updated") {
           alert('success');
           window.location.href = './ManageUsers';
         } else {

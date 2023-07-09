@@ -72,9 +72,10 @@ class UserModal
     //Api for adding user
     public function addUserApi($conn, $table, $req, $file)
     {
-        $id = $req['id'];
+        // $id = $req['id'];
         $name = $req['name'];
         $email = $req['email'];
+        $password = $req['password'];
         $job = $req['job'];
         if (isset($req['adminRights'])) {
             $adminRights = "yes";
@@ -89,6 +90,7 @@ class UserModal
         $data = [
             'name' => $name,
             'email' => $email,
+            'password' => $password,
             'job' => $job,
             'adminRights' => $adminRights,
             'image' => $ImageName

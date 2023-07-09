@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" required />
+            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" accept="image/*" required />
             <div id="imageHelp" class="form-text">
                 Add beautiful image of your cow.
             </div>

@@ -42,7 +42,7 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
         <div class="form-group">
             <label for="image">Image</label>
             <img src="Images/upload/<?php echo $row['image']; ?>" sir chashme door alt="Image" style="height:50px">
-            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" />
+            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" accept="image/*" />
             <div id="imageHelp" class="form-text">
                 Add beautiful image of your cow.
             </div>
