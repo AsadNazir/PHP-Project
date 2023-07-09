@@ -55,7 +55,7 @@ if ($data == null) {
                     <th scope="col">Milk</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="milkTableBody">
                 <?php
                 for ($i = 0; $i < count($data); $i++) {
                     $row = $data[$i]; ?>
@@ -152,5 +152,8 @@ if ($data == null) {
             }
         });
     });
+
+
+
 
 </script>

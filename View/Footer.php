@@ -16,6 +16,9 @@ if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan") {
 if ($_SERVER["PATH_INFO"] == "/AddNewFeed" || $_SERVER["PATH_INFO"] == "/Feed") {
   echo '<script src="./JS/Feed.js"></script>';
 }
+if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/DietPlans" || $_SERVER["PATH_INFO"] == "/Milk" || $_SERVER["PATH_INFO"] == "/Feed") {
+  echo '<script src="./JS/search.js"></script>';
+}
 
 ?>
 

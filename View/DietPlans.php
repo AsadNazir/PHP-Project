@@ -27,13 +27,13 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
 
     </div>
 
-    <div class="DietPlanCards">
+    <div class="DietPlanCards cardCont">
 
         <?php
         for ($i = 0; $i < count($result); $i++) {
             $row = $result[$i];
             ?>
-            <div class="DietPlanCards card">
+            <div class="DietPlanCards cardCont">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?php echo $row['name']; ?>
@@ -64,3 +64,26 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
 
 </div>
 <!-- All Scripts Will be added inside the footer or Navbar -->
+<script>
+    // Get the search input element
+    const searchInput = document.querySelector('.SearchBar input');
+
+    // Add event listener to the search input for keyup event
+    searchInput.addEventListener('keyup', function () {
+        const searchValue = searchInput.value.toLowerCase();
+        const dietCards = document.querySelectorAll('.cardCont >div');
+
+
+        dietCards.forEach(function (card) {
+            const title = card.querySelector('.card-title').innerText.toLowerCase();
+            const text = card.querySelector('.card-text').innerText.toLowerCase();
+
+            console.log(title, text);
+            if (title.includes(searchValue) || text.includes(searchValue)) {
+                card.style.display = 'block'; // Display the card if the search text is found
+            } else {
+                card.style.display = 'none'; // Hide the card if the search text is not found
+            }
+        });
+    })
+</script>

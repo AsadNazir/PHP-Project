@@ -38,7 +38,7 @@ $result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="feedRowTable">
                 <?php
 
                 for ($i = 0; $i < count($result); $i++) {
