@@ -1,6 +1,7 @@
 <?php
 
 require_once("db.php");
+require_once("NotificationModal.php");
 class CowModal
 {
     public $conn;
@@ -291,6 +292,13 @@ class CowModal
         $insertion = $this->addNewRow($conn, $table, $data);
         $output["status"] = $insertion;
 
+        if ($quantity < 5) {
+            $NC = new NotificationModal();
+            $NC->addNotification($conn, 'alert', $cow, 'Milk', 'Milk quantity is less than 5Liters for cow with id ' . $cow, $date);
+        }
+        $NC = new NotificationModal();
+
+
         echo json_encode($output);
     }
 
@@ -503,6 +511,38 @@ class CowModal
             return null;
         }
     }
+
+    public function getYesterdayMilkProduction($conn, $table, $id = -99)
+    {
+        // Get yesterday's date
+        $yesterday = date("Y-m-d", strtotime("-1 day"));
+
+        if ($id == -99) {
+            // Retrieve milk production for all cows
+            $sql = "SELECT SUM(quantity) AS total_milk_production FROM $table WHERE date = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $yesterday);
+        } else {
+            // Retrieve milk production for a specific cow
+            $sql = "SELECT SUM(quantity) AS total_milk_production FROM $table WHERE cowId = ? AND date = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "is", $id, $yesterday);
+        }
+
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
+
+        // Fetch the result
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
+
+        // Return the total milk production
+        return $row['total_milk_production'];
+    }
+
 
 }
 

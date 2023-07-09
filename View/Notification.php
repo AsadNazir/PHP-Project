@@ -1,3 +1,15 @@
+<?php
+
+$NM = new NotificationModal();
+
+$res = $NM->getAllNotification($NM->conn->connection, "alert");
+
+if ($res == null) {
+    $res = [];
+}
+
+?>
+
 <div class="MainPage">
 
     <form class="d-flex SearchBar">
@@ -5,25 +17,23 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
-    <div class="NotificationCard card">
+    <div class="NotificationCard cardCont">
 
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment <span
-                    class="badge rounded-pill bg-warning text-dark">Warning</span></h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
-            <a href="#" class="btn btn-secondary">Dismiss</a>
-        </div>
-    </div>
-    <div class="NotificationCard card">
+        <?php
+        for ($i = 0; $i < count($res); $i++) {
+            $row = $res[$i];
 
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment <span
-                    class="badge rounded-pill bg-primary text-light">Warning</span></h5>
-            <p class="card-text">Cow 1 is sick</p>
-            <a href="#" class="btn btn-primary">&nbsp;View&nbsp;</a>
-            <a href="#" class="btn btn-secondary">Dismiss</a>
-        </div>
+            echo '<div class="card-body card">';
+            echo '<h5 class="card-title">' . $row['description'] . ' &nbsp;<span class="badge rounded-pill bg-primary text-light">' . $row['type'] . '</span></h5>';
+            echo '<p class="card-text">' . $row['date'] . '</p>';
+            echo '<div class="btnDivs innerBtn">';
+            echo '<a href="./CowProfile?id=' . $row["cowId"] . '" class="btn btn-primary">&nbsp;View&nbsp;</a>';
+            echo '<a href="#" class="btn btn-secondary">Dismiss</a>';
+            echo '</div>';
+            echo '</div>';
+
+        }
+        ?>
     </div>
 </div>
 <!-- All Scripts Will be added inside the footer or Navbar -->

@@ -3,6 +3,7 @@ require_once("./Model/db.php");
 include_once("CowController.php");
 include_once("UserController.php");
 include_once("DietController.php");
+include_once("NotificationController.php");
 
 class Controllers
 {
@@ -81,10 +82,8 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
 
     case "/Notification":
-        include("View/navbar.php");
-        include("View/Sidebar.php");
-        include("View/Notification.php");
-        include("View/Footer.php");
+        $NC = new NotificationController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $NC->handleRequest();
         break;
 
     case "/Chart":

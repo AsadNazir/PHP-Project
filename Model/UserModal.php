@@ -33,6 +33,7 @@ class UserModal
         if (($result)) {
             $arr = mysqli_fetch_array($result);
 
+
             return $arr;
         } else {
             return null; // User does not exist or password is incorrect
