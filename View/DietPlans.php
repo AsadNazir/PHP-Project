@@ -5,7 +5,7 @@ $DietModelObj = new DietModal();
 $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet");
 
 // echo "<pre>";
-// print_r($result);
+//  print_r($result);
 ?>
 
 <div class="MainPage">
@@ -21,8 +21,7 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
 
         if ($isAdmin == 'yes') {
             echo '<a href="./AddNewDietPlan" class="btn btn-success" type="submit">Add New</a>
-            <a class="btn btn-danger" type="submit">Delete All</a>
-            <a href="./AssignAllDietPlan" class="btn btn-primary" type="submit">Assign All</a>';
+            <a class="btn btn-danger" type="submit">Delete All</a>;';
         }
         ?>
 
@@ -49,7 +48,8 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
                         <?php
                         if ($isAdmin == 'yes') {
                             echo '<a href="#" class="btn btn-secondary">Update</a>
-                            <a href="#" class="btn btn-secondary">Delete</a>';
+                            <a href="#" class="btn btn-secondary">Delete</a>
+                            <a href="./AssignAllDietPlan?id=' . $row["id"] . '" class="btn btn-primary">Assign</a>';
                         }
 
                         ?>

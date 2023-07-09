@@ -2,24 +2,28 @@
 
 $CowModelObj = new CowModal();
 $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, 'cows');
+$Dc = new DietModal();
+$res2 = $Dc->getAllDietPlans($Dc->conn->connection, 'diet', $_REQUEST['id']);
 
 ?>
 
 <div class="MainPage">
-    <h1>Assign Diet plans</h1>
+    <h1>
+        Assing <?php echo $res2[0]["name"] ?>
+    </h1>
 
+    <h1></h1>
     <form class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Cow ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Date Assigned</th>
+                    <th scope="col">Current Plan</th>
                     <th scope="col">Diet Plan</th>
                 </tr>
             </thead>
             <tbody>
-
                 <?php
 
                 for ($i = 0; $i < count($result); $i++) {
@@ -27,13 +31,11 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, 'cows');
                     echo "<tr>";
                     echo '<td>' . $result[$i]["id"] . '</td>
                 <td>' . $result[$i]["name"] . '</td>
-                <td>1/1/2021</td>
+                <td>N/A</td>
                 <td>
-                    <div class="mb-3 form-input">
-                        <select class="form-select months" name="cowId" aria-label="Default select example">
-                            <option value="1">Diet Plan one</option>
-                        </select>
-                    </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              </div>
                 </td>';
                     echo "</tr>";
                 }
