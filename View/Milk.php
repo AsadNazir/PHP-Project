@@ -81,3 +81,76 @@ if ($data == null) {
         </table>
     </div>
 </div>
+
+<script>
+
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    let startDate; // Replace with your start date
+    let endDate; // Replace with your end date
+    const jsonData = <?php echo json_encode($data); ?>;
+    const filterBtn = document.querySelector('.filter');
+    const tableBody = document.querySelector('tbody');
+
+
+    function filterData(startDate, endDate) {
+        const filteredData = jsonData.filter(obj => {
+            const objDate = new Date(obj.date);
+            return objDate >= new Date(startDate) && objDate <= new Date(endDate);
+        });
+
+        return (filteredData);
+    }
+
+
+    filterBtn.addEventListener('click', () => {
+        endDate = endDateInput.value;
+        startDate = startDateInput.value;
+
+        let filteredData = filterData(startDate, endDate);
+        tableBody.innerHTML = '';
+        filteredData.forEach(obj => {
+            tableBody.innerHTML += `
+            <tr>
+                <td>
+                    ${obj.cowId}
+                </td>
+                <td>
+                    Group -A
+                </td>
+                <td>
+                    ${obj.date}
+                </td>
+                <td>
+                    ${obj.quantity}
+                </td>
+            </tr>
+            `;
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        startDateInput.addEventListener('change', () => {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate && endDateInput.value !== '') {
+                startDateInput.value = '';
+                alert('Please select a valid date range.');
+            }
+        });
+
+        endDateInput.addEventListener('change', () => {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+                endDateInput.value = '';
+                alert('Please select a valid date range.');
+            }
+        });
+    });
+
+</script>
