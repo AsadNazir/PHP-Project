@@ -213,6 +213,46 @@ class DietModal
 
     }
 
+     //Getting a diet from table using its id
+     public function getDietById($conn, $table, $id)
+     {
+         $sql = "SELECT * FROM $table WHERE id = ?";
+         $stmt = mysqli_prepare($conn, $sql);
+         mysqli_stmt_bind_param($stmt, "i", $id);
+         mysqli_stmt_execute($stmt);
+         $result = mysqli_stmt_get_result($stmt);
+ 
+         if ($result) {
+             $row = mysqli_fetch_array($result);
+ 
+             // var_dump($row);
+             return $row;
+         } else {
+             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+         }
+ 
+     }
+
+      //Getting a diet from table using its id
+      public function getDietFeedById($conn, $table, $id)
+      {
+          $sql = "SELECT * FROM $table WHERE dietId = ?";
+          $stmt = mysqli_prepare($conn, $sql);
+          mysqli_stmt_bind_param($stmt, "i", $id);
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+  
+          if ($result) {
+              $row = mysqli_fetch_array($result);
+  
+              // var_dump($row);
+              return $row;
+          } else {
+              echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+          }
+  
+      }
+ 
     //Adding diet feed entry
     public function addNewDietFeed($conn, $table, $data)
     {
@@ -282,6 +322,54 @@ class DietModal
         return $rows;
     }
 
+
+    public function addNewCowDiet($conn, $table, $data)
+    {
+        $columns = implode(",", array_keys($data));
+        $placeholders = implode(",", array_fill(0, count($data), "?"));
+
+        $values = array_values($data);
+
+        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        $stmt = mysqli_prepare($conn, $query);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, str_repeat('s', count($values)), ...$values);
+            mysqli_stmt_execute($stmt);
+
+            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                return true;
+            } else {
+                echo "Error inserting: " . mysqli_stmt_error($stmt);
+                mysqli_stmt_close($stmt);
+                return false;
+            }
+
+            // mysqli_stmt_close($stmt);
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+
+    }
+
+
+    public function AddCowDietApi($conn, $table, $req, $checkbox)
+    {
+        $dietId = $req['id'];
+        $cowId = $checkbox;
+
+        $data = [
+            'dietId' => $dietId,
+            'cowId' => $cowId,
+        ];
+
+        $insertion = $this->addNewCowDiet($conn, "cow_diet", $data);
+        if ($insertion) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

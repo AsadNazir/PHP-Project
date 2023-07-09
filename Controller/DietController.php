@@ -32,6 +32,13 @@ class DietController extends Controllers
                 include("View/Footer.php");
                 break;
 
+            case "/UpdateDietPlanPage":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/updateDietPlan.php");
+                include("View/Footer.php");
+                break;
+
             case "/AddNewFeed":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
@@ -98,7 +105,7 @@ class DietController extends Controllers
                 $DietModalObj = new DietModal();
                 $DietModalObj->UpdateFeedAPI($this->DbCon->connection, "users", $this->request, $this->file);
                 break;
-                
+
             case "/GetAllDietFeedsApi":
                 $DietModalObj = new DietModal();
                 $data = $DietModalObj->getAllDietPlans($this->DbCon->connection, "feed", $this->request['id']);
@@ -107,7 +114,33 @@ class DietController extends Controllers
                 }
                 echo json_encode($data);
                 break;
-           
+
+            case "/AssignDietPlanApi":
+                $done = true;
+
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Check if the checkboxes were submitted
+                    if (isset($_POST['checkboxes']) && is_array($_POST['checkboxes'])) {
+                        $selectedCheckboxes = $_POST['checkboxes'];
+                        $DietModelObj2 = new DietModal();
+
+                        // Process the selected checkboxes as needed
+                        foreach ($selectedCheckboxes as $checkbox) {
+                            // Do something with each selected checkbox
+                            // echo $checkbox . '<br>';
+
+                            if ($DietModelObj2->AddCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $checkbox) == false) {
+                                echo "Error:" . $checkbox . " not Inserted.";
+                                $done = false;
+                                //Do something
+                            }
+                        }
+                    }
+                }
+                if ($done) {
+                    echo json_encode("added");
+                }
+                break;
             default:
                 echo "<h1>404 Not Found. Check Your Code User:)</h1>";
                 break;

@@ -63,21 +63,21 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
         <div class="form-group specialFormGroup">
             <div class="mb-3 form-input">
                 <label for="weight" class="form-label">Weight</label>
-                <input type="number" class="form-control" id="weight" name="weight" min="0" />
+                <input type="number" class="form-control" id="weight" name="weight" min="0" value="<?php echo $row['weight'] ?>" required />
             </div>
             <div class="mb-3 form-input">
                 <label for="height" class="form-label">Height</label>
-                <input type="number" class="form-control" id="height" name="height" min="0" />
+                <input type="number" class="form-control" id="height" name="height" min="0" value="<?php echo $row['height'] ?>" required />
             </div>
         </div>
         <div class="form-group specialFormGroup">
             <div class="mb-3 form-input">
                 <label for="color" class="form-label">Color</label>
-                <input type="text" class="form-control" id="color" name="color" />
+                <input type="text" class="form-control" id="color" name="color" value="<?php echo $row['color'] ?>" required />
             </div>
             <div class="mb-3 form-input">
                 <label for="color" class="form-label">Price in Rs</label>
-                <input type="number" min="0" class="form-control" id="price" name="price" />
+                <input type="number" min="0" class="form-control" id="price" name="price" value="<?php echo $row['price'] ?>" required />
             </div>
         </div>
         <div>

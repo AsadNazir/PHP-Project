@@ -21,7 +21,7 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
 
         if ($isAdmin == 'yes') {
             echo '<a href="./AddNewDietPlan" class="btn btn-success" type="submit">Add New</a>
-            <a class="btn btn-danger" type="submit">Delete All</a>;';
+            <a class="btn btn-danger" type="submit">Delete All</a>';
         }
         ?>
 
@@ -47,7 +47,7 @@ $result = $DietModelObj->getAllDietPlans($DietModelObj->conn->connection, "diet"
                         <!-- Only Admins have edit priveleges -->
                         <?php
                         if ($isAdmin == 'yes') {
-                            echo '<a href="#" class="btn btn-secondary">Update</a>
+                            echo '<a href="./UpdateDietPlanPage?id=' . $row["id"] . '"' . ' class="btn btn-secondary">Update</a>
                             <a href="#" class="btn btn-secondary">Delete</a>
                             <a href="./AssignAllDietPlan?id=' . $row["id"] . '" class="btn btn-primary">Assign</a>';
                         }

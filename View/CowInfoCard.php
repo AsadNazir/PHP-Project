@@ -1,6 +1,9 @@
 <?php
 
+include_once("./Model/CowModal.php");
 
+$CowModelObj = new CowModal();
+$result = $CowModelObj->getCowById($CowModelObj->conn->connection, "cows",$_REQUEST['id']);
 
 ?>
 <div class="d-flex CowInfoCard CowProfileCard">
@@ -10,21 +13,25 @@
     <div class="CowInfoCardDetails">
         <p>
             <span>Name:</span>
-            <?php echo "Daisy"; ?>
+            <?php echo $result['name']; ?>
             <span>RFID Tag:</span>
-            <?php echo "123"; ?>
+            <?php echo $result['id']; ?>
         </p>
         <p>
             <span>Breed:</span>
-            <?php echo "Daisy"; ?>
+            <?php echo $result['breed']; ?>
             <span>Weight:</span>
-            <?php echo "Daisy"; ?>
+            <?php echo $result['weight'] . "kg"; ?>
+            <span>Height:</span>
+            <?php echo $result['height'] . "ft"; ?>
             <span>Age:</span>
-            <?php echo "Daisy"; ?>
+            <?php echo $result['age'] . "years"; ?>
         </p>
         <p>
+            <span>Dairy:</span>
+            <?php echo $result['dairy']; ?>
             <span>Insemination:</span>
-            <?php echo "False"; ?>
+            <?php echo "N/A"; ?>
             <span>Pregnant:</span>
             <?php echo "N/A"; ?>
             <span>Sick:</span>

@@ -80,6 +80,8 @@ function isAnyChecked() {
   });
 }
 
+
+
 //--------------------------------------------------------------
 
 //Ajax call for the Add New Diet Plan
