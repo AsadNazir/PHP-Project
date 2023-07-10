@@ -1,5 +1,9 @@
 <?php
 
+$isAdmin = $_SESSION["isAdmin"];
+
+include_once("./Model/DietModal.php");
+
 $CowModelObj = new CowModal();
 $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, 'cows');
 $Dc = new DietModal();

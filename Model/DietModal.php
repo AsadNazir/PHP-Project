@@ -346,7 +346,7 @@ class DietModal
             $query = "SELECT * FROM $table WHERE dietId = $id";
         }
 
-        // $query = "SELECT * FROM $table";
+        $query = "SELECT * FROM $table";
         $result = mysqli_query($conn, $query);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $rows;
