@@ -31,7 +31,7 @@ $result = $CowModelObj->getCowById($CowModelObj->conn->connection, "cows", $_REQ
             <span>Dairy:</span>
             <?php echo $result['dairy']; ?>
             <span>Insemination:</span>
-            <?php echo "N/A"; ?>
+            <?php echo $result['insemination'];; ?>
             <span>Pregnant:</span>
             <?php echo "N/A"; ?>
             <span>Sick:</span>
