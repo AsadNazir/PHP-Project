@@ -74,8 +74,12 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/GetAvgHighestRankOfCowApi":
     case "/Medical":
     case "/MedicalEntryApi":
-        $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $CowCont->handleRequest();
+        if ($Con->validateSession()) {
+            $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $CowCont->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
         break;
 
     case "/logout":
@@ -84,15 +88,24 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
 
     case "/Notification":
-        $NC = new NotificationController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $NC->handleRequest();
+        if ($Con->validateSession()) {
+            $NC = new NotificationController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $NC->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
 
     case "/Chart":
-        include("View/navbar.php");
-        include("View/Sidebar.php");
-        include("View/Chart.php");
-        include("View/Footer.php");
+        if ($Con->validateSession()) {
+            include("View/navbar.php");
+            include("View/Sidebar.php");
+            include("View/Chart.php");
+            include("View/Footer.php");
+        } else {
+            header("Location: ./login");
+        }
         break;
 
 
@@ -105,8 +118,13 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/ValidateUserAPI":
     case "/UpdateUserPage":
     case "/updateUserApi":
-        $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $Uc->handleRequest();
+        if ($Con->validateSession()) {
+            $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $Uc->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
 
     case "/AddNewDietPlan":
@@ -124,8 +142,13 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/DeleteDietPlanApi":
     case "/updateDietPlanApi":
     case "/GetAllFeedsApi":
-        $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $Dc->handleRequest();
+        if ($Con->validateSession()) {
+            $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $Dc->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
     default:
         header("Location: ./View/Error.php");

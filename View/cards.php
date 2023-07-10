@@ -12,7 +12,7 @@ $isAdmin = $_SESSION["isAdmin"];
 for ($i = 0; $i < count($result); $i++) {
   $row = $result[$i];
   ?>
-  <div class="card CowCard" id="<?php echo "GR-" . $row['id']; ?>">
+  <div class="card CowCard cardCont" id="<?php echo "GR-" . $row['id']; ?>">
     <h5 class="card-header">RFID Tag-
       <?php echo $row['id']; ?>
     </h5>
@@ -37,9 +37,9 @@ for ($i = 0; $i < count($result); $i++) {
       </div>
     </div>
     <div class="CowCardbtn btnDivs card-body">
-    <?php
-      echo "<a href='./CowProfile?id=". $row["id"] ."' class='btn btn-primary'>More Details</a>";
-      
+      <?php
+      echo "<a href='./CowProfile?id=" . $row["id"] . "' class='btn btn-primary'>More Details</a>";
+
 
       if ($isAdmin == 'yes') {
         echo ('<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
