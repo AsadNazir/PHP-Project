@@ -9,8 +9,8 @@ const milkAPIsettings = {
   type: "POST",
   url: "./GetAllMilkRecordsByMonth?id=-99",
   success: function (response) {
-    console.log(response)
-    console.log(JSON.parse(response));
+    // console.log(response);
+    // console.log(JSON.parse(response));
     let data = JSON.parse(response);
 
     console.log(dataOfMilkProduction);
@@ -143,6 +143,60 @@ function printBreedChart() {
   });
 }
 
+// Feeds are over here
+let feeds = [];
+let feedCount = [];
+const FeedAPIsettings = {
+  contentType: false,
+  processData: false,
+  type: "POST",
+  url: "./GetAllFeedsApi",
+  success: function (response) {
+    // console.log(response);
+    // console.log(JSON.parse(response));
+
+    //Iterating through the response and adding the milk production to the array
+    for (let i = 0; i < JSON.parse(response).length; i++) {
+      {
+        feeds.push(JSON.parse(response)[i]["name"]);
+        feedCount.push(JSON.parse(response)[i]["quantity"]);
+      }
+    }
+    //Printing the chart
+    printFeedChart();
+  },
+  error: function (err, type, httpStatus) {
+    console.log(err, type, httpStatus);
+  },
+};
+
+$.ajax(FeedAPIsettings);
+
+function printFeedChart() {
+  new Chart(ctx2, {
+    type: "bar",
+    data: {
+      labels: feeds,
+      datasets: [
+        {
+          label: "Quantity of Feed (kg)",
+          data: feedCount,
+          backgroundColor: "rgba(75, 192, 192, 0.5)",
+          borderColor: "rgb(75, 192, 192)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
 //Dont touch this line of code i have no idea what it does but it does somethings
 window.jsPDF = window.jspdf.jsPDF;
 //----------------------------------------------
@@ -189,29 +243,6 @@ new Chart(ctx, {
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
 const feedTypes = ["Grass", "Hay", "Silage", "Concentrate", "Minerals"];
-
-new Chart(ctx2, {
-  type: "bar",
-  data: {
-    labels: feedTypes,
-    datasets: [
-      {
-        label: "Quantity of Feed (kg)",
-        data: generateRandomDataForFeed(),
-        backgroundColor: "rgba(75, 192, 192, 0.5)",
-        borderColor: "rgb(75, 192, 192)",
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
-});
 
 function generateRandomDataForBreed() {
   const data = [];

@@ -1,26 +1,69 @@
 <div class="MainPage">
   <h1 class="MainDashBoardHeadings">Milk Production</h1>
   <div class="MilkProduction">
+
+    <?php
+
+    require_once("./Model/CowModal.php");
+    $CowModalObj = new CowModal();
+    $res = $CowModalObj->getACowMilkRecord($CowModalObj->conn->connection, "milk");
+    ?>
     <div>
       <h1>Annual</h1>
       <!-- Upadate the Production here in PHP  -->
-      <h3>0 ltr</h3>
+      <h3>
+        <?php
+
+        if ($res['total_year'] == null) {
+          echo "0 ltr";
+        } else {
+          echo $res['total_year'] . " ltr";
+        }
+        ?>
+      </h3>
     </div>
     <div>
       <h1>Monthly</h1>
       <!-- Upadate the Production here in PHP  -->
-      <h3>0 ltr</h3>
+      <h3>
+        <?php
+        if ($res['total_month'] == null) {
+          echo "0 ltr";
+        } else {
+          echo $res['total_month'] . " ltr";
+        }
+
+        ?>
+      </h3>
     </div>
     <div>
       <h1>Weekly</h1>
       <!-- Upadate the Production here in PHP  -->
-      <h3>0 ltr</h3>
+      <h3>
+        <?php
+        if ($res['total_week'] == null) {
+          echo "0 ltr";
+        } else {
+          echo $res['total_week'] . " ltr";
+        }
+
+        ?>
+      </h3>
 
     </div>
     <div>
       <h1>Daily</h1>
       <!-- Upadate the Production here in PHP  -->
-      <h3>0 ltr</h3>
+      <h3>
+        <?php
+        if ($res['total_day'] == null) {
+          echo "0 ltr";
+        } else {
+          echo $res['total_month'] . " ltr";
+        }
+
+        ?>
+      </h3>
 
     </div>
   </div>

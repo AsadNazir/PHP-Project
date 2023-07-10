@@ -259,6 +259,15 @@ button {
     margin: 1rem 0;
 }
 
+.MilkProduction h1,
+.MilkProduction h3 {
+    color: white !important;
+}
+
+.MilkProduction >div>h1{
+    color: white !important;
+}
+
 /* Write media Queries */
 @media screen and (max-width: 850px) {
     .dashBoardBody {
