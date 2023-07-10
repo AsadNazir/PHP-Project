@@ -12,7 +12,59 @@ $isAdmin = $_SESSION["isAdmin"];
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DashBoard | Page Title here</title>
+  <link rel="icon" type="image/x-icon" href="Images/Asset 2.svg">
+  <title>
+    <?php
+
+    switch ($_SERVER["PATH_INFO"]) {
+      case '/register':
+        echo "Register | Add Cow | Dairy Farm Management System";
+        break;
+      case '/Medical':
+        echo "Medical | Dairy Farm Management System";
+        break;
+      case '/Milk':
+        echo "Milk | Dairy Farm Management System";
+        break;
+      case '/CowProfile':
+        echo "Cow Profile | Dairy Farm Management System";
+        break;
+      case '/MainDashBoard':
+        echo "Dashboard | Dairy Farm Management System";
+        break;
+      case "/Chart":
+        echo "Charts | Dairy Farm Management System";
+        break;
+      case "/Feed":
+        echo "Feed | Dairy Farm Management System";
+        break;
+      case "/DietPlans":
+        echo "Diet Plans | Dairy Farm Management System";
+        break;
+      case "/AddNewDietPlan":
+        echo "Add Diet Plan | Dairy Farm Management System";
+        break;
+      case "/UpdateDietPlan":
+        echo "Update Diet Plan | Dairy Farm Management System";
+        break;
+      case "/Notification":
+        echo "Notification | Dairy Farm Management System";
+        break;
+      case "/MilkEntry":
+        echo "Milk Entry | Dairy Farm Management System";
+        break;
+      default:
+        echo "Dairy Farm Management System";
+        break;
+    }
+
+    ?>
+
+
+
+
+
+  </title>
 
   <!-- JQuery -->
 
@@ -94,7 +146,7 @@ $isAdmin = $_SESSION["isAdmin"];
   </head>
 
   <body class="ltheme_body">
-    <nav class="navbar-expand-lg navbar-light navbar navbar-expand-lg navbar-custom ">
+    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom ">
       <div class="container-fluid">
         <a class="navbar-brand logoText" href="./MainDashBoard">
           <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
@@ -120,18 +172,18 @@ $isAdmin = $_SESSION["isAdmin"];
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li class="profilePic dropdown-item">
                   <div>
-                    <?php 
-                    $UserModalObj = new UserModal();
-                    $result = $UserModalObj->getUserByEmail($UserModalObj->conn->connection, "users", $_SESSION['email']);
-                    ?>
-                    <img src="Images/upload/<?php echo $result['image'];?>" alt="">
-                    <span>
                     <?php
-                      if ($isAdmin == 'yes') {
-                        echo "Admin";
-                      } else {
-                        echo "Not Admin";
-                      } ?>
+  $UserModalObj = new UserModal();
+  $result = $UserModalObj->getUserByEmail($UserModalObj->conn->connection, "users", $_SESSION['email']);
+  ?>
+                  <img src="Images/upload/<?php echo $result['image']; ?>" alt="">
+                  <span>
+                    <?php
+                    if ($isAdmin == 'yes') {
+                      echo "Admin";
+                    } else {
+                      echo "Not Admin";
+                    } ?>
                   </span>
 
                 </div>
