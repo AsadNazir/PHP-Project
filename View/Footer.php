@@ -140,9 +140,9 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
 
   });
 
-//Function for deleting dietplan using ajax
+  //Function for deleting dietplan using ajax
 
-function deleteDietPlan() {
+  function deleteDietPlan() {
     var id = $('#delete_id').val();
     $('#deleteDietPlanModal').modal('hide');
     $.ajax({
@@ -160,6 +160,39 @@ function deleteDietPlan() {
       }
     })
   }
+
+
+  // ---------------------
+
+  $(document).on('submit', '.MedicalForm', async function (e) {
+    debugger;
+    e.preventDefault();
+
+    var data = new FormData(this);
+
+    //AJAX Request for saving the data --------------------------
+
+    $.ajax({
+      data: data,
+      type: "POST",
+      url: "./MedicalEntryApi",
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (JSON.parse(data).status == "added") {
+          alert('success');
+          //window.location.href = './Milk';
+          return false;
+        } else {
+          alert('error');
+          return false;
+        }
+      },
+      error: function (xhr, textStatus, responseText) { }
+    });
+
+  });
 
 </script>
 </body>

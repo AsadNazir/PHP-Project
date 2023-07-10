@@ -542,7 +542,35 @@ class CowModal
         // Return the total milk production
         return $row['total_milk_production'];
     }
+    public function EnterMedicalApi($conn, $table, $req)
+    {
 
+        $cow = $req['cow'];
+        // echo $cow;
+        $date = $req['date'];
+        $condition = $req['condition'];
+        $description = $req['description'];
+
+        $data = [
+            'description' => $description,
+            'date' => $date,
+            'cowId' => $cow,
+            'condition' => $condition
+        ];
+
+        
+
+        $output["status"] = true;
+
+        if ($condition == "sick" || $condition == "dead" || $condition == "pregnant") {
+            $NC = new NotificationModal();
+            $NC->addNotification($conn, 'alert', $cow, 'Health', 'Cow with Id ' . $cow . " is " . $condition, $date);
+        }
+        $NC = new NotificationModal();
+
+
+        return $output;
+    }
 
 }
 

@@ -94,8 +94,6 @@ class NotificationModal
                 continue;
             }
 
-           // var_dump($AllNotfication);
-
             if ($AllNotfication != null) {
                 $found = false;
                 for ($j = 0; $j < count($AllNotfication); $j++) {

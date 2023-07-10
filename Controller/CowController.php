@@ -135,12 +135,18 @@ class CowController extends Controllers
                 echo json_encode($data);
                 break;
 
+            case "/MedicalEntryApi":
+                $CowModalObj = new CowModal();
+                $res = $CowModalObj->EnterMedicalApi($this->DbCon->connection, "medical", $this->request);
+                echo json_encode($res);
+                break;
+                
             case "/Medical":
                 include("View/navbar.php");
                 include("View/Sidebar.php");
                 include("View/MedicalEntry.php");
                 include("View/Footer.php");
-                break;  
+                break;
             default:
                 echo "404 Not Found !";
                 break;
