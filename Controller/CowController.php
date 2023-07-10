@@ -135,8 +135,14 @@ class CowController extends Controllers
                 echo json_encode($data);
                 break;
 
+            case "/Medical":
+                include("View/navbar.php");
+                include("View/Sidebar.php");
+                include("View/MedicalEntry.php");
+                include("View/Footer.php");
+                break;  
             default:
-                echo "Default";
+                echo "404 Not Found !";
                 break;
         }
     }
