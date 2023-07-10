@@ -181,7 +181,7 @@ class UserModal
         mysqli_stmt_close($stmt);
     }
 
-    //API for deleting cow
+    //API for deleting user
     public function deleteUserApi($conn, $table, $req)
     {
         $id = $req['id'];
@@ -244,6 +244,24 @@ class UserModal
         $sql = "SELECT * FROM $table WHERE id = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+
+            // var_dump($row);
+            return $row;
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
+    public function getUserByEmail($conn, $table, $email)
+    {
+        $sql = "SELECT * FROM $table WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 

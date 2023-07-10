@@ -120,10 +120,22 @@ $isAdmin = $_SESSION["isAdmin"];
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li class="profilePic dropdown-item">
                   <div>
-                    <img src="Images/cool_image.jfif" alt="">
-                    <span>Not Admin</span>
-                  </div>
-                  <h2>
+                    <?php 
+                    $UserModalObj = new UserModal();
+                    $result = $UserModalObj->getUserByEmail($UserModalObj->conn->connection, "users", $_SESSION['email']);
+                    ?>
+                    <img src="Images/upload/<?php echo $result['image'];?>" alt="">
+                    <span>
+                    <?php
+                      if ($isAdmin == 'yes') {
+                        echo "Admin";
+                      } else {
+                        echo "Not Admin";
+                      } ?>
+                  </span>
+
+                </div>
+                <h2>
                   <?php echo $_SESSION["name"]; ?>
                 </h2>
               </li>

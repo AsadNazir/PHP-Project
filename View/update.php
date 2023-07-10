@@ -81,7 +81,7 @@ $row = $obj->getCowById($obj->conn->connection, "cows", $id);
             </div>
         </div>
         <div>
-            <input type="hidden" id="id" name="id" class="form-control" value="<?php echo $row['id'] ?>" required>
+            <input type="hidden" id="id" name="id" class="form-control" value="<?php echo $row['id']; ?>" required>
         </div>
         <div class="submit_cont" style="margin-top:10px">
             <button type="submit" class="mode btn submit">Update Animal</button>

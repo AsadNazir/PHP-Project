@@ -96,6 +96,33 @@ class DietController extends Controllers
                 echo json_encode($data);
                 break;
 
+            case "/updateDietPlanApi":
+                // echo $_REQUEST['cd_id'];
+                // echo $_REQUEST['cowId'];
+
+                $done = true;
+                $DietModelObj2 = new DietModal();
+
+                if ($_REQUEST['cd_id'] == "noId") {
+                    if ($DietModelObj2->AddCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $_REQUEST['cowId']) == false) {
+                        echo "Error:" . $_REQUEST['cowId'] . " not Inserted.";
+                        $done = false;
+                        //Do something
+                    }
+                } else {
+                    $cowD = $DietModelObj2->getCowDietByCowId($this->DbCon->connection, "cow_diet", $_REQUEST['cowId']);
+                    // var_dump($cowD);
+                    if ($DietModelObj2->UpdateCowDietApi($this->DbCon->connection, "cow_diet", $this->request, $_REQUEST['cowId'], $cowD[0]['id']) == false) {
+                        echo "Error:" . $cowD[0]['id'] . " not Updated.";
+                        $done = false;
+                        //Do something
+                    }
+                }
+                if ($done) {
+                    echo json_encode("updated");
+                }
+                break;
+
             case "/AddNewDietPlanApi":
                 $DietModelObj = new DietModal();
                 $DietModelObj->AddDietPlanApi($this->DbCon->connection, "diet", $this->request);
