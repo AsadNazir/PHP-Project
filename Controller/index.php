@@ -72,6 +72,7 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/GetAllMilkRecordsByMonth":
     case "/GetAllMilkRecordsByDays":
     case "/GetAvgHighestRankOfCowApi":
+    case "/Medical":
         $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
         $CowCont->handleRequest();
         break;
