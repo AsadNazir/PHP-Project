@@ -542,34 +542,52 @@ class CowModal
         // Return the total milk production
         return $row['total_milk_production'];
     }
+
+    public function addNewMedical($conn, $table, $data)
+    {
+        $cow_id = $data['cow_id'];
+        $description = $data['description'];
+        $date = $data['date'];
+        $condition = $data['condition'];
+        $temperature = $data['temperature'];
+
+        $sql = "INSERT INTO $table ( `description`, `date`, `cow_id`, `condition`, `temperature`) VALUES ('$description', '$date', '$cow_id', '$condition', '$temperature')";
+
+        if (mysqli_query($conn, $sql)) {
+            return "added";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
     public function EnterMedicalApi($conn, $table, $req)
     {
-
-        $cow = $req['cow'];
+        // $cow = $req['cow'];
         // echo $cow;
-        $date = $req['date'];
-        $condition = $req['condition'];
         $description = $req['description'];
+        $date = $req['date'];
+        $cow_id = $req['cow'];
+        $condition = $req['condition'];
+        $temperature = $req['temperature'];
 
         $data = [
             'description' => $description,
             'date' => $date,
-            'cowId' => $cow,
-            'condition' => $condition
+            'cow_id' => $cow_id,
+            'condition' => $condition,
+            'temperature' => $temperature
         ];
 
-        
+        $insertion = $this->addNewMedical($conn, $table, $data);
+        $output["status"] = $insertion;
 
-        $output["status"] = true;
-
-        if ($condition == "sick" || $condition == "dead" || $condition == "pregnant") {
+        if ($insertion == "added") {
+            if ($condition == "sick" || $condition == "dead" || $condition == "pregnant") {
+                $NC = new NotificationModal();
+                $NC->addNotification($conn, 'alert', $cow_id, 'Health', 'Cow with Id ' . $cow_id . " is " . $condition, $date);
+            }
             $NC = new NotificationModal();
-            $NC->addNotification($conn, 'alert', $cow, 'Health', 'Cow with Id ' . $cow . " is " . $condition, $date);
         }
-        $NC = new NotificationModal();
-
-
-        return $output;
+        echo json_encode($output);
     }
 
 }

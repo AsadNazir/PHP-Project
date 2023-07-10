@@ -137,8 +137,10 @@ class CowController extends Controllers
 
             case "/MedicalEntryApi":
                 $CowModalObj = new CowModal();
-                $res = $CowModalObj->EnterMedicalApi($this->DbCon->connection, "medical", $this->request);
-                echo json_encode($res);
+                // $res = 
+                $CowModalObj->EnterMedicalApi($this->DbCon->connection, "medical", $this->request);
+                
+                // echo json_encode($res);
                 break;
                 
             case "/Medical":

@@ -7,7 +7,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 ?>
 
 <div class="MainPage">
-    <form class="MedicalForm InputForms" onsubmit="return formSubmitMedical()">
+    <form class="MedicalForm InputForms" id="MedicalForm">
         <h1>Add Medical Record</h1>
         <div class="mb-3 form-input">
             <label for="cow">Select the cow</label>
@@ -33,12 +33,12 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 
         <div class="mb-3 form-input">
             <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" min="0" id="condition" name="description"
+            <input type="text" class="form-control" min="0" id="description" name="description"
                 aria-describedby="description" required />
         </div>
         <div class="mb-3 form-input">
-            <label for="description" class="form-label">Temptrature</label>
-            <input type="number" class="form-control" min="0" id="condition" name="temptrature"
+            <label for="description" class="form-label">Temperature</label>
+            <input type="number" class="form-control" min="0" id="temperature" name="temperature"
                 aria-describedby="description" required />
         </div>
         <div class="mb-3 form-input">

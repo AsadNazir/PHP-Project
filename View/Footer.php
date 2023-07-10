@@ -164,8 +164,8 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
 
   // ---------------------
 
-  $(document).on('submit', '.MedicalForm', async function (e) {
-    debugger;
+  $(document).on('submit', '#MedicalForm', async function (e) {
+    // debugger;
     e.preventDefault();
 
     var data = new FormData(this);
@@ -182,17 +182,52 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
         console.log(data);
         if (JSON.parse(data).status == "added") {
           alert('success');
-          //window.location.href = './Milk';
-          return false;
+          window.location.href = './Milk';
+          // return false;
         } else {
           alert('error');
-          return false;
+          // return false;
         }
       },
       error: function (xhr, textStatus, responseText) { }
     });
 
   });
+
+  //AJAX for adding milk entry
+
+  $(document).on('submit', '#AddMilk', async function (e) {
+    e.preventDefault();
+
+    var data = new FormData(this);
+    selectElement = document.querySelector('#cow');
+    var x = selectElement.value;
+    console.log(x);
+    data.set("id", x);
+
+    //AJAX Request for saving the data --------------------------
+
+    $.ajax({
+      data: data,
+      type: "POST",
+      url: "./MedicalEntryApi",
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        if (JSON.parse(data).status == "added") {
+          alert('success');
+          window.location.href = './Medical';
+        } else {
+          alert('error');
+
+        }
+      },
+      error: function (xhr, textStatus, responseText) { }
+    });
+
+  });
+
 
 </script>
 </body>
