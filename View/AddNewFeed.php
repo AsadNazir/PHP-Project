@@ -9,8 +9,8 @@
         </div>
         <div class="mb-3 form-input">
             <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control" min="2" max="12" id="quantity" name="quantity"
-                aria-describedby="breedHelp" required />
+            <input type="number" class="form-control" min="0" id="quantity" name="quantity" aria-describedby="breedHelp"
+                required />
 
         </div>
         <div class="mb-3 form-input">

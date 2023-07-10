@@ -344,8 +344,22 @@ class CowModal
     }
 
     //Returns Annual, Monthly, Weekly and Daily Milk Records of a Cow with ID
-    public function getACowMilkRecord($conn, $table, $id)
+    public function getACowMilkRecord($conn, $table, $id = -99)
     {
+        if ($id == -99) {
+            $sql2 = "SELECT
+            (SELECT SUM(`quantity`) FROM $table WHERE  YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
+            (SELECT SUM(`quantity`) FROM $table WHERE YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
+            (SELECT SUM(`quantity`) FROM $table WHERE DATE(`date`) = CURRENT_DATE()) AS total_day,
+            (SELECT SUM(`quantity`) FROM $table WHERE YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
+
+            $stmt2 = mysqli_prepare($conn, $sql2);
+            mysqli_stmt_execute($stmt2);
+            $result2 = mysqli_stmt_get_result($stmt2);
+            $row2 = mysqli_fetch_array($result2);
+            return $row2;
+
+        }
         $sql = "SELECT
             (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND MONTH(`date`) = MONTH(CURRENT_DATE())) AS total_month,
             (SELECT SUM(`quantity`) FROM $table WHERE cowId = ? AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND WEEK(`date`) = WEEK(CURRENT_DATE())) AS total_week,
