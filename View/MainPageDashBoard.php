@@ -60,7 +60,7 @@
         if ($res['total_day'] == null) {
           echo "0 ltr";
         } else {
-          echo $res['total_month'] . " ltr";
+          echo $res['total_day'] . " ltr";
         }
 
         ?>

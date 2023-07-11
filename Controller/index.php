@@ -108,14 +108,17 @@ switch ($_SERVER["PATH_INFO"]) {
         }
         break;
 
-
+    case "/ValidateUserAPI":
+        $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $Uc->handleRequest();
+        break;
     // Added User Controller Added
     //Admin and non admin Users
     case "/AddUsers":
     case "/AddUserApi":
     case "/ManageUsers":
     case "/DeleteUsersApi":
-    case "/ValidateUserAPI":
+
     case "/UpdateUserPage":
     case "/updateUserApi":
         if ($Con->validateSession()) {
