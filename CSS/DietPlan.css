@@ -1,31 +1,29 @@
 .DietPlanCards {
     margin-bottom: 0.5rem;
-    background-color: var(--background-primary);
-    color: var(--foreground-primary);
 }
 
-.dropdown {
+.DietPlanCards>div {
+    color: var(--foreground-primary);
+    background-color: var(--background-primary);
+    margin: 1rem 0 !important;
+}
+
+.dropdown-custom {
     font-size: var(--fs4);
     position: relative;
-    /* display: inline-block; */
     font-family: Arial, sans-serif;
 }
 
-.dropdown-button {
-    background-color: var(--background-primary);
-    border: 1px solid #ddd;
-    color: var(--foreground-primary);
-    padding: 1rem;
-    cursor: pointer;
+.dropdown-button-custom {
     outline: none;
     transition: background-color 0.3s;
 }
 
-.dropdown-button:hover {
+.dropdown-button-custom:hover {
     background-color: var(--background-primary);
 }
 
-.dropdown-content {
+.dropdown-content-custom {
     display: none;
     position: absolute;
     background-color: #fff;
@@ -37,15 +35,57 @@
     width: 90%;
 }
 
-.dropdown-content label {
+.dropdown-content-custom label {
     display: block;
     margin-bottom: 0.5rem;
 }
 
-.dropdown-content label input[type="checkbox"] {
+.dropdown-content-custom label input[type="checkbox"] {
     margin-right: 1rem;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-custom:hover .dropdown-content-custom {
     display: block;
+}
+
+#selected-items {
+    list-style: none;
+    font-size: var(--fs4);
+    border-radius: 5px;
+}
+
+.dropdown-custom.required-error {
+    border-color: red;
+}
+
+.feedError {
+    margin: 2rem 0;
+    font-size: var(--fs5);
+    color: red;
+}
+
+.btnDivsFeed {
+    margin: 0.5rem 0;
+}
+
+.btnDivsFeed a {
+    font-size: var(--fs5);
+}
+
+table {
+    background-color: var(--background-primary);
+    color: var(--foreground-primary);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+table td,
+table th {
+    color: var(--foreground-primary);
+    padding: 0.8rem 0.5rem !important;
+}
+
+table td:first-child,
+table th:first-child {
+    padding-left: 1rem !important;
 }

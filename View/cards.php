@@ -11,10 +11,9 @@ $isAdmin = $_SESSION["isAdmin"];
 
 for ($i = 0; $i < count($result); $i++) {
   $row = $result[$i];
-  # code...
   ?>
-  <div class="card CowCard" id="<?php echo "GR-" . $row['id']; ?>">
-    <h5 class="card-header">GR-
+  <div class="card CowCard cardCont" id="<?php echo "GR-" . $row['id']; ?>">
+    <h5 class="card-header">RFID Tag-
       <?php echo $row['id']; ?>
     </h5>
     <div class="card-body CowCardBody">
@@ -38,13 +37,13 @@ for ($i = 0; $i < count($result); $i++) {
       </div>
     </div>
     <div class="CowCardbtn btnDivs card-body">
-      <a href="" class="btn btn-primary">More Details</a>
       <?php
+      echo "<a href='./CowProfile?id=" . $row["id"] . "' class='btn btn-primary'>More Details</a>";
+
 
       if ($isAdmin == 'yes') {
         echo ('<a href="#deleteCowModal" class="btn btn-secondary" data-toggle="modal"
       onclick="setDeleteId(' . $row["id"] . ')">Delete</a>');
-
 
         echo ('<a href="./UpdateCowPage?id=' . $row["id"] . '"' . ' class="btn btn-secondary">Update</a>');
       }
@@ -72,34 +71,6 @@ for ($i = 0; $i < count($result); $i++) {
     </div>
   </div>
 
-
-
   <?php
-
 }
 ?>
-
-<script>
-  function setDeleteId(id) {
-    $('#delete_id').val(id);
-  }
-
-  function deleteCow() {
-    var id = $('#delete_id').val();
-    $('#deleteCowModal').modal('hide');
-    $.ajax({
-      type: 'get',
-      data: {
-        id: id,
-      },
-      url: "./DeleteCow",
-      success: function (data) {
-        var response = JSON.parse(data);
-
-        if (response == "deleted") {
-          location.reload();
-        }
-      }
-    })
-  }
-</script>

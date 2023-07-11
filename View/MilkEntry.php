@@ -10,15 +10,15 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
     <form class="InputForms" id="AddMilk">
         <h1>Add Milk Entry</h1>
         <div class="mb-3 form-input">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="cow" id="cow">
 
-                <option selected>Select the Cow</option>
+                <option selected required>Select the Cow</option>
                 <?php
                 for ($i = 0; $i < count($result); $i++) {
                     $row = $result[$i];
                     # code...
                     ?>
-                    <option value="$i" name="cow">
+                    <option value="<?php echo $row['id']; ?>">
                         <?php echo $row['name']; ?>
                     </option>
                 <?php } ?>
@@ -34,7 +34,7 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
 
         <div class="mb-3 form-input">
             <label for="quantity" class="form-label">Milk Quantity</label>
-            <input type="number" class="form-control" min="0" id="milk" name="milk" aria-describedby="breedHelp"
+            <input type="number" class="form-control" min="0" id="milk" name="quantity" aria-describedby="breedHelp"
                 required />
         </div>
         <div class="mb-3 form-input">
@@ -54,45 +54,14 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z">
                         </path>
                     </svg></span>Add the entry</button>
-            <a href="./DietPlans" class=" btn-danger btn submit">Cancel</a>
+            <a href="./Milk" class=" btn-danger btn submit">Cancel</a>
         </div>
     </form>
 </div>
 </div>
 
-</body>
-
-</html>
-
 <script type="text/javascript">
-    $(document).on('submit', '#AddMilk', async function (e) {
-        e.preventDefault();
 
-        var data = new FormData(this);
-        data.set("id", id.value);
-
-        //AJAX Request for saving the data --------------------------
-
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "./AddMilkApi",
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                console.log(data);
-                if (JSON.parse(data).status == "added") {
-                    alert('success');
-                    window.location.href = './MilkEntry';
-                } else {
-                    alert('error');
-
-                }
-            },
-            error: function (xhr, textStatus, responseText) { }
-        });
-
-    });
 
 // ------------------------------------
 </script>

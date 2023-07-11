@@ -1,38 +1,66 @@
 <?php
+$isAdmin = $_SESSION["isAdmin"];
 
-include_once("./Model/CowModal.php");
-require_once("./Model/DietModal.php");
+include_once("./Model/DietModal.php");
 
-$CowModelObj = new CowModal();
-$result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
+$DietModelObj = new DietModal();
+$result = $DietModelObj->getAllFeeds($DietModelObj->conn->connection, "feed");
+
 ?>
 
+<!--  Purpose: Add new diet plan to the database -->
 <div class="MainPage">
     <form class="InputForms" id="AddNewDietPlan">
         <h1>Add Diet Plan</h1>
 
         <div class="mb-3 form-input">
-            <label for="breed" class="form-label">Diet Plane Name</label>
-            <input type="text" class="form-control" id="text" name="email" aria-describedby="breedHelp" required />
+            <label for="planName" class="form-label">Diet Plan Name</label>
+            <input type="text" class="form-control" id="text" name="planName" aria-describedby="breedHelp" required />
         </div>
 
         <div class="mb-3 form-input">
-            <label for="quantity" class="form-label">Description</label>
-            <input type="number" class="form-control" min="0" id="text" name="password" aria-describedby="breedHelp"
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" min="0" id="text" name="description" aria-describedby="breedHelp"
                 required />
         </div>
 
-        <!-- DropDown CheckBox -->
-        <div class="dropdown">
-            <button class="dropdown-button">Select Options</button>
-            <div class="dropdown-content">
-                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
-                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="option1">Bhoosa 3</label><br>
-                <label><input type="checkbox" name="option2">Bhoosa 2</label><br>
-                <label><input type="checkbox" name="option3">Bhoosa 3</label><br>
+        <div class="specialFormGroup">
+            <!-- DropDown CheckBox -->
+            <div class="dropdown-custom form-input">
+                <button class="dropdown-button-custom btn">Select Feed</button>
+
+                <div class="dropdown-content-custom">
+                    <?php
+
+                    for ($i = 0; $i < count($result); $i++) {
+                        $row = $result[$i];
+                        ?>
+                        <label><input type="checkbox" name="checkboxes[]"
+                            value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?>
+                        </label><br>
+                        <?php
+                    }
+                    ?>
+
+                </div>
             </div>
+            <div>
+            <!-- <input type="hidden" id="id" name="arr_ids" class="form-control" value="<?php //echo $arr_id; ?>" required>
+            <input type="hidden" id="id" name="arr_names" class="form-control" value="<?php //echo $arr_names; ?>" required> -->
+        </div>
+            <!-- Or Add New Feed -->
+            <div class="mb-3 form-input">
+                <a href="./AddNewFeed" class="btn btn-primary submit">Add New Feed</a>
+            </div>
+
+        </div>
+
+        <div class="form-input">
+            <h1>Selected Feed</h1>
+            <div class="specialFormGroup" id="selected-items">
+                Nothing is selected
+            </div>
+            <span class="feedError"></span>
         </div>
 
         <div class="submit_cont" style="margin-top:10px">
@@ -50,97 +78,5 @@ $result = $CowModelObj->getAllCows($CowModelObj->conn->connection, "cows");
     </form>
 </div>
 </div>
-<script>
-    (function ($) {
-        var CheckboxDropdown = function (el) {
-            var _this = this;
-            this.isOpen = false;
-            this.areAllChecked = false;
-            this.$el = $(el);
-            this.$label = this.$el.find('.dropdown-label');
-            this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
-            this.$inputs = this.$el.find('[type="checkbox"]');
-
-            this.onCheckBox();
-
-            this.$label.on('click', function (e) {
-                e.preventDefault();
-                _this.toggleOpen();
-            });
-
-            this.$checkAll.on('click', function (e) {
-                e.preventDefault();
-                _this.onCheckAll();
-            });
-
-            this.$inputs.on('change', function (e) {
-                _this.onCheckBox();
-            });
-        };
-
-        CheckboxDropdown.prototype.onCheckBox = function () {
-            this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.updateStatus = function () {
-            var checked = this.$el.find(':checked');
-
-            this.areAllChecked = false;
-            this.$checkAll.html('Check All');
-
-            if (checked.length <= 0) {
-                this.$label.html('Select Options');
-            }
-            else if (checked.length === 1) {
-                this.$label.html(checked.parent('label').text());
-            }
-            else if (checked.length === this.$inputs.length) {
-                this.$label.html('All Selected');
-                this.areAllChecked = true;
-                this.$checkAll.html('Uncheck All');
-            }
-            else {
-                this.$label.html(checked.length + ' Selected');
-            }
-        };
-
-        CheckboxDropdown.prototype.onCheckAll = function (checkAll) {
-            if (!this.areAllChecked || checkAll) {
-                this.areAllChecked = true;
-                this.$checkAll.html('Uncheck All');
-                this.$inputs.prop('checked', true);
-            }
-            else {
-                this.areAllChecked = false;
-                this.$checkAll.html('Check All');
-                this.$inputs.prop('checked', false);
-            }
-
-            this.updateStatus();
-        };
-
-        CheckboxDropdown.prototype.toggleOpen = function (forceOpen) {
-            var _this = this;
-
-            if (!this.isOpen || forceOpen) {
-                this.isOpen = true;
-                this.$el.addClass('on');
-                $(document).on('click', function (e) {
-                    if (!$(e.target).closest('[data-control]').length) {
-                        _this.toggleOpen();
-                    }
-                });
-            }
-            else {
-                this.isOpen = false;
-                this.$el.removeClass('on');
-                $(document).off('click');
-            }
-        };
-
-        var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
-        for (var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
-            new CheckboxDropdown(checkboxesDropdowns[i]);
-        }
-    })(jQuery);
-</script>
+<!-- If you see this it means the script has already been dynamically included in the footer -->
+<!-- JS is in DietPlan.Js you should also put AJAX over there -->

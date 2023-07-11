@@ -12,10 +12,71 @@ $isAdmin = $_SESSION["isAdmin"];
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DashBoard | Page Title here</title>
+  <link rel="icon" type="image/x-icon" href="Images/Asset 2.svg">
+  <title>
+    <?php
+
+    switch ($_SERVER["PATH_INFO"]) {
+      case '/register':
+        echo "Register | Add Cow | Dairy Farm Management System";
+        break;
+      case '/Medical':
+        echo "Medical | Dairy Farm Management System";
+        break;
+      case '/Milk':
+        echo "Milk | Dairy Farm Management System";
+        break;
+      case '/CowProfile':
+        echo "Cow Profile | Dairy Farm Management System";
+        break;
+      case '/MainDashBoard':
+        echo "Dashboard | Dairy Farm Management System";
+        break;
+      case "/Chart":
+        echo "Charts | Dairy Farm Management System";
+        break;
+      case "/Feed":
+        echo "Feed | Dairy Farm Management System";
+        break;
+      case "/DietPlans":
+        echo "Diet Plans | Dairy Farm Management System";
+        break;
+      case "/AddNewDietPlan":
+        echo "Add Diet Plan | Dairy Farm Management System";
+        break;
+      case "/UpdateDietPlan":
+        echo "Update Diet Plan | Dairy Farm Management System";
+        break;
+      case "/Notification":
+        echo "Notification | Dairy Farm Management System";
+        break;
+      case "/MilkEntry":
+        echo "Milk Entry | Dairy Farm Management System";
+        break;
+      default:
+        echo "Dairy Farm Management System";
+        break;
+    }
+
+    ?>
+
+
+
+
+
+  </title>
 
   <!-- JQuery -->
-  <script src="./jquery.js"></script>
+
+  <!-- ✅ load jquery ✅ -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- ✅ Load CSS file for jQuery UI and JQuery UI -->
+  <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <!-- I don'nt know what is this -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"
     integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,7 +86,6 @@ $isAdmin = $_SESSION["isAdmin"];
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
@@ -41,16 +101,18 @@ $isAdmin = $_SESSION["isAdmin"];
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- JS Pdf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
     integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Dynamic adding of CSS Files -->
   <?php
-  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan")
+  if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed" || $_SERVER["PATH_INFO"] == "/DietPlans")
     echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
 
       ?>
-  <?php
+    <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
     echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
 
@@ -63,6 +125,11 @@ $isAdmin = $_SESSION["isAdmin"];
     <?php
   if ($_SERVER["PATH_INFO"] == "/Chart")
     echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
+
+      ?>
+    <?php
+  if ($_SERVER["PATH_INFO"] == "/CowProfile")
+    echo "<link rel=\"stylesheet\" href=\"./CSS/Profile.css\"/>"
 
       ?>
 
@@ -79,9 +146,9 @@ $isAdmin = $_SESSION["isAdmin"];
   </head>
 
   <body class="ltheme_body">
-    <nav class="navbar-expand-lg navbar-light navbar navbar-expand-lg navbar-custom ">
+    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom ">
       <div class="container-fluid">
-        <a class="navbar-brand logoText" href="#">
+        <a class="navbar-brand logoText" href="./MainDashBoard">
           <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
           Milkesters
         </a>
@@ -105,10 +172,22 @@ $isAdmin = $_SESSION["isAdmin"];
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li class="profilePic dropdown-item">
                   <div>
-                    <img src="Images/cool_image.jfif" alt="">
-                    <span>Not Admin</span>
-                  </div>
-                  <h2>
+                    <?php
+  $UserModalObj = new UserModal();
+  $result = $UserModalObj->getUserByEmail($UserModalObj->conn->connection, "users", $_SESSION['email']);
+  ?>
+                  <img src="Images/upload/<?php echo $result['image']; ?>" alt="">
+                  <span>
+                    <?php
+                    if ($isAdmin == 'yes') {
+                      echo "Admin";
+                    } else {
+                      echo "Not Admin";
+                    } ?>
+                  </span>
+
+                </div>
+                <h2>
                   <?php echo $_SESSION["name"]; ?>
                 </h2>
               </li>

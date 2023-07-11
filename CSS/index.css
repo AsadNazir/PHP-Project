@@ -90,8 +90,13 @@ body {
     display: flex;
 }
 
-.MainPage .btnDivs a:not(:last-child) {
+.MainPage .btnDivs a:not(:last-child),
+.btnDivs div:not(:last-child) {
     margin-right: 1%;
+}
+
+.card .btnDivs {
+    margin-bottom: 0;
 }
 
 .specialFormGroup {
@@ -133,4 +138,31 @@ body {
     font-size: var(--fs5) !important;
     color: var(--foreground-secondary);
     margin: 0.5rem 0;
+}
+
+.MainPage h1:first-child {
+    margin-bottom: 2rem;
+}
+
+table {
+    background-color: var(--background-primary);
+    color: var(--foreground-primary);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+table td,
+table th {
+    color: var(--foreground-primary);
+    padding: 0.8rem 0.5rem !important;
+}
+
+table td:first-child,
+table th:first-child {
+    padding-left: 1rem !important;
+}
+
+.form-check-input
+{
+    transform : scale(1.6);
 }

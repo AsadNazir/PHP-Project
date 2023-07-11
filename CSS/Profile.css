@@ -1,0 +1,123 @@
+.CowProfileCard {
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-primary);
+    color: var(--foreground-secondary);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: static;
+    overflow: hidden;
+}
+
+.CowInfoCard {
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.CowInfoCard {
+    background: var(--background-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+}
+
+.CowInfoCardImg {
+    border-radius: 50%;
+    width: 30%;
+}
+
+.CowInfoCardImg img {
+    border-radius: 50%;
+    width: clamp(100px, 70%, 300px);
+}
+
+.CowInfoCardDetails {
+    display: flex;
+    color: var(--foreground-primary);
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: var(--fs4);
+}
+
+.CowInfoCardDetails span {
+    color: var(--foreground-primary);
+    font-weight: 600;
+    margin-left: 1rem;
+
+}
+
+.CowMilkCardProduction {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.CowMilkCardProduction>div {
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: var(--accent);
+    color: white !important;
+    margin-bottom: 1rem;
+    font-size: var(--fs4);
+}
+
+.MainPage>h1 {
+    margin-bottom: 2rem;
+}
+
+.MainPage>h1:not(:first-child) {
+    margin-top: 2rem;
+}
+
+.CowMilkCardProduction>div h1 {
+    font-size: var(--fs3);
+    color: white !important;
+
+}
+
+.graph {
+    width: 75%;
+    height: 100%;
+
+}
+
+.CowDietCard
+{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.CowDietCard .DietPlanAndFeed
+{
+    width: 90%;
+}
+
+.DietPlanAndFeed> h1
+{
+    margin-bottom: 1rem;
+}
+.DietPlanAndFeed a
+{
+    margin: 1rem 0;
+}
+
+.graphAndStats
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.FeedsName
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}

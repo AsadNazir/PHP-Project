@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" required />
+            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" accept="image/*" required />
             <div id="imageHelp" class="form-text">
                 Add beautiful image of your cow.
             </div>
@@ -40,10 +40,6 @@
             <div class="mb-3 form-check" style="margin-top:10px">
                 <input type="checkbox" class="form-check-input" id="dairy" name="dairy" />
                 <label class="form-check-label" for="dairy">Is your cow a dairy cow?</label>
-            </div>
-            <div class="mb-3 form-check" style="margin-top:10px">
-                <input type="checkbox" class="form-check-input" id="Bull" name="bull" />
-                <label class="form-check-label" for="dairy">Bull Insemination</label>
             </div>
             <div class="mb-3 form-check" style="margin-top:10px">
                 <input type="checkbox" class="form-check-input" id="insemination" name="insemination" />
@@ -104,7 +100,7 @@
             processData: false,
             success: function (data) {
                 console.log(data);
-                if (JSON.parse(data).status == "updated") {
+                if (JSON.parse(data) == "added") {
                     alert('success');
                     window.location.href = './MainDashBoard';
                 } else {

@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" required />
+            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" accept="image/*" required />
             <div id="imageHelp" class="form-text">
                 Optional If you want to upload the image of the User.
             </div>
@@ -51,38 +51,6 @@
 
 </html>
 
-
-<script type="text/javascript">
-    $(document).on('submit', '#addNewUser', async function (e) {
-        e.preventDefault();
-
-        var data = new FormData(this);
-
-        //AJAX Request for saving the data --------------------------
-
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "./AddUserApi",
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                console.log(data);
-                if (JSON.parse(data).status == "updated") {
-                    alert('success');
-                    window.location.href = './ManageUsers';
-                } else {
-                    alert('error');
-
-                }
-            },
-            error: function (xhr, textStatus, responseText) { }
-        });
-
-    });
-
-// ------------------------------------
-</script>
 <script type="text/javascript">
 //    Do'nt add Script here
 //    Do it in a separate file in JS Folder and add the scripts in the footer

@@ -12,7 +12,7 @@ class Db
         $servername = "localhost";
         $username = "root";
         $password = "root";
-        $dbname = "web";
+        $dbname = "automatedfarm";
 
         try {
             $this->connection = mysqli_connect($servername, $username, $password, $dbname);

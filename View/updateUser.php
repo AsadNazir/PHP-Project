@@ -30,9 +30,9 @@ $row = $obj->getUserById($obj->conn->connection, "users", $id);
         <div class="form-group">
             <label for="image">Image</label>
             <img src="Images/upload/<?php echo $row['image']; ?>" sir chashme door alt="Image" style="height:50px">
-            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" />
+            <input type="file" name="image" class="form-control" aria-describedby="imageHelp" accept="image/*"/>
             <div id="imageHelp" class="form-text">
-                Add beautiful image of your cow.
+                Add an profile image for the user.
             </div>
         </div>
         <div class="mb-3 form-check" style="margin-top:10px">

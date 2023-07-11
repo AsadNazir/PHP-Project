@@ -3,6 +3,7 @@ require_once("./Model/db.php");
 include_once("CowController.php");
 include_once("UserController.php");
 include_once("DietController.php");
+include_once("NotificationController.php");
 
 class Controllers
 {
@@ -14,7 +15,10 @@ class Controllers
 
     public function validateSession()
     {
-        return true;
+        if (isset($_SESSION["name"])) {
+            return true;
+        }
+        return false;
     }
 }
 
@@ -59,7 +63,17 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/updateCowApi":
     case "/DeleteCow":
     case "/MilkEntry":
+    case "/Milk":
     case "/AddMilkApi":
+    case "/GetMilkRecordsApi":
+    case "/GetCowBreedsApi":
+    case "/CowProfile":
+    case "/GetACowMilkRecordsApi":
+    case "/GetAllMilkRecordsByMonth":
+    case "/GetAllMilkRecordsByDays":
+    case "/GetAvgHighestRankOfCowApi":
+    case "/Medical":
+    case "/MedicalEntryApi":
         if ($Con->validateSession()) {
             $CowCont = new CowController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
             $CowCont->handleRequest();
@@ -74,47 +88,74 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
 
     case "/Notification":
-        include("View/navbar.php");
-        include("View/Sidebar.php");
-        include("View/Notification.php");
-        include("View/Footer.php");
+        if ($Con->validateSession()) {
+            $NC = new NotificationController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $NC->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
 
     case "/Chart":
-        include("View/navbar.php");
-        include("View/Sidebar.php");
-        include("View/Chart.php");
-        include("View/Footer.php");
+        if ($Con->validateSession()) {
+            include("View/navbar.php");
+            include("View/Sidebar.php");
+            include("View/Chart.php");
+            include("View/Footer.php");
+        } else {
+            header("Location: ./login");
+        }
         break;
 
-
+    case "/ValidateUserAPI":
+        $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+        $Uc->handleRequest();
+        break;
     // Added User Controller Added
     //Admin and non admin Users
     case "/AddUsers":
     case "/AddUserApi":
     case "/ManageUsers":
     case "/DeleteUsersApi":
-    case "/ValidateUserAPI":
+
     case "/UpdateUserPage":
     case "/updateUserApi":
-        $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $Uc->handleRequest();
+        if ($Con->validateSession()) {
+            $Uc = new UserController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $Uc->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
 
     case "/AddNewDietPlan":
     case "/AddNewDietPlanApi":
+    case "/AddFeedApi":
+    case "/AddNewFeed":
     case "/DietPlans":
-        $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
-        $Dc->handleRequest();
+    case "/Feed":
+    case "/DeleteFeedApi":
+    case "/UpdateFeedPage":
+    case "/updateFeedApi":
+    case "/AssignAllDietPlan":
+    case "/AssignDietPlanApi":
+    case "/UpdateDietPlanPage":
+    case "/DeleteDietPlanApi":
+    case "/updateDietPlanApi":
+    case "/GetAllFeedsApi":
+        if ($Con->validateSession()) {
+            $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
+            $Dc->handleRequest();
+        } else {
+            header("Location: ./login");
+        }
+
         break;
     default:
         header("Location: ./View/Error.php");
         break;
 }
-
-
-
-
-
 
 ?>
