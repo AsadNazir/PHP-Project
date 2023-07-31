@@ -6,9 +6,9 @@
 
 .MilkProduction {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    column-gap: 3%;
-    row-gap: 3%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
 }
 
 .MilkProduction>div {
@@ -264,20 +264,48 @@ button {
     color: white !important;
 }
 
-.MilkProduction >div>h1{
+.MilkProduction>div>h1 {
     color: white !important;
+}
+
+.closeOptionsBtn {
+    display: none;
 }
 
 /* Write media Queries */
 @media screen and (max-width: 850px) {
+
+    .closeOptionsBtn {
+        display: block;
+    }
+
+    .wrapperSideBar {
+        width: 100%;
+        height: 100vh;
+        z-index: 100;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+
     .dashBoardBody {
         grid-template-columns: 1fr;
+    }
+
+    .btnOptions {
+        display: block;
     }
 
     .sideBar {
         position: relative;
         top: 0;
+        height: 100%;
         margin-bottom: 2rem;
+    }
+
+    .activeSideBar {
+        display: block !important;
     }
 
     .CowCard {
@@ -333,8 +361,22 @@ button {
         fill: var(--foreground-primary);
     }
 
+    .MainPage h1:first-child {
+        margin-bottom: 1rem;
+    }
+
     .CowStatIcon>svg {
         width: 100%;
         height: 100%;
+    }
+
+    .btnDivs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card-title {
+        text-align: center;
     }
 }

@@ -74,24 +74,23 @@ $data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', 
         <div class="graphAndStats">
             <div class="graph"><canvas id="myChart"></canvas></div>
             <div class="stats">
-                <p>
-                <h1>Avg</h1>
-                <span class="avg">0 ltr</span>
-                </p>
-                <p>
-                <h1>Highest</h1>
-                <span class="highest">0 ltr</span>
-                </p>
-                <p>
-                <h1>Rank</h1>
-                <span class="rank">0 ltr</span>
-                </p>
-                <div class="CowCardbtn btnDivs innerBtn">
-
-                    <a href="./Admin" class="btn btn-secondary" data-toggle="modal">More details</a>
-
+                <div class="insideP">
+                    <h1>Avg</h1>
+                    <br>
+                    <d class="avg">0 ltr</d>
+                </div>
+                <div class="insideP">
+                    <h1>Highest</h1>
+                    <br>
+                    <p class="highest">0 ltr</p>
+                </div>
+                <div class="insideP">
+                    <h1>Rank</h1>
+                    <br>
+                    <p class="rank">0 ltr</p>
                 </div>
             </div>
+
         </div>
 
 

@@ -139,17 +139,13 @@ $isAdmin = $_SESSION["isAdmin"];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
       integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- External JS -->
-    <!-- Include This is everywhere index.js in every php and html file -->
-    <script src="JS/index.js"></script>
-    <script src="JS/api.js"></script>
   </head>
 
   <body class="ltheme_body">
-    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom ">
+    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <a class="navbar-brand logoText" href="./MainDashBoard">
-          <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
+          <img src="Images/Asset 2.svg" width="65" height="65" alt="Logo" class="d-inline-block align-text-top" />
           Milkesters
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"

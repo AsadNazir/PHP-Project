@@ -32,7 +32,7 @@
     --fs1: clamp(1.8rem, 4vw, 3.3rem);
     --fs2: clamp(1.5rem, 3vw, 3rem);
     --fs3: clamp(1.2rem, 2vw, 1.8rem);
-    --fs4: clamp(1rem, 1.1vw, 1.5rem);
+    --fs4: clamp(0.9rem, 1.1vw, 1.5rem);
     --fs5: clamp(0.8rem, 0.92vw, 1.2rem);
     --pdlr: clamp(0.5rem, 15vw, 12rem);
 }
@@ -149,10 +149,17 @@ table {
     color: var(--foreground-primary);
     padding: 1rem;
     border-radius: 5px;
+    font-size: var(--fs5) !important;
+}
+
+.table-responsive {
+    font-size: var(--fs5) !important;
+    width: 100%;
 }
 
 table td,
 table th {
+    font-size: var(--fs5) !important;
     color: var(--foreground-primary);
     padding: 0.8rem 0.5rem !important;
 }
@@ -162,7 +169,39 @@ table th:first-child {
     padding-left: 1rem !important;
 }
 
-.form-check-input
-{
-    transform : scale(1.6);
+.form-check-input {
+    transform: scale(1.1);
+}
+
+.btnOptions {
+    position: sticky;
+    z-index: 10;
+    margin-bottom: 1rem;
+    top: 10px;
+    display: none;
+}
+
+.closeBtnOptions {
+    display: none;
+}
+
+/* Write media Queries */
+@media screen and (max-width: 850px) {
+
+
+    .SearchBar>.btn {
+        display: none;
+    }
+
+    table td,
+    table th {
+
+        padding: 0.5rem 0.3rem !important;
+    }
+
+    table {
+
+        padding: 0.7rem;
+
+    }
 }

@@ -8,7 +8,12 @@ $result = $CowModelObj->getCowById($CowModelObj->conn->connection, "cows", $_REQ
 ?>
 <div class="d-flex CowInfoCard CowProfileCard">
     <div class="CowInfoCardImg">
-        <img src="Images/cool_image.jfif" alt="">
+        <img <?php
+        
+        echo 'src="Images/' . $result['image'] . '"';
+        
+        
+        ?> alt="">
     </div>
     <div class="CowInfoCardDetails">
         <p>
