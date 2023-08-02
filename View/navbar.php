@@ -12,7 +12,7 @@ $isAdmin = $_SESSION["isAdmin"];
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="Images/Asset 2.svg">
+  <link rel="icon" type="image/x-icon" href="./Images/Asset 2.svg">
   <title>
     <?php
 
@@ -91,10 +91,10 @@ $isAdmin = $_SESSION["isAdmin"];
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
 
   <!-- External CSS Over Here -->
-  <link rel="stylesheet" href="./CSS/index.css" />
-  <link rel="stylesheet" href="./CSS/navbar.css" />
-  <link rel="stylesheet" href="./CSS/DashBoard.css" />
-  <link rel="stylesheet" href="./CSS/AddForms.css">
+  <link rel="stylesheet" href="CSS/index.css" />
+  <link rel="stylesheet" href="CSS/navbar.css" />
+  <link rel="stylesheet" href="CSS/DashBoard.css" />
+  <link rel="stylesheet" href="CSS/AddForms.css">
 
   <!-- Fonts Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -109,27 +109,27 @@ $isAdmin = $_SESSION["isAdmin"];
   <!-- Dynamic adding of CSS Files -->
   <?php
   if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed" || $_SERVER["PATH_INFO"] == "/DietPlans")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/DietPlan.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/AddForms.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/Notification")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Notification.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Notification.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/Chart")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Chart.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/CowProfile")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Profile.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Profile.css\"/>"
 
       ?>
 

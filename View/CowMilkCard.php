@@ -2,9 +2,8 @@
 
 include_once("Model/CowModal.php");
 $CowModelObj = new CowModal();
-$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', $_REQUEST['id'])
-
-    ?>
+$data = $CowModelObj->getACowMilkRecord($CowModelObj->conn->connection, 'milk', $_REQUEST['id']);
+?>
 <div class="d-flex CowProfileCard CowMilkCard">
     <div class="CowMilkCardProduction">
 

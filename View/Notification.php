@@ -7,6 +7,7 @@ $res = $NM->getAllNotification($NM->conn->connection, "alert");
 if ($res == null) {
     $res = [];
 }
+// var_dump ($res);
 
 ?>
 
@@ -20,7 +21,7 @@ if ($res == null) {
     <div class="NotificationCard cardCont">
 
         <?php
-        for ($i = count($res) - 1; $i >= 0; $i--) {
+        for ($i = 0; $i < count($res); $i++) {
             $row = $res[$i];
 
             echo '<div class="card-body card">';

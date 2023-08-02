@@ -24,7 +24,7 @@ if ($_SERVER["PATH_INFO"] == "/Notifications" || $_SERVER["PATH_INFO"] == "/Diet
 <!-- External JS -->
 <!-- Include This is everywhere index.js in every php and html file -->
 <script src="JS/index.js"></script>
-<script src="JS/api.js"></script>
+<!-- <script src="JS/api.js"></script> -->
 <script>
 
   //Function for setting id for deleting any record

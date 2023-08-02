@@ -65,6 +65,7 @@ $("body").ready(function () {
   let options = document.querySelector(".btnOptions");
   let closeBtn = document.querySelector(".closeOptionsBtn");
 
+  if(sidebar != null){
   options.addEventListener("click", function () {
     if (sidebar.classList.contains("activeSideBar")) {
       sidebar.classList.remove("activeSideBar");
@@ -77,4 +78,5 @@ $("body").ready(function () {
   closeBtn.addEventListener("click", function () {
     sidebar.classList.remove("activeSideBar");
   });
+}
 });
