@@ -354,6 +354,8 @@ class CowModal
             (SELECT SUM(`quantity`) FROM $table WHERE YEAR(`date`) = YEAR(CURRENT_DATE())) AS total_year";
 
             $stmt2 = mysqli_prepare($conn, $sql2);
+
+
             mysqli_stmt_execute($stmt2);
             $result2 = mysqli_stmt_get_result($stmt2);
             $row2 = mysqli_fetch_array($result2);
@@ -368,6 +370,8 @@ class CowModal
 
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "iiii", $id, $id, $id, $id);
+
+        var_dump($stmt);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);

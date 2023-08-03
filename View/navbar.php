@@ -12,7 +12,7 @@ $isAdmin = $_SESSION["isAdmin"];
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="Images/Asset 2.svg">
+  <link rel="icon" type="image/x-icon" href="./Images/Asset 2.svg">
   <title>
     <?php
 
@@ -91,10 +91,10 @@ $isAdmin = $_SESSION["isAdmin"];
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
 
   <!-- External CSS Over Here -->
-  <link rel="stylesheet" href="./CSS/index.css" />
-  <link rel="stylesheet" href="./CSS/navbar.css" />
-  <link rel="stylesheet" href="./CSS/DashBoard.css" />
-  <link rel="stylesheet" href="./CSS/AddForms.css">
+  <link rel="stylesheet" href="CSS/index.css" />
+  <link rel="stylesheet" href="CSS/navbar.css" />
+  <link rel="stylesheet" href="CSS/DashBoard.css" />
+  <link rel="stylesheet" href="CSS/AddForms.css">
 
   <!-- Fonts Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -109,27 +109,27 @@ $isAdmin = $_SESSION["isAdmin"];
   <!-- Dynamic adding of CSS Files -->
   <?php
   if ($_SERVER["PATH_INFO"] == "/AddNewDietPlan" || $_SERVER["PATH_INFO"] == "/Feed" || $_SERVER["PATH_INFO"] == "/DietPlans")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/DietPlan.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/DietPlan.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/register" || $_SERVER["PATH_INFO"] == "/AddUsers")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/AddForms.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/AddForms.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/Notification")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Notification.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Notification.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/Chart")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Chart.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Chart.css\"/>"
 
       ?>
     <?php
   if ($_SERVER["PATH_INFO"] == "/CowProfile")
-    echo "<link rel=\"stylesheet\" href=\"./CSS/Profile.css\"/>"
+    echo "<link rel=\"stylesheet\" href=\"CSS/Profile.css\"/>"
 
       ?>
 
@@ -139,17 +139,13 @@ $isAdmin = $_SESSION["isAdmin"];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
       integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- External JS -->
-    <!-- Include This is everywhere index.js in every php and html file -->
-    <script src="JS/index.js"></script>
-    <script src="JS/api.js"></script>
   </head>
 
   <body class="ltheme_body">
-    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom ">
+    <nav class="navbar-expand-lg navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <a class="navbar-brand logoText" href="./MainDashBoard">
-          <img src="Images/Asset 2.svg" width="100" height="65" alt="Logo" class="d-inline-block align-text-top" />
+          <img src="Images/Asset 2.svg" width="65" height="65" alt="Logo" class="d-inline-block align-text-top" />
           Milkesters
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"

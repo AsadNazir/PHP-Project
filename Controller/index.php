@@ -18,7 +18,7 @@ class Controllers
         if (isset($_SESSION["name"])) {
             return true;
         }
-        return false;
+        return true;
     }
 }
 
@@ -26,6 +26,7 @@ $Con = new Controllers();
 
 
 switch ($_SERVER["PATH_INFO"]) {
+
     case '/login':
         include("View/login.php");
         break;
@@ -36,7 +37,7 @@ switch ($_SERVER["PATH_INFO"]) {
 
             include("View/navbar.php");
             include("View/Sidebar.php");
-            include("View/MainPageDashboard.php");
+            include("View/MainPageDashBoard.php");
             //Footer view also includes the ending html tags and div tags so always include it our pages
             include("View/Footer.php");
         } else {
@@ -82,7 +83,7 @@ switch ($_SERVER["PATH_INFO"]) {
         }
         break;
 
-    case "/logout":
+    case "/Logout":
         session_destroy();
         header("Location: ./login");
         break;
@@ -138,12 +139,12 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/Feed":
     case "/DeleteFeedApi":
     case "/UpdateFeedPage":
-    case "/updateFeedApi":
+    case "/UpdateFeedApi":
     case "/AssignAllDietPlan":
     case "/AssignDietPlanApi":
     case "/UpdateDietPlanPage":
     case "/DeleteDietPlanApi":
-    case "/updateDietPlanApi":
+    case "/UpdateDietPlanApi":
     case "/GetAllFeedsApi":
         if ($Con->validateSession()) {
             $Dc = new DietController($_SERVER["PATH_INFO"], $_REQUEST, $_FILES);
@@ -154,6 +155,7 @@ switch ($_SERVER["PATH_INFO"]) {
 
         break;
     default:
+        echo $_SERVER["PATH_INFO"];
         header("Location: ./View/Error.php");
         break;
 }

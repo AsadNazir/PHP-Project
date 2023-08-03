@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `alert` (
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cowId_idx` (`cowId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `alert`
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `cows` (
   `price` varchar(45) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cows`
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `cow_diet` (
   PRIMARY KEY (`id`),
   KEY `cow_id_idx` (`cowId`),
   KEY `diet_id_idx` (`dietId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cow_diet`
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `diet` (
   `name` varchar(255) DEFAULT NULL,
   `description` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `diet`
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `diet_feed` (
   PRIMARY KEY (`id`),
   KEY `dietId_idx` (`dietId`),
   KEY `feedId_idx` (`feedId`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `diet_feed`
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `feed` (
   `quantity` int DEFAULT NULL,
   `price` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `feed`
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `medical` (
   `temperature` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cow_id_idx` (`cow_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `medical`
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `milk` (
   `ph` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cowId_idx` (`cowId`)
-) ENGINE=InnoDB AUTO_INCREMENT=524 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=524 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `milk`
@@ -560,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `job` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`

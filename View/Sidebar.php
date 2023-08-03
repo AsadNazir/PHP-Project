@@ -4,8 +4,10 @@ $isAdmin = $_SESSION["isAdmin"];
 
 
 ?>
-
+<button class="btn-primary btn btnOptions">Options</button>
+<div class="wrapperSideBar">
 <div class="sideBar">
+    <button class="btn closeOptionsBtn btn-danger">close</button>
     <ul>
         <?php
         if ($isAdmin == 'yes') {
@@ -139,3 +141,4 @@ $isAdmin = $_SESSION["isAdmin"];
                 </span>Feed</a></li>
     </ul>
 </div>
+    </div>

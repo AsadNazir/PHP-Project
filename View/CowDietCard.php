@@ -121,7 +121,7 @@ if ($result2) {
 
         </div>
     </div>
-    <div class="DietGraph">
+    <div class="DietGraph graph">
         <canvas class="DietPlanChart"></canvas>
     </div>
 

@@ -25,20 +25,23 @@ class UserModal
     {
         $email = mysqli_real_escape_string($conn, $data["email"]);
         $password = md5($data["password"]);
-        $query = "SELECT * FROM $table WHERE email='$email' AND password='$password'";
-        $result = mysqli_query($conn, $query);
 
-        $arr = [];
+        // Use prepared statement
+        $query = "SELECT * FROM $table WHERE email=? AND password=?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+        mysqli_stmt_execute($stmt);
 
-        if (($result)) {
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($result && mysqli_num_rows($result) > 0) {
             $arr = mysqli_fetch_array($result);
-
-
             return $arr;
         } else {
             return null; // User does not exist or password is incorrect
         }
     }
+
 
     //Modified the function using chatGPT to prevent SQL Injections
     public function addNewUser($conn, $table, $data)

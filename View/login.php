@@ -22,8 +22,8 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
   <!-- External CSS Over Here -->
-  <link rel="stylesheet" href="./CSS/index.css" />
-  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="CSS/index.css" />
+  <link rel="stylesheet" href="CSS/login.css" />
   <!-- External JS -->
   <!-- Include This is everywhere index.js in every php and html file -->
   <script src="./JS/index.js"></script>
@@ -73,7 +73,7 @@
     let formSubmit = function (event) {
 
       const data = new FormData(document.querySelector('form'));
-
+      console.log("Login Form Submitted");
       var settings = {
         data: data,
         contentType: false,

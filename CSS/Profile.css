@@ -6,7 +6,7 @@
     color: var(--foreground-secondary);
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 
 .CowInfoCard {
     background: var(--background-primary);
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     border-radius: 5px;
 }
 
@@ -54,8 +54,9 @@
 
 .CowMilkCardProduction {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
@@ -64,7 +65,6 @@
     border-radius: 5px;
     background-color: var(--accent);
     color: white !important;
-    margin-bottom: 1rem;
     font-size: var(--fs4);
 }
 
@@ -85,39 +85,97 @@
 .graph {
     width: 75%;
     height: 100%;
-
+    min-height: 10rem;
 }
 
-.CowDietCard
-{
+.CowDietCard {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
-.CowDietCard .DietPlanAndFeed
-{
+.CowDietCard .DietPlanAndFeed {
     width: 90%;
 }
 
-.DietPlanAndFeed> h1
-{
+.DietPlanAndFeed>h1 {
     margin-bottom: 1rem;
 }
-.DietPlanAndFeed a
-{
+
+.DietPlanAndFeed a {
     margin: 1rem 0;
 }
 
-.graphAndStats
-{
+.graphAndStats {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
-.FeedsName
-{
+.FeedsName {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+/* Write media Queries */
+@media screen and (max-width: 800px) {
+    .CowInfoCardImg img {
+        border-radius: 50%;
+        width: clamp(100px, 90%, 300px);
+        margin-bottom: 2rem;
+    }
+
+    .CowInfoCard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .MainPage>h1 {
+        margin-bottom: 1rem;
+    }
+
+    .MainPage>h1:not(:first-child) {
+        margin-top: 1rem;
+    }
+
+    .MainPage>h1 {
+        margin-bottom: 2rem;
+    }
+
+    .MainPage>h1:not(:first-child) {
+        margin-top: 2rem;
+    }
+
+    .graphAndStats {
+        display: flex;
+        /* flex-wrap: wrap; */
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .stats .insideP {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats {
+        width: 100%;
+        margin: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .CowDietCard {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .graph {
+        width: 95%;
+        height: 100%;
+
+    }
 }

@@ -140,3 +140,8 @@ nav {
     color: var(--foreground-primary) !important;
 
 }
+
+#navbarNavDropdown
+{
+    margin-left: 1rem;
+}
