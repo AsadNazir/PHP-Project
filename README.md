@@ -14,7 +14,7 @@ This semester project aims to automate the daily tasks performed in a dairy farm
 
 - **Milk Record Management:** Keep track of milk production from individual animals, record milk yield, and analyze production trends with interactive charts using Chart.js.
 
-- **Medical Record Management:** Maintain health records of animals, including vaccinations, treatments, and medical history, helping in providing proper healthcare to each animal.
+- **Medical Record Management:** Maintain health records of animals providing proper healthcare to each animal.
 
 - **Animal Record Management:** Manage and track individual animal data, including breed, age, weight, and other relevant information.
 
