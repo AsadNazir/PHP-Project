@@ -24,7 +24,7 @@ This semester project aims to automate the daily tasks performed in a dairy farm
 
 ## How to Access
 
-The project is currently hosted at [milkesters.free.nf](https://milkesters.free.nf).
+The project is currently hosted at [milkesters.free.nf](http://milkesters.free.nf).
 
 ### Admin User Credentials
 - Email: b@b.com
